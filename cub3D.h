@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 13:13:10 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/06 10:43:15 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/01/06 14:24:06 by aautret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,5 +65,8 @@ int				check_cub_file(t_game *game, char *av);
 void			check_identifier(char *line);
 void			game_init(t_game **game);
 void			clean_identifier_line(t_game *game, char *line);
+
+// parsing_map.c
+int				check_valid_map(char *line);
 
 #endif

@@ -17,6 +17,7 @@ SRC = main.c \
 	GNL/get_next_line_utils.c \
 	src/cleaner.c \
 	src/init.c \
+	src/parsing_map.c \
 	src/parsing.c \
 	src/utils.c \
 
