@@ -1,32 +1,74 @@
-.SILENT:
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: aautret <aautret@student.42.fr>            +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2026/01/06 11:20:20 by aautret           #+#    #+#              #
+#    Updated: 2026/01/06 14:57:13 by aautret          ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
-NAME = cub3D
+NAME		:= cub3D
 
-LIBFT_DIR = ./libft
-LIBFT = $(LIBFT_DIR)/libft.a
+CC			:= cc
 
-GNL_DIR = ./GNL
-GNL = $(GNL_DIR)/get_next_line.a
+# ————————————— REPERTOIRES —————————————
+SRC_DIR		:= src
+OBJ_DIR		:= obj
+MLX_DIR		:= minilibx-linux
+LIBFT_DIR	:= libft
+GNL_DIR		:= GNL
 
-MLX_DIR = ./minilibx-linux
-MLX_LIB = $(MLX_DIR)/libmlx.a
-MLX_REPO = https://github.com/42Paris/minilibx-linux.git
+CFLAGS		:= -Wall -Wextra -Werror -g -I. -I$(MLX_DIR) -I$(LIBFT_DIR) -I$(GNL_DIR)
 
-SRC = main.c \
-	GNL/get_next_line.c \
-	GNL/get_next_line_utils.c \
-	src/cleaner.c \
-	src/init.c \
-	src/parsing_map.c \
-	src/parsing.c \
-	src/utils.c \
+# ————————————— SOURCES OPÉRATIONNELLES —————————————
+SRCS := \
+	main.c \
+	$(SRC_DIR)/cleaner.c \
+	$(SRC_DIR)/init.c \
+	$(SRC_DIR)/parsing_map.c \
+	$(SRC_DIR)/parsing.c \
+	$(SRC_DIR)/utils.c
 
-OBJ = $(SRC:.c=.o)
+# ————————————— SOURCES GNL —————————————
+GNL_SRCS := \
+	$(GNL_DIR)/get_next_line.c \
+	$(GNL_DIR)/get_next_line_utils.c
 
-CFLAGS = -Wall -Wextra -Werror -I$(MLX_DIR) -I./GNL -I./printf -I$(LIBFT_DIR)
-LDFLAGS = -L$(MLX_DIR) -lmlx -lX11 -lXext -lm
+# ————————————— BIBLIOTHÈQUES —————————————
+MLX_LIB		:= $(MLX_DIR)/libmlx.a
+MLX_REPO	:= https://github.com/42Paris/minilibx-linux.git
+MLX_FLAGS	:= -L$(MLX_DIR) -lmlx -lm -lXext -lX11
+LIBFT_LIB	:= $(LIBFT_DIR)/libft.a
 
+# ————————————— OBJETS —————————————
+OBJS		:= $(patsubst %.c,$(OBJ_DIR)/%.o,$(SRCS))
+GNL_OBJS	:= $(patsubst $(GNL_DIR)/%.c,$(OBJ_DIR)/GNL/%.o,$(GNL_SRCS))
+
+ALL_OBJS	:= $(OBJS) $(GNL_OBJS)
+
+# ————————————— CIBLE PRINCIPALE —————————————
 all: $(NAME)
+
+$(NAME): $(LIBFT_LIB) $(MLX_LIB) $(ALL_OBJS)
+	$(CC) $(CFLAGS) $(ALL_OBJS) $(LIBFT_LIB) $(MLX_FLAGS) -o $@
+	@echo "$(NAME) created"
+
+# Compile chaque .c en .o (dans OBJ_DIR)
+$(OBJ_DIR)/%.o: %.c
+	@mkdir -p $(dir $@)
+	$(CC) $(CFLAGS) -c $< -o $@
+
+# ---- Compilation des objets GNL ----
+$(OBJ_DIR)/GNL/%.o: $(GNL_DIR)/%.c
+	@mkdir -p $(dir $@)
+	$(CC) $(CFLAGS) -c $< -o $@
+
+# ---- Sous‑make bibliothèques -------------------------------
+$(LIBFT_LIB):
+	$(MAKE) -C $(LIBFT_DIR)
 
 $(MLX_LIB):
 	if [ ! -d $(MLX_DIR) ]; then \
@@ -34,30 +76,19 @@ $(MLX_LIB):
 	fi
 	$(MAKE) -C $(MLX_DIR)
 
-$(OBJ): $(MLX_LIB)
-
-$(NAME): $(OBJ) $(LIBFT) $(GNL) $(MLX_LIB)
-	cc $(OBJ) $(LIBFT) $(GNL) $(CFLAGS) $(LDFLAGS) -o $(NAME)
-	@echo "$(NAME) created"
-
-$(LIBFT):
-	$(MAKE) -C $(LIBFT_DIR)
-
-$(GNL):
-	$(MAKE) -C $(GNL_DIR)
-
+# ---- Cibles de nettoyage -----------------------------------
 clean:
-	rm -f $(OBJ)
-	$(MAKE) clean -C $(LIBFT_DIR)
+	$(MAKE) -C $(LIBFT_DIR) clean
 	@if [ -d $(MLX_DIR) ]; then $(MAKE) clean -C $(MLX_DIR); fi
+	rm -rf $(OBJ_DIR)
 	@echo "All object files deleted"
 
 fclean: clean
-	rm -f $(NAME)
 	$(MAKE) fclean -C $(LIBFT_DIR)
 	@if [ -d $(MLX_DIR) ]; then rm -rf $(MLX_DIR); fi
+	rm -f $(NAME)
 	@echo "All object files, binary & minilibx deleted"
 
 re: fclean all
 
-.PHONY: all clean fclean re bonus
+.PHONY: all clean fclean re
