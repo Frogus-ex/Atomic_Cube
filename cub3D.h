@@ -6,7 +6,7 @@
 /*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 13:13:10 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/06 14:24:06 by aautret          ###   ########.fr       */
+/*   Updated: 2026/01/06 14:43:07 by aautret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ typedef struct s_game
 {
 	void		*mlx;
 	void		*win;
-	char		*file_line;
+	char		**file_lines;
 	char		*clean_file_line;
 	int			nbr_line;
 	int			fd;
@@ -62,9 +62,12 @@ int				ft_gnlen(char *gnl);
 void			ft_error(char *s);
 void			check_arg_param(int ac, char **av);
 int				check_cub_file(t_game *game, char *av);
-void			check_identifier(char *line);
-void			game_init(t_game **game);
+void			game_init(t_game **game, char *av);
 void			clean_identifier_line(t_game *game, char *line);
+int				count_space(char *line);
+int				count_lines(char **lines);
+int				count_file_lines(t_game *game, char *av);
+int				check_identifier(char *line);
 
 // parsing_map.c
 int				check_valid_map(char *line);
