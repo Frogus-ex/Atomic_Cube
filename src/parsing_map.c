@@ -6,7 +6,7 @@
 /*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 11:20:20 by aautret           #+#    #+#             */
-/*   Updated: 2026/01/06 14:40:30 by aautret          ###   ########.fr       */
+/*   Updated: 2026/01/06 14:47:23 by aautret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,9 @@ static int	check_after(char *line, int i)
 	int	x;
 
 	x = 1;
-	while (line[i + x] == ' ' && x > first_one)
+	while (line[i + x] && line[i + x] == ' ')
 	{
+		x++;
 	}
 	if (line[x] != '1')
 		return (1);
@@ -129,8 +130,8 @@ int	check_valid_map(char *line)
 			return (printf("error: invalid caracter detected"), 1);
 		if (line[i] == ' ')
 		{
-			if (check_before(line, i, first_one) && )
-				return (printf("error: invalid framework"));
+			if (check_before(line, i, first_one) && check_after(line, i))
+				return (printf("error: invalid framework"), 1);
 		}
 		i++;
 	}
