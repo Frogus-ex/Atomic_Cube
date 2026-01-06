@@ -6,7 +6,7 @@
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 13:13:10 by tlorette          #+#    #+#             */
-/*   Updated: 2025/12/17 17:26:30 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/01/06 10:43:15 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@
 # include "GNL/get_next_line.h"
 # include "libft/libft.h"
 # include "mlx.h"
+# include <fcntl.h>
 # include <libft.h>
 # include <math.h>
 # include <stdio.h>
 # include <time.h>
 # include <unistd.h>
-# include <fcntl.h>
 
 # define IMG_PXL 50
 # define TILE_SIZE 50
@@ -51,16 +51,19 @@ typedef struct s_game
 	void		*mlx;
 	void		*win;
 	char		*file_line;
+	char		*clean_file_line;
 	int			nbr_line;
 	int			fd;
 	t_player	*player;
 	t_img		*img;
 }				t_game;
 
-int	ft_gnlen(char *gnl);
-void	ft_error(char *s);
-void	check_arg_param(int ac, char **av, t_game *game);
-void	check_cub_file(t_game *game, char *av);
-
+int				ft_gnlen(char *gnl);
+void			ft_error(char *s);
+void			check_arg_param(int ac, char **av);
+int				check_cub_file(t_game *game, char *av);
+void			check_identifier(char *line);
+void			game_init(t_game **game);
+void			clean_identifier_line(t_game *game, char *line);
 
 #endif

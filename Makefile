@@ -5,11 +5,20 @@ NAME = cub3D
 LIBFT_DIR = ./libft
 LIBFT = $(LIBFT_DIR)/libft.a
 
+GNL_DIR = ./GNL
+GNL = $(GNL_DIR)/get_next_line.a
+
 MLX_DIR = ./minilibx-linux
 MLX_LIB = $(MLX_DIR)/libmlx.a
 MLX_REPO = https://github.com/42Paris/minilibx-linux.git
 
-SRC = 
+SRC = main.c \
+	GNL/get_next_line.c \
+	GNL/get_next_line_utils.c \
+	src/cleaner.c \
+	src/init.c \
+	src/parsing.c \
+	src/utils.c \
 
 OBJ = $(SRC:.c=.o)
 
@@ -26,12 +35,15 @@ $(MLX_LIB):
 
 $(OBJ): $(MLX_LIB)
 
-$(NAME): $(OBJ) $(LIBFT) $(MLX_LIB)
-	cc $(OBJ) $(LIBFT) $(CFLAGS) $(LDFLAGS) -o $(NAME)
+$(NAME): $(OBJ) $(LIBFT) $(GNL) $(MLX_LIB)
+	cc $(OBJ) $(LIBFT) $(GNL) $(CFLAGS) $(LDFLAGS) -o $(NAME)
 	@echo "$(NAME) created"
 
 $(LIBFT):
 	$(MAKE) -C $(LIBFT_DIR)
+
+$(GNL):
+	$(MAKE) -C $(GNL_DIR)
 
 clean:
 	rm -f $(OBJ)

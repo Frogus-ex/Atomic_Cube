@@ -6,15 +6,15 @@
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 13:40:17 by tlorette          #+#    #+#             */
-/*   Updated: 2025/12/17 16:58:33 by tlorette         ###   ########.fr       */
+/*   Updated: 2025/12/18 13:45:58 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "../cub3D.h"
 
 void	ft_error(char *s)
 {
-	printf("%s\n");
+	printf("%s\n", s);
 }
 
 int	ft_gnlen(char *gnl)
