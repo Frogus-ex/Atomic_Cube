@@ -6,7 +6,7 @@
 #    By: frogus <frogus@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/06 11:20:20 by aautret           #+#    #+#              #
-#    Updated: 2026/01/07 13:55:26 by frogus           ###   ########.fr        #
+#    Updated: 2026/01/07 13:57:11 by frogus           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,9 @@ SRCS := \
 	$(SRC_DIR)/init.c \
 	$(SRC_DIR)/parsing_map.c \
 	$(SRC_DIR)/parsing.c \
-	$(SRC_DIR)/utils.c
+	$(SRC_DIR)/utils.c \
+	$(SRC_DIR)/find_id.c \
+	$(SRC_DIR)/parsing_identifiers.c \
 
 # ————————————— SOURCES GNL —————————————
 GNL_SRCS := \
