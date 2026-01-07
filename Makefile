@@ -19,6 +19,8 @@ SRC = main.c \
 	src/init.c \
 	src/parsing.c \
 	src/utils.c \
+	src/parsing_identifiers.c \
+	src/find_id.c \
 
 OBJ = $(SRC:.c=.o)
 
