@@ -6,16 +6,17 @@
 /*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 11:20:20 by aautret           #+#    #+#             */
-/*   Updated: 2026/01/06 14:47:23 by aautret          ###   ########.fr       */
+/*   Updated: 2026/01/07 16:31:12 by aautret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3D.h"
+#include "../../cub3D.h"
 
 /**
  * @brief Trouve la position du premier 1
  * 
- * - Rajouter une protection pour que seuls des espaces avant le '1' soient valides
+ * - Rajouter une protection pour que seuls des espaces avant le '1' soient
+ * valides
  * 
  * @param line 
  * @return int 
@@ -31,7 +32,7 @@ static int	get_first_one(char *line)
 			return (i);
 		i++;
 	}
-	return (-1);
+	return (1);
 }
 
 /**
@@ -51,7 +52,7 @@ static int	check_last_one(char *line)
 	i = 0;
 	while (line[i])
 		i++;
-	if (line[i] != '1')
+	if (line[i - 1] != '1')
 		return (1);
 	return (0);
 }
@@ -113,7 +114,7 @@ static int	check_after(char *line, int i)
  * @param line
  * @return int
  */
-int	check_valid_map(char *line)
+int	parse_map_line(char *line)
 {
 	int		first_one;
 	int		last_one;
@@ -121,17 +122,17 @@ int	check_valid_map(char *line)
 
 	first_one = get_first_one(line);
 	last_one = check_last_one(line);
-	if (first_one < 0 && last_one > 0)
-		return (printf("error: first & last"), 1);
+	if (first_one > 0 && last_one > 0)
+		return (printf("error : delimitation of map\n"), 1);
 	i = first_one;
 	while (line[i])
 	{
-		if (!ft_strchr("10NSEW ", line[i]))
-			return (printf("error: invalid caracter detected"), 1);
+		if (!ft_strchr("10NSEW \n", line[i]))
+			return (printf("error: invalid caracter detected\n"), 1);
 		if (line[i] == ' ')
 		{
 			if (check_before(line, i, first_one) && check_after(line, i))
-				return (printf("error: invalid framework"), 1);
+				return (printf("error: invalid framework\n"), 1);
 		}
 		i++;
 	}
