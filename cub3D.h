@@ -6,7 +6,7 @@
 /*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 13:13:10 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/06 14:43:07 by aautret          ###   ########.fr       */
+/*   Updated: 2026/01/07 10:02:19 by aautret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,12 @@
 # define IMG_PXL 50
 # define TILE_SIZE 50
 # define WND_NAME "Atomic_Cube"
+
+typedef enum e_parse_state
+{
+	PARSES_IDENTIFIERS,
+	PARSE_MAP
+}				t_parse_state;
 
 typedef struct s_player
 {
@@ -61,15 +67,37 @@ typedef struct s_game
 int				ft_gnlen(char *gnl);
 void			ft_error(char *s);
 void			check_arg_param(int ac, char **av);
-int				check_cub_file(t_game *game, char *av);
 void			game_init(t_game **game, char *av);
 void			clean_identifier_line(t_game *game, char *line);
 int				count_space(char *line);
-int				count_lines(char **lines);
 int				count_file_lines(t_game *game, char *av);
 int				check_identifier(char *line);
 
+int				count_lines(char **lines);
+
+/************************************************************************
+ *									SRC									*
+ ***********************************************************************/
+// cleaner.c
+int				count_file_lines(t_game *game, char *av);
+void			game_init(t_game **game, char *av);
+
+// init.c
+
+// utils.c
+void			ft_error(char *s);
+int				ft_gnlen(char *gnl);
+
+/************************************************************************
+ *								PARSING									*
+ ***********************************************************************/
+// parsing.c
+int				parsing(t_game *game, char *av);
+
+// parsing_identifiers.c
+int				parse_identifier_line(t_game *game, char *line);
+
 // parsing_map.c
-int				check_valid_map(char *line);
+int				parse_map_line(char *line);
 
 #endif

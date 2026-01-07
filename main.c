@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 13:18:39 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/06 13:50:09 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/01/07 16:18:38 by aautret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,9 @@ int	main(int ac, char **av)
 	game_init(&game, av[1]);
 	if (!game)
 		return (1);
-	check_cub_file(game, av[1]);
+	if (parsing(game, av[1]) == 0)
+		return (printf("PARSING SUCCESS\n"), 0);
+	else
+		return (printf("PARSING FAILDED\n"), 1);
 	return (0);
 }

@@ -6,7 +6,7 @@
 #    By: aautret <aautret@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/06 11:20:20 by aautret           #+#    #+#              #
-#    Updated: 2026/01/06 14:57:13 by aautret          ###   ########.fr        #
+#    Updated: 2026/01/07 09:54:19 by aautret          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,8 +28,9 @@ SRCS := \
 	main.c \
 	$(SRC_DIR)/cleaner.c \
 	$(SRC_DIR)/init.c \
-	$(SRC_DIR)/parsing_map.c \
-	$(SRC_DIR)/parsing.c \
+	$(SRC_DIR)/parsing/parsing_map.c \
+	$(SRC_DIR)/parsing/parsing_identifiers.c \
+	$(SRC_DIR)/parsing/parsing.c \
 	$(SRC_DIR)/utils.c
 
 # ————————————— SOURCES GNL —————————————
