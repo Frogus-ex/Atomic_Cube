@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
+/*   By: frogus <frogus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 13:13:10 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/06 14:43:07 by aautret          ###   ########.fr       */
+/*   Updated: 2026/01/07 13:54:59 by frogus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,13 @@ typedef struct s_game
 {
 	void		*mlx;
 	void		*win;
-	char		**file_lines;
-	char		*clean_file_line;
+	char		*no_text;
+	char		*so_text;
+	char		*we_text;
+	char		*ea_text;
+	char		*f_text;
+	char		*c_text;
+	int			*nbr_text;
 	int			nbr_line;
 	int			fd;
 	t_player	*player;
@@ -59,17 +64,21 @@ typedef struct s_game
 }				t_game;
 
 int				ft_gnlen(char *gnl);
-void			ft_error(char *s);
+void			ft_error(t_game *game, char *s);
+void			free_all(t_game *game);
 void			check_arg_param(int ac, char **av);
-int				check_cub_file(t_game *game, char *av);
-void			game_init(t_game **game, char *av);
-void			clean_identifier_line(t_game *game, char *line);
+void			game_init(t_game **game);
+int				parse_identifer_line(t_game *game, char *av);
 int				count_space(char *line);
 int				count_lines(char **lines);
-int				count_file_lines(t_game *game, char *av);
+int				parse_identifer_line(t_game *game, char *av);
 int				check_identifier(char *line);
+void			check_id(t_game *game, char *line);
+void			grab_we_text(t_game *game, char *line, int i);
+void			grab_ea_text(t_game *game, char *line, int i);
+void			grab_c_text(t_game *game, char *line, int i);
+void			grab_f_text(t_game *game, char *line, int i);
 
-// parsing_map.c
-int				check_valid_map(char *line);
+
 
 #endif
