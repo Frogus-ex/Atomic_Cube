@@ -6,7 +6,7 @@
 /*   By: frogus <frogus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 14:56:24 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/07 11:50:21 by frogus           ###   ########.fr       */
+/*   Updated: 2026/01/07 14:16:11 by frogus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 // toutes les fonction ft_error devrons contenir un free game ulterieurement
 
-void	check_arg_param(int ac, char **av)
+int	check_arg_param(int ac, char **av)
 {
 	int		len;
 	char	*name;
@@ -24,9 +24,10 @@ void	check_arg_param(int ac, char **av)
 	name = av[1];
 	len = ft_strlen(name);
 	if (len < 5 || ft_strncmp(name + len - 4, ".cub", 4) != 0)
-		ft_error(NULL, "file extention must be .cub");
+		return (ft_error(NULL, "file extention must be .cub"), 0);
 	if (ft_strnstr(name, ".cub", len - 4))
-		ft_error(NULL, "file extention must be .cub");
+		return (ft_error(NULL, "file extention must be .cub"), 0);
+	return (1);
 }
 
 int	count_space(char *line)

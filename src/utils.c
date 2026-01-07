@@ -6,7 +6,7 @@
 /*   By: frogus <frogus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 13:40:17 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/07 11:49:44 by frogus           ###   ########.fr       */
+/*   Updated: 2026/01/07 15:32:23 by frogus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void	free_all(t_game *game)
 {
 	if (!game)
 		return ;
-	
 	if (game->no_text)
 		free(game->no_text);
 	if (game->so_text)
@@ -43,7 +42,7 @@ void	free_all(t_game *game)
 		mlx_destroy_window(game->mlx, game->win);
 	if (game->mlx)
 		mlx_destroy_display(game->mlx);
-	if (game->fd > 0)
+	if (game->fd >= 0)
 		close(game->fd);
 	free(game);
 }
