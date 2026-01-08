@@ -6,7 +6,7 @@
 /*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 11:20:20 by aautret           #+#    #+#             */
-/*   Updated: 2026/01/08 14:24:48 by aautret          ###   ########.fr       */
+/*   Updated: 2026/01/08 15:28:30 by aautret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,10 @@ static int	check_last_one(char *line)
 	i = 0;
 	while (line[i])
 		i++;
-	if (line[i - 1] != '1')
+	if (line[i - 2] != '1')
 		return (1);
-	return (0);
+	else
+		return (0);
 }
 
 static int	check_first_one(char *line)
@@ -62,7 +63,7 @@ static int	check_first_one(char *line)
 	int	i;
 
 	i = 0;
-	while (line[i])
+	while (line[i] == ' ')
 		i++;
 	if (line[i] != '1')
 		return (1);
@@ -131,9 +132,13 @@ int	parse_map_line(char *line)
 	int		first_one;
 	int		i;
 
-	printf("%s\n", line);
-	if (check_first_one(line) == 1 || check_last_one(line) == 1)
+	if (check_first_one(line) == 1)
 		return (printf("error : delimitation of map\n"), 1);
+	if (check_last_one(line) == 1)
+	{
+		printf("line = %s\n", line);
+		return (printf("error: last invalid map\n"), 1);
+	}
 	first_one = get_first_one(line);
 	i = first_one;
 	while (line[i])
@@ -145,7 +150,7 @@ int	parse_map_line(char *line)
 		// 	if (check_before(line, i, first_one) && check_after(line, i))
 		// 		return (printf("error: invalid framework\n"), 1);
 		// }
-		// i++;
+		i++;
 	}
 	return (0);
 }

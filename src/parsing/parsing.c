@@ -6,7 +6,7 @@
 /*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 14:56:24 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/08 14:35:31 by aautret          ###   ########.fr       */
+/*   Updated: 2026/01/08 15:20:02 by aautret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,6 @@ static int	detector_and_store_line(t_game *game, char *line,
 		return (0);
 	}
 	game->nbr_line++;
-	printf("%d\n", game->nbr_line);
 	return (parse_map_line(line));
 }
 
