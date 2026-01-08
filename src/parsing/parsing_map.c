@@ -6,7 +6,7 @@
 /*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 11:20:20 by aautret           #+#    #+#             */
-/*   Updated: 2026/01/08 11:04:59 by aautret          ###   ########.fr       */
+/*   Updated: 2026/01/08 14:24:48 by aautret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,33 +82,33 @@ static int	check_first_one(char *line)
  * 
  * - 0 = SUCCES (encadrement du debut valide)
  */
-static int	check_before(char *line, int i, int first_one)
-{
-	int	x;
+// static int	check_before(char *line, int i, int first_one)
+// {
+// 	int	x;
 
-	x = 1;
-	while (line[i - x] == ' ' && x > first_one)
-	{
-		x--;
-	}
-	if (line[x] != '1')
-		return (1);
-	return (0);
-}
+// 	x = 1;
+// 	while (line[i - x] == ' ' && x > first_one)
+// 	{
+// 		x--;
+// 	}
+// 	if (line[x] != '1')
+// 		return (1);
+// 	return (0);
+// }
 
-static int	check_after(char *line, int i)
-{
-	int	x;
+// static int	check_after(char *line, int i)
+// {
+// 	int	x;
 
-	x = 1;
-	while (line[i + x] && line[i + x] == ' ')
-	{
-		x++;
-	}
-	if (line[x] != '1')
-		return (1);
-	return (0);
-}
+// 	x = 1;
+// 	while (line[i + x] && line[i + x] == ' ')
+// 	{
+// 		x++;
+// 	}
+// 	if (line[x] != '1')
+// 		return (1);
+// 	return (0);
+// }
 
 /**
  * @brief
@@ -131,7 +131,8 @@ int	parse_map_line(char *line)
 	int		first_one;
 	int		i;
 
-	if (check_first_one(line) == 1 && check_last_one(line) == 0)
+	printf("%s\n", line);
+	if (check_first_one(line) == 1 || check_last_one(line) == 1)
 		return (printf("error : delimitation of map\n"), 1);
 	first_one = get_first_one(line);
 	i = first_one;
@@ -139,12 +140,12 @@ int	parse_map_line(char *line)
 	{
 		if (!ft_strchr("10NSEW \n", line[i]))
 			return (printf("error: invalid caracter detected\n"), 1);
-		if (line[i] == ' ')
-		{
-			if (check_before(line, i, first_one) && check_after(line, i))
-				return (printf("error: invalid framework\n"), 1);
-		}
-		i++;
+		// if (line[i] == ' ')
+		// {
+		// 	if (check_before(line, i, first_one) && check_after(line, i))
+		// 		return (printf("error: invalid framework\n"), 1);
+		// }
+		// i++;
 	}
 	return (0);
 }
