@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_identifiers.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: frogus <frogus@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 09:37:30 by frogus            #+#    #+#             */
-/*   Updated: 2026/01/07 16:32:57 by frogus           ###   ########.fr       */
+/*   Updated: 2026/01/08 11:06:21 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void	grab_so_text(t_game *game, char *line, int i)
 	while (line && line[i] == 32)
 		i++;
 	if (game->nbr_text[1] == 0)
-		game->so_text = malloc(sizeof(char) * (ft_strlen(line) - i)+ 1);
+		game->so_text = malloc(sizeof(char) * (ft_strlen(line) - i) + 1);
 	while (line[i] && line[i] != '\n' && game->nbr_text[1] == 0)
 		game->so_text[y++] = line[i++];
 	game->so_text[y] = 0;
@@ -74,7 +74,8 @@ int	check_id(t_game *game, char *line)
 		grab_f_text(game, line, i + 1);
 	else if (line[i] == 'C' && line[i + 1] == 32)
 		grab_c_text(game, line, i + 1);
-	else if ((line[i] >= 'a' && line[i] <= 'z') || (line[i] >= 'A' && line[i] <= 'Z'))
+	else if ((line[i] >= 'a' && line[i] <= 'z') || (line[i] >= 'A'
+			&& line[i] <= 'Z'))
 		return (0);
 	return (1);
 }
@@ -87,7 +88,7 @@ int	parse_identifer_line(t_game *game, char *av)
 	stash = NULL;
 	game->fd = open(av, O_RDONLY);
 	if (game->fd < 0)
-		return (ft_error(game, "file doesn t exist"), 0);
+		return (ft_error(NULL, "file doesn t exist"), 0);
 	line = get_next_line(game->fd, &stash);
 	if (!line)
 		return (free(line), free(stash), close(game->fd), 0);
@@ -95,7 +96,8 @@ int	parse_identifer_line(t_game *game, char *av)
 	{
 		game->nbr_line++;
 		if (!check_id(game, line))
-			return (ft_error(game, "wrong identifier"), free(line), free(stash), 0);
+			return (ft_error(NULL, "wrong identifier"), free(line), free(stash),
+				0);
 		free(line);
 		line = get_next_line(game->fd, &stash);
 	}
