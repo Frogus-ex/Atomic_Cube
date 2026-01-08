@@ -3,14 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 14:56:24 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/07 16:26:05 by aautret          ###   ########.fr       */
+/*   Updated: 2026/01/08 12:00:37 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3D.h"
+
+static int	count_text(t_game *game)
+{
+	int	i;
+
+	i = 0;
+	while (i < 6 && game->nbr_text[i] == 1)
+		i++;
+	printf("%d\n", i);
+	if (i == 6)
+		return (1);
+	else
+		return (0);
+}
 
 // toutes les fonction ft_error devrons contenir un free game ulterieurement
 
@@ -71,13 +85,14 @@ static int	detector_and_store_line(t_game *game, char *line,
 	if (*state == PARSES_IDENTIFIERS)
 	{
 		if (detect == -1)
-			return (ft_error("error: invalid line before map start"), 1);
+			return (ft_error(NULL, "error: invalid line before map start"), 1);
 		if (detect == 1)
 		{
 			*state = PARSE_MAP;
 			return (parse_map_line(line));
 		}
-		return (parse_identifier_line(game, line));
+		if (parse_identifiers_line(game, line) == 0)
+			return (1);
 	}
 	return (parse_map_line(line));
 }
@@ -94,15 +109,16 @@ int	parsing(t_game *game, char *av)
 	state = PARSES_IDENTIFIERS;
 	game->fd = open(av, O_RDONLY);
 	if (game->fd < 0)
-		return (ft_error("file doesnt exist"), 1);
+		return (ft_error(NULL, "file doesnt exist"), 1);
 	line = get_next_line(game->fd, &stash);
 	if (!line)
 		return (free(line), free(stash), close(game->fd), 1);
-	while (line && game->nbr_line < 1000 && status == 0)
+	while (line && status == 0)
 	{
+		game->nbr_line++;
 		status = detector_and_store_line(game, line, &state);
 		if (status == 1)
-			return (free(line), 1);
+			return (free(line), free(stash), 1);
 		free(line);
 		line = get_next_line(game->fd, &stash);
 	}

@@ -3,44 +3,75 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_identifiers.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/17 14:56:24 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/08 11:15:32 by aautret          ###   ########.fr       */
+/*   Created: 2026/01/07 09:37:30 by frogus            #+#    #+#             */
+/*   Updated: 2026/01/08 13:30:04 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3D.h"
 
-// toutes les fonction ft_error devrons contenir un free game ulterieurement
-
-int	check_arg_param(int ac, char **av)
+static void	grab_no_text(t_game *game, char *line, int i)
 {
-	int		len;
-	char	*name;
+	int	y;
 
-	if (ac != 2)
-		ft_error(NULL, "wrong number of args");
-	name = av[1];
-	len = ft_strlen(name);
-	if (len < 5 || ft_strncmp(name + len - 4, ".cub", 4) != 0)
-		return (ft_error(NULL, "file extention must be .cub"), 0);
-	if (ft_strnstr(name, ".cub", len - 4))
-		return (ft_error(NULL, "file extention must be .cub"), 0);
+	y = 0;
+	while (line && line[i] == 32)
+		i++;
+	if (game->nbr_text[0] == 0)
+		game->no_text = malloc(sizeof(char) * (ft_strlen(line) - i) + 1);
+	while (line[i] && line[i] != '\n' && game->nbr_text[0] == 0)
+		game->no_text[y++] = line[i++];
+	game->no_text[y] = 0;
+	game->nbr_text[0]++;
+}
+
+static void	grab_so_text(t_game *game, char *line, int i)
+{
+	int	y;
+
+	y = 0;
+	while (line && line[i] == 32)
+		i++;
+	if (game->nbr_text[1] == 0)
+		game->so_text = malloc(sizeof(char) * (ft_strlen(line) - i) + 1);
+	while (line[i] && line[i] != '\n' && game->nbr_text[1] == 0)
+		game->so_text[y++] = line[i++];
+	game->so_text[y] = 0;
+	game->nbr_text[1]++;
+}
+
+int	check_id(t_game *game, char *line)
+{
+	int	i;
+
+	i = 0;
+	while (line[i] && line[i] == 32)
+		i++;
+	if (line[i] == 'N' && line[i + 1] == 'O')
+		grab_no_text(game, line, i + 2);
+	else if (line[i] == 'S' && line[i + 1] == 'O')
+		grab_so_text(game, line, i + 2);
+	else if (line[i] == 'W' && line[i + 1] == 'E')
+		grab_we_text(game, line, i + 2);
+	else if (line[i] == 'E' && line[i + 1] == 'A')
+		grab_ea_text(game, line, i + 2);
+	else if (line[i] == 'F' && line[i + 1] == 32)
+		grab_f_text(game, line, i + 1);
+	else if (line[i] == 'C' && line[i + 1] == 32)
+		grab_c_text(game, line, i + 1);
+	else if ((line[i] >= 'a' && line[i] <= 'z') || (line[i] >= 'A'
+			&& line[i] <= 'Z'))
+		return (0);
 	return (1);
 }
 
-int	count_space(char *line)
+int	parse_identifiers_line(t_game *game, char *line)
 {
-	int	i;
-	int	space;
-
-	i = -1;
-	space = 0;
-	while (line[++i])
-	{
-		if (line[i] == 32)
-			space++;
-	}
-	return (space);
+	if (!check_id(game, line))
+		return (ft_error(NULL, "wrong identifier"), 0);
+	if (count_text(game) == 0)
+		return (ft_error(NULL, "wrong number of textures"), 0);
+	return (1);
 }
