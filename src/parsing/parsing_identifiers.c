@@ -6,11 +6,11 @@
 /*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 14:56:24 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/08 11:14:57 by aautret          ###   ########.fr       */
+/*   Updated: 2026/01/08 11:15:32 by aautret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3D.h"
+#include "../../cub3D.h"
 
 // toutes les fonction ft_error devrons contenir un free game ulterieurement
 
