@@ -6,7 +6,7 @@
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 09:37:30 by frogus            #+#    #+#             */
-/*   Updated: 2026/01/08 13:30:04 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/01/08 13:56:38 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,5 @@ int	parse_identifiers_line(t_game *game, char *line)
 {
 	if (!check_id(game, line))
 		return (ft_error(NULL, "wrong identifier"), 0);
-	if (count_text(game) == 0)
-		return (ft_error(NULL, "wrong number of textures"), 0);
 	return (1);
 }

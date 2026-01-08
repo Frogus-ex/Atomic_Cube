@@ -6,7 +6,7 @@
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 14:56:24 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/08 12:00:37 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/01/08 13:56:42 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,8 @@ int	parsing(t_game *game, char *av)
 		free(line);
 		line = get_next_line(game->fd, &stash);
 	}
+	if (!count_text(game))
+		return (ft_error(NULL, "wrong number of textures"), 1);
 	free(line);
 	free(stash);
 	return (close(game->fd), status);
