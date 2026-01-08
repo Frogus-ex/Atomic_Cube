@@ -6,7 +6,7 @@
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 14:56:24 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/08 13:56:42 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/01/08 14:28:22 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ static int	count_text(t_game *game)
 	i = 0;
 	while (i < 6 && game->nbr_text[i] == 1)
 		i++;
-	printf("%d\n", i);
 	if (i == 6)
 		return (1);
 	else
@@ -94,6 +93,8 @@ static int	detector_and_store_line(t_game *game, char *line,
 		if (parse_identifiers_line(game, line) == 0)
 			return (1);
 	}
+	game->nbr_line++;
+	printf("%d\n", game->nbr_line);
 	return (parse_map_line(line));
 }
 
@@ -115,7 +116,6 @@ int	parsing(t_game *game, char *av)
 		return (free(line), free(stash), close(game->fd), 1);
 	while (line && status == 0)
 	{
-		game->nbr_line++;
 		status = detector_and_store_line(game, line, &state);
 		if (status == 1)
 			return (free(line), free(stash), 1);
@@ -124,7 +124,5 @@ int	parsing(t_game *game, char *av)
 	}
 	if (!count_text(game))
 		return (ft_error(NULL, "wrong number of textures"), 1);
-	free(line);
-	free(stash);
-	return (close(game->fd), status);
+	return (free(line), free(stash), close(game->fd), status);
 }
