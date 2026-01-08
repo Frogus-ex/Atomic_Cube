@@ -6,7 +6,7 @@
 /*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 11:20:20 by aautret           #+#    #+#             */
-/*   Updated: 2026/01/07 16:31:12 by aautret          ###   ########.fr       */
+/*   Updated: 2026/01/08 11:04:59 by aautret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,18 @@ static int	check_last_one(char *line)
 	while (line[i])
 		i++;
 	if (line[i - 1] != '1')
+		return (1);
+	return (0);
+}
+
+static int	check_first_one(char *line)
+{
+	int	i;
+
+	i = 0;
+	while (line[i])
+		i++;
+	if (line[i] != '1')
 		return (1);
 	return (0);
 }
@@ -117,13 +129,11 @@ static int	check_after(char *line, int i)
 int	parse_map_line(char *line)
 {
 	int		first_one;
-	int		last_one;
 	int		i;
 
-	first_one = get_first_one(line);
-	last_one = check_last_one(line);
-	if (first_one > 0 && last_one > 0)
+	if (check_first_one(line) == 1 && check_last_one(line) == 0)
 		return (printf("error : delimitation of map\n"), 1);
+	first_one = get_first_one(line);
 	i = first_one;
 	while (line[i])
 	{
