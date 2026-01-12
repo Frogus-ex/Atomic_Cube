@@ -6,7 +6,7 @@
 #    By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/06 11:20:20 by aautret           #+#    #+#              #
-#    Updated: 2026/01/08 11:23:20 by tlorette         ###   ########.fr        #
+#    Updated: 2026/01/12 11:09:24 by tlorette         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,8 @@ SRCS := \
 	$(SRC_DIR)/parsing/parsing_identifiers.c \
 	$(SRC_DIR)/parsing/parsing.c \
 	$(SRC_DIR)/utils.c \
-	$(SRC_DIR)/find_id.c 
+	$(SRC_DIR)/find_id.c \
+	$(SRC_DIR)/parsing/map_copy.c \
 
 # ————————————— SOURCES GNL —————————————
 GNL_SRCS := \

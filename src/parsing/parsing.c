@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 14:56:24 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/08 15:20:02 by aautret          ###   ########.fr       */
+/*   Updated: 2026/01/12 11:59:53 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static int	count_text(t_game *game)
  * @param line
  * @return int
  */
-static int	detector_start_map(char *line)
+int	detector_start_map(char *line)
 {
 	int	i;
 
@@ -122,6 +122,7 @@ int	parsing(t_game *game, char *av)
 		free(line);
 		line = get_next_line(game->fd, &stash);
 	}
+	game->nbr_line++;
 	if (!count_text(game))
 		return (ft_error(NULL, "wrong number of textures"), 1);
 	return (free(line), free(stash), close(game->fd), status);

@@ -6,7 +6,7 @@
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 13:13:10 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/08 11:31:55 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/01/12 18:00:53 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,16 @@ typedef struct s_player
 	int			y;
 	int			x;
 }				t_player;
+
+typedef struct s_map
+{
+	char		**map;
+	int			y;
+	int			x;
+	int			width;
+	int			height;
+	int			total_size;
+}				t_map;
 
 typedef struct s_img
 {
@@ -75,12 +85,11 @@ void			ft_error(t_game *game, char *s);
 void			free_all(t_game *game);
 // int				check_arg_param(int ac, char **av);
 void			game_init(t_game **game);
+void			map_init(t_map **map);
 int				parse_identifiers_line(t_game *game, char *line);
 int				count_space(char *line);
 int				count_file_lines(t_game *game, char *av);
-int				count_lines(char **lines);
 int				check_identifier(char *line);
-
 int				count_lines(char **lines);
 
 /************************************************************************
@@ -103,10 +112,18 @@ int				parsing(t_game *game, char *av);
 
 // parsing_map.c
 int				parse_map_line(char *line);
+int				detector_start_map(char *line);
 int				check_id(t_game *game, char *line);
 void			grab_we_text(t_game *game, char *line, int i);
 void			grab_ea_text(t_game *game, char *line, int i);
 void			grab_c_text(t_game *game, char *line, int i);
 void			grab_f_text(t_game *game, char *line, int i);
+int				count_map_lines(t_game *game, t_map *map, char *av);
+void			map_copy(t_map *map, char *av);
+int				get_map_width(char *line);
+void			read_from_map(t_game *game, t_map *map, char *av);
+int				get_greater_width(char *av);
+int				get_map_height(char *av);
+void			map_alloc(t_map *map, char *av);
 
 #endif

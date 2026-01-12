@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: frogus <frogus@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 13:25:04 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/07 15:33:42 by frogus           ###   ########.fr       */
+/*   Updated: 2026/01/12 14:22:13 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,11 @@ void	game_init(t_game **game)
 		return ;
 	}
 	(*game)->nbr_line = 0;
+}
+
+void	map_init(t_map **map)
+{
+	*map = ft_calloc(1, sizeof(t_map));
+	if (!*map)
+		return (ft_error(NULL, "malloc failed"));
 }
