@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   find_id.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: frogus <frogus@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 12:01:18 by frogus            #+#    #+#             */
-/*   Updated: 2026/01/07 16:32:19 by frogus           ###   ########.fr       */
+/*   Updated: 2026/01/13 17:06:28 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3D.h"
+#include "../includes/cub3D.h"
 
 void	grab_we_text(t_game *game, char *line, int i)
 {

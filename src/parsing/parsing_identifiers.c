@@ -6,11 +6,11 @@
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 09:37:30 by frogus            #+#    #+#             */
-/*   Updated: 2026/01/08 13:56:38 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/01/13 17:04:10 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../cub3D.h"
+#include "../includes/cub3D.h"
 
 static void	grab_no_text(t_game *game, char *line, int i)
 {

@@ -6,11 +6,11 @@
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 11:20:20 by aautret           #+#    #+#             */
-/*   Updated: 2026/01/12 13:47:47 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/01/13 17:06:16 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../cub3D.h"
+#include "../../includes/cub3D.h"
 
 /**
  * @brief Trouve la position du premier 1
@@ -21,19 +21,19 @@
  * @param line 
  * @return int 
  */
-static int	get_first_one(char *line)
-{
-	int	i;
+// static int	get_first_one(char *line)
+// {
+// 	int	i;
 
-	i = 0;
-	while (line[i])
-	{
-		if (line[i] == '1')
-			return (i);
-		i++;
-	}
-	return (1);
-}
+// 	i = 0;
+// 	while (line[i])
+// 	{
+// 		if (line[i] == '1')
+// 			return (i);
+// 		i++;
+// 	}
+// 	return (1);
+// }
 
 /**
  * @brief Verifie que le dernier element de la ligne est un '1'
@@ -45,30 +45,30 @@ static int	get_first_one(char *line)
  * 
  * - 0 = SUCCES
  */
-static int	check_last_one(char *line)
-{
-	int	i;
+// static int	check_last_one(char *line)
+// {
+// 	int	i;
 
-	i = 0;
-	while (line[i])
-		i++;
-	if (line[i - 2] != '1')
-		return (1);
-	else
-		return (0);
-}
+// 	i = 0;
+// 	while (line[i])
+// 		i++;
+// 	if (line[i - 2] != '1')
+// 		return (1);
+// 	else
+// 		return (0);
+// }
 
-static int	check_first_one(char *line)
-{
-	int	i;
+// static int	check_first_one(char *line)
+// {
+// 	int	i;
 
-	i = 0;
-	while (line[i] == ' ')
-		i++;
-	if (line[i] != '1')
-		return (1);
-	return (0);
-}
+// 	i = 0;
+// 	while (line[i] == ' ')
+// 		i++;
+// 	if (line[i] != '1')
+// 		return (1);
+// 	return (0);
+// }
 
 /**
  * @brief Chercher le dernier caractère different d'un ' ' avant celui ci
@@ -127,30 +127,30 @@ static int	check_first_one(char *line)
  * @param line
  * @return int
  */
-int	parse_map_line(char *line)
-{
-	int		first_one;
-	int		i;
+// int	parse_map_line(char *line)
+// {
+// 	int		first_one;
+// 	int		i;
 
-	if (check_first_one(line) == 1)
-		return (printf("error : delimitation of map\n"), 1);
-	if (check_last_one(line) == 1)
-	{
-		printf("line = %s\n", line);
-		return (printf("error: last invalid map\n"), 1);
-	}
-	first_one = get_first_one(line);
-	i = first_one;
-	while (line[i])
-	{
-		if (!ft_strchr("10NSEW \n", line[i]))
-			return (printf("error: invalid caracter detected\n"), 1);
-		// if (line[i] == ' ')
-		// {
-		// 	if (check_before(line, i, first_one) && check_after(line, i))
-		// 		return (printf("error: invalid framework\n"), 1);
-		// }
-		i++;
-	}
-	return (0);
-}
+// 	if (check_first_one(line) == 1)
+// 		return (printf("error : delimitation of map\n"), 1);
+// 	if (check_last_one(line) == 1)
+// 	{
+// 		printf("line = %s\n", line);
+// 		return (printf("error: last invalid map\n"), 1);
+// 	}
+// 	first_one = get_first_one(line);
+// 	i = first_one;
+// 	// while (line[i])
+// 	// {
+// 	// 	if (!ft_strchr("10NSEW \n", line[i]))
+// 	// 		return (printf("error: invalid caracter detected\n"), 1);
+// 	// 	// if (line[i] == ' ')
+// 	// 	// {
+// 	// 	// 	if (check_before(line, i, first_one) && check_after(line, i))
+// 	// 	// 		return (printf("error: invalid framework\n"), 1);
+// 	// 	// }
+// 	// 	i++;
+// 	// }
+// 	return (0);
+// }

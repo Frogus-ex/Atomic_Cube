@@ -6,26 +6,26 @@
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 16:38:28 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/12 18:00:47 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/01/13 17:03:53 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../cub3D.h"
+#include "../includes/cub3D.h"
 
 void	read_from_map(t_game *game, t_map *map, char *av)
 {
 	char	*stash;
 	char	*line;
 	int		detect;
-	int		x;
 
-	x = 0;
 	stash = NULL;
 	game->fd = open(av, O_RDONLY);
 	if (game->fd < 0)
 		return (ft_error(NULL, "file doesnt exist"));
 	line = get_next_line(game->fd, &stash);
 	map_alloc(map, av);
+	alloc_tmp_map(map);
+	map->y = 0;
 	while (line)
 	{
 		detect = detector_start_map(line);
@@ -73,7 +73,6 @@ int	get_greater_width(char *av)
 	int		i;
 	int		greater_width;
 
-	i = 0;
 	stash = NULL;
 	fd = open(av, O_RDONLY);
 	if (fd < 0)
@@ -84,10 +83,14 @@ int	get_greater_width(char *av)
 	greater_width = 0;
 	while (line)
 	{
-		while (line[i] && detector_start_map(line) == 1)
-			i++;
-		if (greater_width < 1)
-			greater_width = i;
+		if (detector_start_map(line) == 1)
+		{
+			i = 0;
+			while (line[i])
+				i++;
+			if (i > greater_width)
+				greater_width = i;
+		}
 		free(line);
 		line = get_next_line(fd, &stash);
 	}
@@ -103,10 +106,10 @@ void	map_alloc(t_map *map, char *av)
 	map->width = get_greater_width(av);
 	map->total_size = (map->height) * (map->width);
 	map->map = malloc(sizeof(char *) * map->height);
-	map->x = 0;
-	map->y = 0;
 	if (!map->map)
 		return ;
+	map->x = 0;
+	map->y = 0;
 	while (i < map->height)
 	{
 		map->map[i] = malloc(sizeof(char) * (map->width + 1));
@@ -122,11 +125,22 @@ void	map_copy(t_map *map, char *line)
 	while (map->x < map->width)
 	{
 		if (line[map->x])
+		{
 			map->map[map->y][map->x] = line[map->x];
+			if (line[map->x] == 'S' || line[map->x] == 'E'
+				|| line[map->x] == 'W' || line[map->x] == 'N')
+			{
+				map->player_x = map->x;
+				map->player_y = map->y;
+			}
+		}
 		else
 			map->map[map->y][map->x] = 0;
+		if (map->x < ft_strlen(line))
+			map->tmp_map[map->y][map->x] = line[map->x];
+		else
+			map->tmp_map[map->y][map->x] = ' ';
 		map->x++;
 	}
-	printf("%s",map->map[map->y]);
 	map->y++;
 }
