@@ -6,7 +6,7 @@
 #    By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/06 11:20:20 by aautret           #+#    #+#              #
-#    Updated: 2026/01/13 11:24:58 by tlorette         ###   ########.fr        #
+#    Updated: 2026/01/13 18:15:33 by tlorette         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,6 +36,7 @@ SRCS := \
 	$(SRC_DIR)/parsing/map_copy.c \
 	$(SRC_DIR)/parsing_param.c \
 	$(SRC_DIR)/parsing/floodfill.c \
+# 	$(SRC_DIR)/graphic/draw_map.c\
 # ————————————— SOURCES GNL —————————————
 GNL_SRCS := \
 	$(GNL_DIR)/get_next_line.c \

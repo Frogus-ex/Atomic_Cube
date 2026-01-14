@@ -6,7 +6,7 @@
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 13:13:10 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/13 17:25:45 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/01/13 18:17:11 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ void			ft_error(t_game *game, char *s);
 void			free_all(t_game *game);
 void			game_init(t_game **game);
 void			map_init(t_map **map);
+void			img_init(t_img **img);
 int				parse_identifiers_line(t_game *game, char *line);
 int				count_space(char *line);
 int				count_file_lines(t_game *game, char *av);

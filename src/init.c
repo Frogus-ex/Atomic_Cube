@@ -6,7 +6,7 @@
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 13:25:04 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/13 17:25:22 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/01/13 18:16:30 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,22 +37,42 @@ void	map_init(t_map **map)
 {
 	*map = ft_calloc(1, sizeof(t_map));
 	if (!*map)
-		return (ft_error(NULL, "malloc failed"));
+		return (ft_error(NULL, "map init failed"));
+}
+
+void	img_init(t_img **img)
+{
+	*img = ft_calloc(1, sizeof(t_img));
+	if (!*img)
+		return (ft_error(NULL, "img init failed"));
 }
 
 void	init_mlx(t_game *game, t_map *map, t_img *img)
 {
-	map->width = TILE_SIZE * map->width;
-	map->height = TILE_SIZE * map->height;
+	if (!game || !map || !img)
+		return (ft_error(game, "init_mlx: invalid pointers"));
+	else
+	{
+		img->width = TILE_SIZE * map->width;
+		img->height = TILE_SIZE * map->height;
+	}
 	game->mlx = mlx_init();
 	if (!game->mlx)
-		ft_error(game, "mlx_init echoue");
-	// load_texture(game, img);
+		return (ft_error(game, "mlx_init failed"));
 	mlx_get_screen_size(game->mlx, &img->screen_width, &img->screen_height);
 	if (img->width > img->screen_width || img->height > img->screen_height)
-		ft_error(game, "map trop grande");
+	{
+		img->width = img->screen_width - 100;
+		img->height = img->screen_height - 100;
+	}
 	game->win = mlx_new_window(game->mlx, img->width, img->height, WND_NAME);
+	if (!game->win)
+		return (ft_error(game, "mlx_new_window failed"));
 	img->img = mlx_new_image(game->mlx, img->width, img->height);
+	if (!img->img)
+		return (ft_error(game, "mlx_new_image failed"));
 	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel,
 			&img->line_length, &img->endian);
+	if (!img->addr)
+		return (ft_error(game, "mlx_get_data_addr failed"));
 }
