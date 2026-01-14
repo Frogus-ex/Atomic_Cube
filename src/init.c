@@ -6,7 +6,7 @@
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 13:25:04 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/13 18:16:30 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/01/14 14:03:23 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,13 @@ void	img_init(t_img **img)
 		return (ft_error(NULL, "img init failed"));
 }
 
+void	player_init(t_player **player)
+{
+	*player = ft_calloc(1, sizeof(t_player));
+	if (!*player)
+		return (ft_error(NULL, "map init failed"));
+}
+
 void	init_mlx(t_game *game, t_map *map, t_img *img)
 {
 	if (!game || !map || !img)
@@ -75,4 +82,6 @@ void	init_mlx(t_game *game, t_map *map, t_img *img)
 			&img->line_length, &img->endian);
 	if (!img->addr)
 		return (ft_error(game, "mlx_get_data_addr failed"));
+	mlx_hook(game->win, 2, 1L << 0, player_input, img);
+	mlx_hook(game->win, 17, 0, cross_close, game);
 }

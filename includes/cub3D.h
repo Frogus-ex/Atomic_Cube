@@ -6,18 +6,20 @@
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 13:13:10 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/13 18:17:11 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/01/14 16:15:50 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
+# define _USE_MATH_DEFINES
+# define _GNU_SOURCE
 
 # include "GNL/get_next_line.h"
-# include "libft/libft.h"
-# include "mlx.h"
 # include "config.h"
 # include "graphic.h"
+# include "libft/libft.h"
+# include "mlx.h"
 # include <fcntl.h>
 # include <libft.h>
 # include <math.h>
@@ -35,6 +37,9 @@ typedef struct s_player
 {
 	int			y;
 	int			x;
+	int			view_distance;
+	double		view_angle;
+
 }				t_player;
 
 typedef struct s_map
@@ -65,6 +70,7 @@ typedef struct s_game
 	int			fd;
 	t_player	*player;
 	t_img		*img;
+	t_map		*map;
 }				t_game;
 
 int				ft_gnlen(char *gnl);
@@ -73,6 +79,7 @@ void			free_all(t_game *game);
 void			game_init(t_game **game);
 void			map_init(t_map **map);
 void			img_init(t_img **img);
+void			player_init(t_player **player);
 int				parse_identifiers_line(t_game *game, char *line);
 int				count_space(char *line);
 int				count_file_lines(t_game *game, char *av);
