@@ -6,7 +6,7 @@
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 10:58:21 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/13 17:09:16 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/01/15 14:58:01 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,7 @@
 # define D 100
 # define W 119
 
-# define MOVE_FRONT 1
-# define MOVE_LEFT 2
-# define MOVE_RIGHT 3
-# define MOVE_BACK 4
-
+# define ADJACENT 100
 # define IMG_PXL 50
 # define TILE_SIZE 50
 # define WND_NAME "AtomiCube"

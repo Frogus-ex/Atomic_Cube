@@ -6,7 +6,7 @@
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 16:38:28 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/13 17:03:53 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/01/15 13:28:37 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,6 @@ void	map_alloc(t_map *map, char *av)
 	i = 0;
 	map->height = get_map_height(av);
 	map->width = get_greater_width(av);
-	map->total_size = (map->height) * (map->width);
 	map->map = malloc(sizeof(char *) * map->height);
 	if (!map->map)
 		return ;

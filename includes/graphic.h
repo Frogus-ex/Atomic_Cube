@@ -6,7 +6,7 @@
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 17:07:26 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/14 18:31:12 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/01/15 15:11:32 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,9 @@ void					player_moves(t_img *img, int new_y, int new_x);
 void					draw_negative_angle(t_img *img);
 void					draw_positive_angle(t_img *img);
 void					get_distance(t_img *img);
-void					reset_img_distance(t_img *img);
-void					get_distance(t_img *img);
+void					fill_angle(t_img *img);
+void					draw_adjacent(t_img *img);
+void					draw_positive_height(t_img *img);
+void					draw_negative_height(t_img *img);
 
 #endif

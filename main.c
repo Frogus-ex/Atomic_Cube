@@ -6,13 +6,11 @@
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 13:18:39 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/14 18:32:09 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/01/15 14:34:48 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
-#define _USE_MATH_DEFINES
-#define _GNU_SOURCE
 
 int	main(int ac, char **av)
 {
@@ -44,8 +42,8 @@ int	main(int ac, char **av)
 	img->map = map;
 	img->player = player;
 	init_mlx(game, map, img);
-	player->x = img->width / 2;
-	player->y = img->height / 2;
+	player->origin_x = img->width / 2;
+	player->origin_y = img->height / 2;
 	draw_initial_dot(img);
 	mlx_loop(game->mlx);
 	return (free(map), free_all(game), 0);

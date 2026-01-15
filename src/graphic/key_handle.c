@@ -6,7 +6,7 @@
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 11:38:02 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/14 14:20:50 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/01/15 14:32:42 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,18 +42,18 @@ int	player_input(int keycode, t_img *img)
 	int	last_player_y;
 	int	last_player_x;
 
-	last_player_x = img->player->x;
-	last_player_y = img->player->y;
+	last_player_x = img->player->origin_x;
+	last_player_y = img->player->origin_y;
 	if (keycode == ESC)
 		cleanup(img->game);
 	if (keycode == UP || keycode == W)
-		img->player->y -= 5;
+		img->player->origin_y -= 5;
 	if (keycode == DOWN || keycode == S)
-		img->player->y += 5;
+		img->player->origin_y += 5;
 	if (keycode == RIGHT || keycode == D)
-		img->player->x += 5;
+		img->player->origin_x += 5;
 	if (keycode == LEFT || keycode == A)
-		img->player->x -= 5;
+		img->player->origin_x -= 5;
 	draw_initial_dot(img);
 	return (0);
 }

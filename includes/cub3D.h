@@ -6,7 +6,7 @@
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 13:13:10 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/14 16:15:50 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/01/15 15:00:11 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ typedef enum e_parse_state
 
 typedef struct s_player
 {
-	int			y;
-	int			x;
+	int			origin_y;
+	int			origin_x;
 	int			view_distance;
 	double		view_angle;
 
@@ -53,6 +53,7 @@ typedef struct s_map
 	int			width;
 	int			height;
 	int			total_size;
+	t_player	*player;
 }				t_map;
 
 typedef struct s_game
