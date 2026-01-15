@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   graphic.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 17:07:26 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/15 15:11:32 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/01/15 17:26:30 by aautret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,20 +37,26 @@ typedef struct s_img
 	t_player			*player;
 }						t_img;
 
-void					init_mlx(t_game *game, t_map *map, t_img *img);
-void					draw_initial_dot(t_img *img);
+/************************************************************************
+ *									GRAPHIC								*
+ ***********************************************************************/
+// draw_map_util.c
+int						calc_height(t_img *img);
+void					draw_adjacent(t_img *img);
+void					draw_negative_height(t_img *img);
+void					draw_positive_height(t_img *img);
+
+// draw_map.c
 void					my_put_pixel(t_img *img, int x, int y, int color);
-int						key_press(int keycode, t_game *game);
+void					draw_initial_dot(t_img *img);
+
+// init_vison.c
+void					get_distance(t_img *img);
+
+// key_handle.c
 int						cleanup(t_game *game);
 int						cross_close(t_game *game);
 int						player_input(int keycode, t_img *img);
-void					player_moves(t_img *img, int new_y, int new_x);
-void					draw_negative_angle(t_img *img);
-void					draw_positive_angle(t_img *img);
-void					get_distance(t_img *img);
-void					fill_angle(t_img *img);
-void					draw_adjacent(t_img *img);
-void					draw_positive_height(t_img *img);
-void					draw_negative_height(t_img *img);
+// void					player_moves(t_img *img, int new_y, int new_x);
 
 #endif
