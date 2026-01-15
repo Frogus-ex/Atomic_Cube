@@ -3,15 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   key_handle.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 11:38:02 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/15 14:32:42 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/01/15 17:43:46 by aautret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
 
+/**
+ * @brief Libère la mémoire et ferme proprement le programme
+ * 
+ * @param game 
+ * @return int 
+ */
 int	cleanup(t_game *game)
 {
 	if (!game)
@@ -31,12 +37,25 @@ int	cleanup(t_game *game)
 	exit(EXIT_FAILURE);
 }
 
+/**
+ * @brief Gère la fermeture de la fenêtre via la croix
+ * 
+ * @param game 
+ * @return int 
+ */
 int	cross_close(t_game *game)
 {
 	cleanup(game);
 	return (0);
 }
 
+/**
+ * @brief Gère les entrées clavier du joueur et met à jour sa position
+ * 
+ * @param keycode 
+ * @param img 
+ * @return int 
+ */
 int	player_input(int keycode, t_img *img)
 {
 	int	last_player_y;
