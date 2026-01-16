@@ -6,7 +6,7 @@
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 16:56:26 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/16 16:05:05 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/01/16 17:32:05 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,24 +48,24 @@ static void	draw_negative_angle(t_img *img, int j)
 	if (!img || !img->player)
 		return ;
 	img->player->view_angle = (-M_PI / 8);
-	img->distance_x = img->player->origin_x + 100
+	img->distance_x = img->map->player_x * TILE_SIZE + 100
 		* cos(img->player->view_angle);
-	img->distance_y = img->player->origin_y + j + 100
+	img->distance_y = img->map->player_y * TILE_SIZE + j + 100
 		* sin(img->player->view_angle);
-	step_x = (img->distance_x - img->player->origin_x) / ADJACENT;
-	step_y = (img->distance_y - img->player->origin_y) / ADJACENT;
+	step_x = (img->distance_x - img->map->player_x * TILE_SIZE) / ADJACENT;
+	step_y = (img->distance_y - img->map->player_y * TILE_SIZE) / ADJACENT;
 	i = 0;
 	while (i < ADJACENT)
 	{
-		current_x = img->player->origin_x + 9 + step_x * i;
-		current_y = img->player->origin_y + 9 + step_y * i;
+		current_x = img->map->player_x * TILE_SIZE + step_x * i + 25;
+		current_y = img->map->player_y * TILE_SIZE + step_y * i + 25;
 		my_put_pixel(img, (int)current_x, (int)current_y, 0xFFFF00);
 		i++;
 	}
 }
 
 /**
- * @brief Dessine un rayona angle positif depuis a position du joueur
+ * @brief Dessine un rayon angle positif depuis a position du joueur
  * (hypotenus)
  *
  * @param img
@@ -82,17 +82,17 @@ static void	draw_positive_angle(t_img *img, int j)
 	if (!img || !img->player)
 		return ;
 	img->player->view_angle = (M_PI / 8);
-	img->distance_x = img->player->origin_x + 100
+	img->distance_x = img->map->player_x * TILE_SIZE + 100
 		* cos(img->player->view_angle);
-	img->distance_y = img->player->origin_y - j + 100
+	img->distance_y = img->map->player_y * TILE_SIZE - j + 100
 		* sin(img->player->view_angle);
-	step_x = (img->distance_x - img->player->origin_x) / ADJACENT;
-	step_y = (img->distance_y - img->player->origin_y) / ADJACENT;
+	step_x = (img->distance_x - img->map->player_x * TILE_SIZE) / ADJACENT;
+	step_y = (img->distance_y - img->map->player_y * TILE_SIZE) / ADJACENT;
 	i = 0;
 	while (i < ADJACENT)
 	{
-		current_x = img->player->origin_x + 9 + step_x * i;
-		current_y = img->player->origin_y + 9 + step_y * i;
+		current_x = img->map->player_x * TILE_SIZE + step_x * i + 25;
+		current_y = img->map->player_y * TILE_SIZE + step_y * i + 25;
 		my_put_pixel(img, (int)current_x, (int)current_y, 0xFFFF00);
 		i++;
 	}
@@ -127,19 +127,12 @@ void	draw_initial_dot(t_img *img)
 {
 	int	x;
 	int	y;
-	int	i;
 
-	i = 0;
-	while (i < img->height * img->line_length)
+	y = img->map->player_y;
+	while (y)
 	{
-		*(int *)(img->addr + i) = 0x000000;
-		i += (img->bits_per_pixel / 8);
-	}
-	y = img->player->origin_y;
-	while (y < img->player->origin_y + 18)
-	{
-		x = img->player->origin_x;
-		while (x < (img->player->origin_x + 18))
+		x = img->map->player_x;
+		while (x)
 		{
 			my_put_pixel(img, x, y, 0xFF0000);
 			x++;
@@ -147,7 +140,6 @@ void	draw_initial_dot(t_img *img)
 		y++;
 	}
 	draw_angles(img);
-	mlx_put_image_to_window(img->game->mlx, img->game->win, img->img, 0, 0);
 }
 
 void	draw_map(t_img *img, int x, int y, int color)
@@ -187,6 +179,7 @@ void	make_pixel(t_map *map, t_img *img)
 					draw_map(img, x, y, 0x000000);
 				else if (map->map[y][x] == 'N')
 					draw_map(img, x, y, 0xFFFFFF);
+				draw_angles(img);
 			}
 			x++;
 		}
