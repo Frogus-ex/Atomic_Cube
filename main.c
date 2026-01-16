@@ -6,7 +6,7 @@
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 13:18:39 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/15 14:34:48 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/01/16 14:15:08 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@ int	main(int ac, char **av)
 	init_mlx(game, map, img);
 	player->origin_x = img->width / 2;
 	player->origin_y = img->height / 2;
-	draw_initial_dot(img);
+	// draw_initial_dot(img);
+	make_pixel(map, img);
 	mlx_loop(game->mlx);
 	return (free(map), free_all(game), 0);
 }

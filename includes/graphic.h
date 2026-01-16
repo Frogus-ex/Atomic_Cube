@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   graphic.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 17:07:26 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/15 17:26:30 by aautret          ###   ########.fr       */
+/*   Updated: 2026/01/16 16:04:39 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ void					draw_positive_height(t_img *img);
 // draw_map.c
 void					my_put_pixel(t_img *img, int x, int y, int color);
 void					draw_initial_dot(t_img *img);
+void					make_pixel(t_map *map, t_img *img);
+void					draw_map(t_img *img, int x, int y, int color);
 
 // init_vison.c
 void					get_distance(t_img *img);
@@ -57,6 +59,6 @@ void					get_distance(t_img *img);
 int						cleanup(t_game *game);
 int						cross_close(t_game *game);
 int						player_input(int keycode, t_img *img);
-// void					player_moves(t_img *img, int new_y, int new_x);
+void					player_moves(t_img *img, int new_y, int new_x);
 
 #endif
