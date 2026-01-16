@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 13:13:10 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/16 11:17:57 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/01/16 11:30:38 by aautret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ typedef struct s_game
 	int			*nbr_text;
 	int			nbr_line;
 	int			fd;
+	int			flag_players;
 	t_player	*player;
 	t_img		*img;
 	t_map		*map;
@@ -117,7 +118,7 @@ int				check_id(t_game *game, char *line);
 int				parse_identifiers_line(t_game *game, char *line);
 
 // parsing_map.c
-int				parse_map_line(char *line);
+int				parse_map_line(t_game *game, char *line);
 
 // parsing_param.c
 void			check_arg_param(int ac, char **av);

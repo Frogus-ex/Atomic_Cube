@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 13:25:04 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/14 14:03:23 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/01/16 11:26:58 by aautret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	game_init(t_game **game)
 	(*game)->win = NULL;
 	(*game)->fd = -1;
 	(*game)->nbr_text = ft_calloc(6, sizeof(int));
+	(*game)->flag_players = 0;
 	if (!(*game)->nbr_text)
 	{
 		ft_error(*game, "nbr_text allocation failed");
