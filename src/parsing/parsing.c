@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 14:56:24 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/16 11:16:27 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/01/16 11:46:23 by aautret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,11 +88,15 @@ static int	detector_and_store_line(t_game *game, char *line,
 		if (detect == 1)
 		{
 			*state = PARSE_MAP;
-			return (parse_map_line(line));
+			return (parse_map_line(game, line));
 		}
 		if (parse_identifiers_line(game, line) == 0)
 			return (1);
 		return (0);
+	}
+	else if (*state == PARSE_MAP)
+	{
+		return (parse_map_line(game, line));
 	}
 	game->nbr_line++;
 	return (0);
