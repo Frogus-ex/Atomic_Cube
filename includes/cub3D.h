@@ -6,7 +6,7 @@
 /*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 13:13:10 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/16 11:30:38 by aautret          ###   ########.fr       */
+/*   Updated: 2026/01/17 14:18:27 by aautret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef struct s_player
 	int			origin_y;
 	int			origin_x;
 	int			view_distance;
+	double		direction_vue;
 	double		view_angle;
 
 }				t_player;
@@ -89,7 +90,7 @@ void			grab_c_text(t_game *game, char *line, int i);
 void			game_init(t_game **game);
 void			map_init(t_map **map);
 void			img_init(t_img **img);
-void			player_init(t_player **player);
+void			player_init(t_player **player, t_game *game);
 void			init_mlx(t_game *game, t_map *map, t_img *img);
 
 // utils.c

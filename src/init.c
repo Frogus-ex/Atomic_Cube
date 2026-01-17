@@ -6,7 +6,7 @@
 /*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 13:25:04 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/16 11:26:58 by aautret          ###   ########.fr       */
+/*   Updated: 2026/01/17 14:17:28 by aautret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,12 @@ void	img_init(t_img **img)
 		return (ft_error(NULL, "img init failed"));
 }
 
-void	player_init(t_player **player)
+void	player_init(t_player **player, t_game *game)
 {
 	*player = ft_calloc(1, sizeof(t_player));
 	if (!*player)
 		return (ft_error(NULL, "map init failed"));
+	game->player = *player;
 }
 
 void	init_mlx(t_game *game, t_map *map, t_img *img)
