@@ -6,7 +6,7 @@
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 16:56:26 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/21 10:53:59 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/01/21 10:54:17 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,10 @@ static void	draw_angle_new(t_img *img, double angle)
 	if (!img || !img->player)
 		return ;
 	img->player->view_angle = img->player->direction_vue + (-M_PI / 8);
-	img->distance_x = img->player->origin_x + 100 * cos(angle);
-	img->distance_y = img->player->origin_y + 100 * sin(angle);
-	step_x = (img->distance_x - img->player->origin_x) / ADJACENT;
-	step_y = (img->distance_y - img->player->origin_y) / ADJACENT;
+	img->distance_x = img->player->origin_x + 110 * cos(angle);
+	img->distance_y = img->player->origin_y + 110 * sin(angle);
+	step_x = (img->distance_x - img->player->origin_x) / 110;
+	step_y = (img->distance_y - img->player->origin_y) / 110;
 	i = 0;
 	while (i < ADJACENT)
 	{
