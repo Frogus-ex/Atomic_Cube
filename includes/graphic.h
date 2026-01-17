@@ -6,12 +6,14 @@
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 17:07:26 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/16 16:04:39 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/01/21 10:52:33 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GRAPHIC_H
 # define GRAPHIC_H
+
+# define NUM_RAY 100
 
 # include "cub3D.h"
 
@@ -51,6 +53,7 @@ void					my_put_pixel(t_img *img, int x, int y, int color);
 void					draw_initial_dot(t_img *img);
 void					make_pixel(t_map *map, t_img *img);
 void					draw_map(t_img *img, int x, int y, int color);
+void					calc_and_draw_angle(t_img *img);
 
 // init_vison.c
 void					get_distance(t_img *img);

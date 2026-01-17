@@ -6,7 +6,7 @@
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 16:56:26 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/16 17:32:05 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/01/21 10:53:59 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,12 @@ void	my_put_pixel(t_img *img, int x, int y, int color)
 }
 
 /**
- * @brief Dessine un rayon à angle négatif depuis la position du joueur
- * (hypotenuse)
- *
- * @param img
- * @param j
+ * @brief Dessine un rayon d'angle donnee
+ * 
+ * @param img 
+ * @param angle 
  */
-static void	draw_negative_angle(t_img *img, int j)
+static void	draw_angle_new(t_img *img, double angle)
 {
 	double	step_x;
 	double	step_y;
@@ -47,74 +46,39 @@ static void	draw_negative_angle(t_img *img, int j)
 
 	if (!img || !img->player)
 		return ;
-	img->player->view_angle = (-M_PI / 8);
-	img->distance_x = img->map->player_x * TILE_SIZE + 100
-		* cos(img->player->view_angle);
-	img->distance_y = img->map->player_y * TILE_SIZE + j + 100
-		* sin(img->player->view_angle);
-	step_x = (img->distance_x - img->map->player_x * TILE_SIZE) / ADJACENT;
-	step_y = (img->distance_y - img->map->player_y * TILE_SIZE) / ADJACENT;
+	img->player->view_angle = img->player->direction_vue + (-M_PI / 8);
+	img->distance_x = img->player->origin_x + 100 * cos(angle);
+	img->distance_y = img->player->origin_y + 100 * sin(angle);
+	step_x = (img->distance_x - img->player->origin_x) / ADJACENT;
+	step_y = (img->distance_y - img->player->origin_y) / ADJACENT;
 	i = 0;
 	while (i < ADJACENT)
 	{
-		current_x = img->map->player_x * TILE_SIZE + step_x * i + 25;
-		current_y = img->map->player_y * TILE_SIZE + step_y * i + 25;
-		my_put_pixel(img, (int)current_x, (int)current_y, 0xFFFF00);
+		current_x = img->player->origin_x + 9 + step_x * i;
+		current_y = img->player->origin_y + 9 + step_y * i;
+		my_put_pixel(img, current_x, current_y, 0xFFFF00);
 		i++;
 	}
 }
 
 /**
- * @brief Dessine un rayon angle positif depuis a position du joueur
- * (hypotenus)
- *
- * @param img
- * @param j
+ * @brief Augmente l'angle du rayon afficher au fur et a mesure
+ * 
+ * @param img 
  */
-static void	draw_positive_angle(t_img *img, int j)
+void	calc_and_draw_angle(t_img *img)
 {
-	double	step_x;
-	double	step_y;
-	double	current_x;
-	double	current_y;
+	double	angle;
+	double	angle_step;
 	int		i;
 
-	if (!img || !img->player)
-		return ;
-	img->player->view_angle = (M_PI / 8);
-	img->distance_x = img->map->player_x * TILE_SIZE + 100
-		* cos(img->player->view_angle);
-	img->distance_y = img->map->player_y * TILE_SIZE - j + 100
-		* sin(img->player->view_angle);
-	step_x = (img->distance_x - img->map->player_x * TILE_SIZE) / ADJACENT;
-	step_y = (img->distance_y - img->map->player_y * TILE_SIZE) / ADJACENT;
 	i = 0;
-	while (i < ADJACENT)
+	angle_step = (M_PI / 4) / NUM_RAY;
+	while (i < NUM_RAY)
 	{
-		current_x = img->map->player_x * TILE_SIZE + step_x * i + 25;
-		current_y = img->map->player_y * TILE_SIZE + step_y * i + 25;
-		my_put_pixel(img, (int)current_x, (int)current_y, 0xFFFF00);
+		angle = img->player->direction_vue - (M_PI / 8) + (i * angle_step);
+		draw_angle_new(img, angle);
 		i++;
-	}
-}
-
-/**
- * @brief Permet de dessiner tous les rayons de l'angle de vue sur la mini-map
- *
- * @param img
- */
-static void	draw_angles(t_img *img)
-{
-	int	j;
-	int	height_1;
-
-	j = 0;
-	height_1 = calc_height(img);
-	while (j < height_1)
-	{
-		draw_negative_angle(img, j);
-		draw_positive_angle(img, j);
-		j++;
 	}
 }
 
@@ -139,51 +103,6 @@ void	draw_initial_dot(t_img *img)
 		}
 		y++;
 	}
-	draw_angles(img);
-}
-
-void	draw_map(t_img *img, int x, int y, int color)
-{
-	int	px;
-	int	py;
-
-	py = 0;
-	while (py < TILE_SIZE)
-	{
-		px = 0;
-		while (px < TILE_SIZE)
-		{
-			my_put_pixel(img, x * TILE_SIZE + px, y * TILE_SIZE + py, color);
-			px++;
-		}
-		py++;
-	}
-}
-
-void	make_pixel(t_map *map, t_img *img)
-{
-	int	y;
-	int	x;
-
-	y = 0;
-	while (y < map->height)
-	{
-		x = 0;
-		while (x < map->width)
-		{
-			if (map->map[y] && map->map[y][x])
-			{
-				if (map->map[y][x] == '1')
-					draw_map(img, x, y, 0xFF0000);
-				else if (map->map[y][x] == '0')
-					draw_map(img, x, y, 0x000000);
-				else if (map->map[y][x] == 'N')
-					draw_map(img, x, y, 0xFFFFFF);
-				draw_angles(img);
-			}
-			x++;
-		}
-		y++;
-	}
+	calc_and_draw_angle(img);
 	mlx_put_image_to_window(img->game->mlx, img->game->win, img->img, 0, 0);
 }
