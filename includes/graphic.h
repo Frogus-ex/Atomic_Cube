@@ -6,12 +6,14 @@
 /*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 17:07:26 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/15 17:26:30 by aautret          ###   ########.fr       */
+/*   Updated: 2026/01/17 15:04:00 by aautret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GRAPHIC_H
 # define GRAPHIC_H
+
+# define NUM_RAY 100
 
 # include "cub3D.h"
 
@@ -49,6 +51,7 @@ void					draw_positive_height(t_img *img);
 // draw_map.c
 void					my_put_pixel(t_img *img, int x, int y, int color);
 void					draw_initial_dot(t_img *img);
+void					calc_and_draw_angle(t_img *img);
 
 // init_vison.c
 void					get_distance(t_img *img);
