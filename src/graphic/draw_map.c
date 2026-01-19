@@ -6,7 +6,7 @@
 /*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 16:56:26 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/19 14:31:10 by aautret          ###   ########.fr       */
+/*   Updated: 2026/01/19 15:28:04 by aautret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ void	my_put_pixel(t_img *img, int x, int y, int color)
 	*(int *)(img->addr + offset) = color;
 }
 
-static int	check_position(t_img *img, int x, int y)
-{
+// static int	check_position(t_img *img, int x, int y)
+// {
 	
-}
+// }
 
 /**
  * @brief Trace un rayon sur la mini-map pour un angle absolu.
@@ -59,7 +59,7 @@ static void	draw_angle_new(t_img *img, double angle)
 	{
 		current_x = img->player->origin_x + step_x * i;
 		current_y = img->player->origin_y + step_y * i;
-		check_position(img, current_x, current_y);
+		// check_position(img, current_x, current_y);
 		my_put_pixel(img, current_x, current_y, 0xFFFF00);
 		i++;
 	}
