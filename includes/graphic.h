@@ -6,14 +6,13 @@
 /*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 17:07:26 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/17 15:04:00 by aautret          ###   ########.fr       */
+/*   Updated: 2026/01/19 10:17:34 by aautret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GRAPHIC_H
 # define GRAPHIC_H
 
-# define NUM_RAY 100
 
 # include "cub3D.h"
 
