@@ -6,7 +6,7 @@
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 16:56:26 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/21 10:54:17 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/01/21 10:54:34 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ void	my_put_pixel(t_img *img, int x, int y, int color)
 
 /**
  * @brief Dessine un rayon d'angle donnee
- * 
- * @param img 
- * @param angle 
+ *
+ * @param img
+ * @param angle
  */
 static void	draw_angle_new(t_img *img, double angle)
 {
@@ -63,20 +63,21 @@ static void	draw_angle_new(t_img *img, double angle)
 
 /**
  * @brief Augmente l'angle du rayon afficher au fur et a mesure
- * 
- * @param img 
+ *
+ * @param img
  */
 void	calc_and_draw_angle(t_img *img)
 {
-	double	angle;
 	double	angle_step;
+	double	angle;
 	int		i;
 
 	i = 0;
 	angle_step = (M_PI / 4) / NUM_RAY;
 	while (i < NUM_RAY)
 	{
-		angle = img->player->direction_vue - (M_PI / 8) + (i * angle_step);
+		angle = img->player->direction_vue - (M_PI / 8) + (i
+				* angle_step);
 		draw_angle_new(img, angle);
 		i++;
 	}

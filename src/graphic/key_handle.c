@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_handle.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 11:38:02 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/19 11:07:31 by aautret          ###   ########.fr       */
+/*   Updated: 2026/01/21 10:54:44 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,17 +61,18 @@ int	player_input(int keycode, t_img *img)
 	if (keycode == ESC)
 		cleanup(img->game);
 	if (keycode == W)
-		player_moves(img, img->map->player_y - 1, img->map->player_x);
+		img->player->origin_y -= 5;
 	if (keycode == S)
-		player_moves(img, img->map->player_y + 1, img->map->player_x);
+		img->player->origin_y += 5;
 	if (keycode == D)
-		player_moves(img, img->map->player_y, img->map->player_x + 1);
+		img->player->origin_x += 5;
 	if (keycode == A)
-		player_moves(img, img->map->player_y, img->map->player_x - 1);
-	if (keycode == LEFT)
-		player_moves(img, img->player->view_angle);
+		img->player->origin_x -= 5;
 	if (keycode == RIGHT)
-		player_moves(img, img->map->player_y, img->map->player_x - 1);
+		img->player->direction_vue += 0.1;
+	if (keycode == LEFT)
+		img->player->direction_vue -= 0.1;
+	draw_initial_dot(img);
 	return (0);
 }
 

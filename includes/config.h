@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   config.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 10:58:21 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/15 14:58:01 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/01/19 10:17:47 by aautret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,9 @@
 
 # define ADJACENT 100
 # define IMG_PXL 50
+# define NUM_RAY 100
 # define TILE_SIZE 50
 # define WND_NAME "AtomiCube"
+
 
 #endif
