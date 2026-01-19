@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_handle.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 11:38:02 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/16 15:47:31 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/01/19 11:07:31 by aautret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,13 +60,17 @@ int	player_input(int keycode, t_img *img)
 {
 	if (keycode == ESC)
 		cleanup(img->game);
-	if (keycode == UP || keycode == W)
+	if (keycode == W)
 		player_moves(img, img->map->player_y - 1, img->map->player_x);
-	if (keycode == DOWN || keycode == S)
+	if (keycode == S)
 		player_moves(img, img->map->player_y + 1, img->map->player_x);
-	if (keycode == RIGHT || keycode == D)
+	if (keycode == D)
 		player_moves(img, img->map->player_y, img->map->player_x + 1);
-	if (keycode == LEFT || keycode == A)
+	if (keycode == A)
+		player_moves(img, img->map->player_y, img->map->player_x - 1);
+	if (keycode == LEFT)
+		player_moves(img, img->player->view_angle);
+	if (keycode == RIGHT)
 		player_moves(img, img->map->player_y, img->map->player_x - 1);
 	return (0);
 }
