@@ -6,7 +6,7 @@
 /*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 16:56:26 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/19 10:26:05 by aautret          ###   ########.fr       */
+/*   Updated: 2026/01/19 10:39:23 by aautret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,11 @@
 
 /**
  * @brief Place un pixel de couleur sur l'image aux coordonnees (x, y)
+ *
+ * @param img
+ * @param x
+ * @param y
+ * @param color
  *
  * @param img
  * @param x
@@ -92,19 +97,12 @@ void	draw_initial_dot(t_img *img)
 {
 	int	x;
 	int	y;
-	int	i;
 
-	i = 0;
-	while (i < img->height * img->line_length)
+	y = img->map->player_y;
+	while (y)
 	{
-		*(int *)(img->addr + i) = 0x000000;
-		i += (img->bits_per_pixel / 8);
-	}
-	y = img->player->origin_y;
-	while (y < img->player->origin_y + 18)
-	{
-		x = img->player->origin_x;
-		while (x < (img->player->origin_x + 18))
+		x = img->map->player_x;
+		while (x)
 		{
 			my_put_pixel(img, x, y, 0xFF0000);
 			x++;
@@ -112,5 +110,50 @@ void	draw_initial_dot(t_img *img)
 		y++;
 	}
 	calc_and_draw_angle(img);
+}
+
+void	draw_map(t_img *img, int x, int y, int color)
+{
+	int	px;
+	int	py;
+
+	py = 0;
+	while (py < TILE_SIZE)
+	{
+		px = 0;
+		while (px < TILE_SIZE)
+		{
+			my_put_pixel(img, x * TILE_SIZE + px, y * TILE_SIZE + py, color);
+			px++;
+		}
+		py++;
+	}
+}
+
+void	make_pixel(t_map *map, t_img *img)
+{
+	int	y;
+	int	x;
+
+	y = 0;
+	while (y < map->height)
+	{
+		x = 0;
+		while (x < map->width)
+		{
+			if (map->map[y] && map->map[y][x])
+			{
+				if (map->map[y][x] == '1')
+					draw_map(img, x, y, 0xFF0000);
+				else if (map->map[y][x] == '0')
+					draw_map(img, x, y, 0x000000);
+				else if (map->map[y][x] == 'N')
+					draw_map(img, x, y, 0xFFFFFF);
+				draw_angles(img);
+			}
+			x++;
+		}
+		y++;
+	}
 	mlx_put_image_to_window(img->game->mlx, img->game->win, img->img, 0, 0);
 }

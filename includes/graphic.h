@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   graphic.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 17:07:26 by tlorette          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2026/01/19 10:17:34 by aautret          ###   ########.fr       */
+=======
+/*   Updated: 2026/01/16 16:04:39 by tlorette         ###   ########.fr       */
+>>>>>>> tom2
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +55,8 @@ void					draw_positive_height(t_img *img);
 void					my_put_pixel(t_img *img, int x, int y, int color);
 void					draw_initial_dot(t_img *img);
 void					calc_and_draw_angle(t_img *img);
+void					make_pixel(t_map *map, t_img *img);
+void					draw_map(t_img *img, int x, int y, int color);
 
 // init_vison.c
 void					get_distance(t_img *img);
@@ -59,6 +65,6 @@ void					get_distance(t_img *img);
 int						cleanup(t_game *game);
 int						cross_close(t_game *game);
 int						player_input(int keycode, t_img *img);
-// void					player_moves(t_img *img, int new_y, int new_x);
+void					player_moves(t_img *img, int new_y, int new_x);
 
 #endif
