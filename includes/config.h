@@ -6,7 +6,7 @@
 /*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 10:58:21 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/19 10:17:47 by aautret          ###   ########.fr       */
+/*   Updated: 2026/01/19 13:39:10 by aautret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 
 # define ADJACENT 100
 # define IMG_PXL 50
-# define NUM_RAY 100
+// # define NUM_RAY 100 //largeur de l'ecran
 # define TILE_SIZE 50
 # define WND_NAME "AtomiCube"
 
