@@ -6,13 +6,12 @@
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 17:07:26 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/21 10:54:54 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/01/21 10:55:51 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GRAPHIC_H
 # define GRAPHIC_H
-
 
 # include "cub3D.h"
 
@@ -48,11 +47,10 @@ void					draw_negative_height(t_img *img);
 void					draw_positive_height(t_img *img);
 
 // draw_map.c
+void					draw_minimap(t_map *map, t_img *img);
+
+// graphic_utils.c
 void					my_put_pixel(t_img *img, int x, int y, int color);
-void					draw_initial_dot(t_img *img);
-void					make_pixel(t_map *map, t_img *img);
-void					draw_map(t_img *img, int x, int y, int color);
-void					calc_and_draw_angle(t_img *img);
 
 // init_vison.c
 void					get_distance(t_img *img);
@@ -61,6 +59,7 @@ void					get_distance(t_img *img);
 int						cleanup(t_game *game);
 int						cross_close(t_game *game);
 int						player_input(int keycode, t_img *img);
+void					moving_pixel_by_pixel(t_img *img, double dx, double dy);
 void					player_moves(t_img *img, int new_y, int new_x);
 
 #endif

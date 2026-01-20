@@ -6,7 +6,7 @@
 #    By: aautret <aautret@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/06 11:20:20 by aautret           #+#    #+#              #
-#    Updated: 2026/01/17 14:08:11 by aautret          ###   ########.fr        #
+#    Updated: 2026/01/20 13:34:51 by aautret          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,8 @@ CFLAGS		:= -Wall -Wextra -Werror -g -I. -I$(MLX_DIR) -I$(LIBFT_DIR) -I$(GNL_DIR)
 SRCS := \
 	main.c \
 	$(SRC_DIR)/graphic/draw_map_util.c \
-	$(SRC_DIR)/graphic/draw_map.c \
+	$(SRC_DIR)/graphic/draw_minimap.c \
+	$(SRC_DIR)/graphic/graphic_utils.c \
 	$(SRC_DIR)/graphic/init_vision.c\
 	$(SRC_DIR)/graphic/key_handle.c \
 	$(SRC_DIR)/parsing/floodfill.c \

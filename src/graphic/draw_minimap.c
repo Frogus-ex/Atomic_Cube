@@ -1,38 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_map.c                                         :+:      :+:    :+:   */
+/*   draw_minimap.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 16:56:26 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/21 10:55:23 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/01/21 10:55:59 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3D.h"
-
-/**
- * @brief Place un pixel couleur aux coordonnees donnees.
- * @param img image MLX cible
- * @param x abscisse en pixels
- * @param y ordonnee en pixels
- * @param color couleur ARGB
- */
-void	my_put_pixel(t_img *img, int x, int y, int color)
-{
-	int	offset;
-
-	if (x < 0 || x >= img->width || y < 0 || y >= img->height)
-		return ;
-	offset = y * img->line_length + x * (img->bits_per_pixel / 8);
-	*(int *)(img->addr + offset) = color;
-}
-
-// static int	check_position(t_img *img, int x, int y)
-// {
-	
-// }
 
 /**
  * @brief Trace un rayon sur la mini-map pour un angle absolu.
@@ -71,7 +49,7 @@ static void	draw_angle_new(t_img *img, double angle)
  * Calcule et affiche le faisceau de rayons autour de la direction vue.
  * @param img image cible
  */
-void	calc_and_draw_angle(t_img *img)
+static void	calc_and_draw_angle(t_img *img)
 {
 	double	angle_step;
 	double	angle;
@@ -84,31 +62,6 @@ void	calc_and_draw_angle(t_img *img)
 		angle = img->player->direction_vue - (M_PI / 8) + (i * angle_step);
 		draw_angle_new(img, angle);
 		i++;
-	}
-}
-
-/**
- * @brief Remplit une tuile (carre de TILE_SIZE) avec une couleur.
- * @param img image cible
- * @param x colonne de tuile
- * @param y ligne de tuile
- * @param color couleur ARGB
- */
-void	draw_map(t_img *img, int x, int y, int color)
-{
-	int	px;
-	int	py;
-
-	py = 0;
-	while (py < TILE_SIZE)
-	{
-		px = 0;
-		while (px < TILE_SIZE)
-		{
-			my_put_pixel(img, x * TILE_SIZE + px, y * TILE_SIZE + py, color);
-			px++;
-		}
-		py++;
 	}
 }
 
@@ -142,18 +95,41 @@ static void	draw_player_circle(t_img *img, int cx, int cy, int radius,
 }
 
 /**
+ * @brief Remplit une tuile (carre de TILE_SIZE) avec une couleur.
+ * @param img image cible
+ * @param x colonne de tuile
+ * @param y ligne de tuile
+ * @param color couleur ARGB
+ */
+static void	draw_map(t_img *img, int x, int y, int color)
+{
+	int	px;
+	int	py;
+
+	py = 0;
+	while (py < TILE_SIZE)
+	{
+		px = 0;
+		while (px < TILE_SIZE)
+		{
+			my_put_pixel(img, x * TILE_SIZE + px, y * TILE_SIZE + py, color);
+			px++;
+		}
+		py++;
+	}
+}
+
+/**
  * @brief Redessine la mini-carte (tuiles, joueur, rayons) et affiche la frame.
  * @param map representation grille
  * @param img image cible
  */
-void	make_pixel(t_map *map, t_img *img)
+void	draw_minimap(t_map *map, t_img *img)
 {
 	int	y;
 	int	x;
 
 	y = 0;
-	img->player->origin_x = img->map->player_x * TILE_SIZE + TILE_SIZE / 2;
-	img->player->origin_y = img->map->player_y * TILE_SIZE + TILE_SIZE / 2;
 	while (y < map->height)
 	{
 		x = 0;
@@ -165,14 +141,10 @@ void	make_pixel(t_map *map, t_img *img)
 					draw_map(img, x, y, 0xFF0000);
 				else
 					draw_map(img, x, y, 0x000000);
-				// else if (map->map[y][x] == '0')
-				// 	draw_map(img, x, y, 0x000000);
-				// else if (map->map[y][x] == 'N')
-				// 	draw_map(img, x, y, 0xFFFFFF);
 			}
 			x++;
 		}
-		y++; 
+		y++;
 	}
 	draw_player_circle(img, img->player->origin_x, img->player->origin_y,
 		TILE_SIZE / 4, 0xFFFFFFFF);
