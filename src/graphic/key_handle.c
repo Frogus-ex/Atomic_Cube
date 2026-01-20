@@ -6,7 +6,7 @@
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 11:38:02 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/21 10:58:38 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/01/21 10:58:43 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,9 +78,9 @@ static double	calc_dy(t_img *img, int keycode)
 	else if (keycode == S)
 		dy = (-1) * (sin(img->player->direction_vue) * speed);
 	else if (keycode == A)
-		dy = cos(img->player->direction_vue - M_PI_2) * speed;
+		dy = sin(img->player->direction_vue - M_PI_2) * speed;
 	else if (keycode == D)
-		dy = cos(img->player->direction_vue - M_PI_2) * speed;
+		dy = sin(img->player->direction_vue + M_PI_2) * speed;
 	return (dy);
 }
 
