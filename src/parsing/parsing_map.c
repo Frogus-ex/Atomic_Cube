@@ -6,7 +6,7 @@
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 11:20:20 by aautret           #+#    #+#             */
-/*   Updated: 2026/01/21 10:52:12 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/01/21 10:58:50 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,3 @@ int	parse_map_line(t_game *game, char *line)
 	}
 	return (0);
 }
-

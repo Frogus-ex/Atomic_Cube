@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 13:40:17 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/13 17:03:03 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/01/20 16:02:17 by aautret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
 
-void	free_all(t_game *game)
+static void	free_struct(t_game *game)
 {
 	if (!game)
 		return ;
@@ -32,6 +32,13 @@ void	free_all(t_game *game)
 		free(game->nbr_text);
 	if (game->player)
 		free(game->player);
+}
+
+void	free_all(t_game *game)
+{
+	if (!game)
+		return ;
+	free_struct(game);
 	if (game->img)
 	{
 		if (game->img->img && game->mlx)

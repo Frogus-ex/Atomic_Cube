@@ -6,7 +6,7 @@
 /*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 14:56:24 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/16 11:46:23 by aautret          ###   ########.fr       */
+/*   Updated: 2026/01/20 16:11:38 by aautret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,8 +120,7 @@ int	parsing(t_game *game, char *av)
 		return (free(line), free(stash), close(game->fd), 1);
 	while (line && status == 0)
 	{
-		status = detector_and_store_line(game, line, &state);
-		if (status == 1)
+		if (detector_and_store_line(game, line, &state) == 1)
 			return (free(line), free(stash), 1);
 		free(line);
 		line = get_next_line(game->fd, &stash);
