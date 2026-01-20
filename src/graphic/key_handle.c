@@ -6,48 +6,11 @@
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 11:38:02 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/21 10:56:10 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/01/21 10:58:33 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
-
-/**
- * @brief Libère la mémoire et ferme proprement le programme
- *
- * @param game
- * @return int
- */
-int	cleanup(t_game *game)
-{
-	if (!game)
-		exit(EXIT_FAILURE);
-	if (game->map)
-		free_all(game);
-	if (game->img && game->mlx && game->img->img)
-		mlx_destroy_image(game->mlx, game->img->img);
-	if (game->win)
-		mlx_destroy_window(game->mlx, game->win);
-	if (game->mlx)
-	{
-		mlx_destroy_display(game->mlx);
-		free(game->mlx);
-	}
-	free(game);
-	exit(EXIT_FAILURE);
-}
-
-/**
- * @brief Gère la fermeture de la fenêtre via la croix
- *
- * @param game
- * @return int
- */
-int	cross_close(t_game *game)
-{
-	cleanup(game);
-	return (0);
-}
 
 /**
  * @brief Déplace le joueur pixel par pixel en testant la collision.
@@ -62,7 +25,7 @@ int	cross_close(t_game *game)
  * @param dx   Déplacement en pixels sur l'axe X
  * @param dy   Déplacement en pixels sur l'axe Y
  */
-void	moving_pixel_by_pixel(t_img *img, double dx, double dy)
+static void	moving_pix_by_pix(t_img *img, double dx, double dy)
 {
 	double	nx;
 	double	ny;
@@ -85,6 +48,42 @@ void	moving_pixel_by_pixel(t_img *img, double dx, double dy)
 	draw_minimap(img->map, img);
 }
 
+static double	calc_dx(t_img *img, int keycode)
+{
+	double	dx;
+	double	speed;
+
+	dx = 0.0;
+	speed = 2.5;
+	if (keycode == W)
+		dx = cos(img->player->direction_vue) * speed;
+	else if (keycode == S)
+		dx = (-1) * (cos(img->player->direction_vue) * speed);
+	else if (keycode == A)
+		dx = cos(img->player->direction_vue + M_PI_2) * speed;
+	else if (keycode == D)
+		dx = cos(img->player->direction_vue - M_PI_2) * speed;
+	return (dx);
+}
+
+static double	calc_dy(t_img *img, int keycode)
+{
+	double	dy;
+	double	speed;
+
+	dy = 0.0;
+	speed = 2.5;
+	if (keycode == W)
+		dy = sin(img->player->direction_vue) * speed;
+	else if (keycode == S)
+		dy = (-1) * (sin(img->player->direction_vue) * speed);
+	else if (keycode == A)
+		dy = cos(img->player->direction_vue - M_PI_2) * speed;
+	else if (keycode == D)
+		dy = cos(img->player->direction_vue - M_PI_2) * speed;
+	return (dy);
+}
+
 /**
  * @brief Gère les entrées clavier et déclenche les actions correspondantes
  *
@@ -95,36 +94,21 @@ void	moving_pixel_by_pixel(t_img *img, double dx, double dy)
  *  - ESC : quitte via cleanup()
  *
  * @param keycode Code de la touche reçue.
- * @param img     Pointeur vers la structure image / état.
+ * @param img
  * @return int Toujours 0.
  */
 int	player_input(int keycode, t_img *img)
 {
-	double	dx;
-	double	dy;
-	double	speed;
-
-	speed = 2.5;
 	if (keycode == ESC)
 		cleanup(img->game);
-	dx = cos(img->player->direction_vue) * speed;
-	dy = sin(img->player->direction_vue) * speed;
 	if (keycode == W)
-		moving_pixel_by_pixel(img, dx, dy);
+		moving_pix_by_pix(img, calc_dx(img, keycode), calc_dy(img, keycode));
 	if (keycode == S)
-		moving_pixel_by_pixel(img, -dx, -dy);
+		moving_pix_by_pix(img, calc_dx(img, keycode), calc_dy(img, keycode));
 	if (keycode == A)
-	{
-		dx = cos(img->player->direction_vue + M_PI_2) * speed;
-		dy = sin(img->player->direction_vue + M_PI_2) * speed;
-		moving_pixel_by_pixel(img, dx, dy);
-	}
+		moving_pix_by_pix(img, calc_dx(img, keycode), calc_dy(img, keycode));
 	if (keycode == D)
-	{
-		dx = cos(img->player->direction_vue - M_PI_2) * speed;
-		dy = sin(img->player->direction_vue - M_PI_2) * speed;
-		moving_pixel_by_pixel(img, dx, dy);
-	}
+		moving_pix_by_pix(img, calc_dx(img, keycode), calc_dy(img, keycode));
 	if (keycode == RIGHT)
 		img->player->direction_vue += 0.1;
 	if (keycode == LEFT)

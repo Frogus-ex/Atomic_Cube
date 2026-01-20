@@ -6,7 +6,7 @@
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 17:07:26 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/21 10:55:51 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/01/21 10:56:21 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,20 +46,19 @@ void					draw_adjacent(t_img *img);
 void					draw_negative_height(t_img *img);
 void					draw_positive_height(t_img *img);
 
-// draw_map.c
+// draw_minimap.c
 void					draw_minimap(t_map *map, t_img *img);
 
 // graphic_utils.c
 void					my_put_pixel(t_img *img, int x, int y, int color);
+int						cleanup(t_game *game);
+int						cross_close(t_game *game);
 
 // init_vison.c
 void					get_distance(t_img *img);
 
 // key_handle.c
-int						cleanup(t_game *game);
-int						cross_close(t_game *game);
 int						player_input(int keycode, t_img *img);
-void					moving_pixel_by_pixel(t_img *img, double dx, double dy);
 void					player_moves(t_img *img, int new_y, int new_x);
 
 #endif
