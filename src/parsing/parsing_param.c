@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_param.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 14:56:24 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/13 17:01:15 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/01/20 16:06:42 by aautret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
-
-// toutes les fonction ft_error devrons contenir un free game ulterieurement
 
 void	check_arg_param(int ac, char **av)
 {
@@ -44,9 +42,6 @@ int	check_cub_file(t_game *game, char *av)
 		return (free(line), close(game->fd), 1);
 	while (line)
 	{
-		//PARSER
-		// check_identifier(game->file_line);
-		// check_valid_map(line);
 		game->nbr_line = ft_gnlen(line);
 		free(line);
 		line = get_next_line(game->fd, &stash);
@@ -54,4 +49,3 @@ int	check_cub_file(t_game *game, char *av)
 	free(stash);
 	return (close(game->fd), 0);
 }
-

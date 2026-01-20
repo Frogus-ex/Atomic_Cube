@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   floodfill.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 10:48:26 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/14 16:23:17 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/01/20 16:13:32 by aautret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,6 @@ void	alloc_tmp_map(t_map *map)
 	map->tmp_map[map->height] = NULL;
 }
 
-// copy tmp_map depuis map
-
 void	tmp_map_copy(t_map *map, char *line)
 {
 	int	len;
@@ -51,8 +49,6 @@ void	tmp_map_copy(t_map *map, char *line)
 		map->x++;
 	}
 }
-
-// remplie par V toutes les case visitable par le joueur
 
 void	fill(t_map *map, int x, int y)
 {
@@ -110,7 +106,6 @@ int	flood_fill(t_map *map)
 {
 	map->total_size = 0;
 	fill(map, map->player_x, map->player_y);
-	// print_map(map);
 	if (map->total_size == -1)
 		return (ft_error(NULL, "Map is invalid"), 1);
 	return (0);
