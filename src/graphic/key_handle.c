@@ -6,7 +6,7 @@
 /*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 11:38:02 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/20 15:49:05 by aautret          ###   ########.fr       */
+/*   Updated: 2026/01/20 15:52:39 by aautret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,38 +116,4 @@ int	player_input(int keycode, t_img *img)
 	if (keycode == LEFT || keycode == RIGHT)
 		draw_minimap(img->map, img);
 	return (0);
-}
-
-/**
- * @brief Déplace le joueur d'une case à une autre (déplacement par tile/cases)
- *
- * Utilisé actuellement pour le déplacement tile-by-tile. Vérifie que la case
- * cible (new_y, new_x) est dans la map et libre ('0'), met à jour la map
- * (ancienne case -> '0', nouvelle -> 'N'), met l'origine du joueur au centre
- * de la nouvelle case et redessine la mini-map.
- *
- * @param img
- * @param new_y Indice ligne de la destination (tile)
- * @param new_x Indice colonne de la destination (tile)
- */
-void	player_moves(t_img *img, int new_y, int new_x)
-{
-	int	last_x;
-	int	last_y;
-
-	last_x = img->map->player_x;
-	last_y = img->map->player_y;
-	if (new_y < 0 || new_y >= img->map->height || new_x < 0
-		|| new_x >= img->map->width)
-		ft_error(img->game, "depassement de map");
-	else if (img->map->map[new_y][new_x] == '0')
-	{
-		img->map->map[last_y][last_x] = '0';
-		img->map->player_x = new_x;
-		img->map->player_y = new_y;
-		img->map->map[new_y][new_x] = 'N';
-		img->player->origin_x = img->map->player_x * TILE_SIZE + TILE_SIZE / 2;
-		img->player->origin_y = img->map->player_y * TILE_SIZE + TILE_SIZE / 2;
-		draw_minimap(img->map, img);
-	}
 }
