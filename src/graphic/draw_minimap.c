@@ -6,7 +6,7 @@
 /*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 16:56:26 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/20 13:31:46 by aautret          ###   ########.fr       */
+/*   Updated: 2026/01/20 15:46:59 by aautret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ static void	draw_angle_new(t_img *img, double angle)
 	{
 		current_x = img->player->origin_x + step_x * i;
 		current_y = img->player->origin_y + step_y * i;
-		// check_position(img, current_x, current_y);
 		my_put_pixel(img, current_x, current_y, 0xFFFF00);
 		i++;
 	}
@@ -65,8 +64,7 @@ static void	calc_and_draw_angle(t_img *img)
 	}
 }
 
-static void	draw_player_circle(t_img *img, int cx, int cy, int radius,
-		int color)
+static void	draw_player_circle(t_img *img, int cx, int cy, int radius)
 {
 	int	x;
 	int	y;
@@ -83,8 +81,8 @@ static void	draw_player_circle(t_img *img, int cx, int cy, int radius,
 		xi = cx + x;
 		while (xi <= qx)
 		{
-			my_put_pixel(img, xi, cy + y, color);
-			my_put_pixel(img, xi, cy - y, color);
+			my_put_pixel(img, xi, cy + y, 0xFFFFFFFF);
+			my_put_pixel(img, xi, cy - y, 0xFFFFFFFF);
 			xi++;
 		}
 		if (err <= y)
@@ -147,7 +145,7 @@ void	draw_minimap(t_map *map, t_img *img)
 		y++;
 	}
 	draw_player_circle(img, img->player->origin_x, img->player->origin_y,
-		TILE_SIZE / 4, 0xFFFFFFFF);
+		TILE_SIZE / 4);
 	calc_and_draw_angle(img);
 	mlx_put_image_to_window(img->game->mlx, img->game->win, img->img, 0, 0);
 }
