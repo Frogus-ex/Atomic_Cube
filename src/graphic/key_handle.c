@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_handle.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 11:38:02 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/20 16:18:00 by aautret          ###   ########.fr       */
+/*   Updated: 2026/01/21 10:36:51 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static double	calc_dx(t_img *img, int keycode)
 	double	speed;
 
 	dx = 0.0;
-	speed = 2.5;
+	speed = 5;
 	if (keycode == W)
 		dx = cos(img->player->direction_vue) * speed;
 	else if (keycode == S)
@@ -72,7 +72,7 @@ static double	calc_dy(t_img *img, int keycode)
 	double	speed;
 
 	dy = 0.0;
-	speed = 2.5;
+	speed = 5;
 	if (keycode == W)
 		dy = sin(img->player->direction_vue) * speed;
 	else if (keycode == S)
