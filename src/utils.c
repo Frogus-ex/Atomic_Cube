@@ -6,7 +6,7 @@
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 13:40:17 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/21 14:44:05 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/01/21 17:44:45 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ void	free_all(t_game *game)
 	if (!game)
 		return ;
 	free_struct(game);
+	if (game->map)
+		free_map(game->map);
 	if (game->img)
 	{
 		if (game->img->img && game->mlx)
@@ -59,8 +61,7 @@ void	free_all(t_game *game)
 
 void	ft_error(t_game *game, char *s)
 {
-	if (s)
-		fprintf(stderr, "%s\n", s);
+	printf("%s\n", s);
 	free_all(game);
 }
 
