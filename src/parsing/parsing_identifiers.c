@@ -6,7 +6,7 @@
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 09:37:30 by frogus            #+#    #+#             */
-/*   Updated: 2026/01/13 17:04:10 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/01/21 14:47:23 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,14 @@ static void	grab_no_text(t_game *game, char *line, int i)
 	int	y;
 
 	y = 0;
+	if (game->nbr_text[0] != 0)
+		return ;
 	while (line && line[i] == 32)
 		i++;
-	if (game->nbr_text[0] == 0)
-		game->no_text = malloc(sizeof(char) * (ft_strlen(line) - i) + 1);
-	while (line[i] && line[i] != '\n' && game->nbr_text[0] == 0)
+	game->no_text = malloc(sizeof(char) * (ft_strlen(line) - i) + 1);
+	while (line[i] && line[i] != '\n')
 		game->no_text[y++] = line[i++];
-	game->no_text[y] = 0;
+	game->no_text[y] = '\0';
 	game->nbr_text[0]++;
 }
 
@@ -32,13 +33,14 @@ static void	grab_so_text(t_game *game, char *line, int i)
 	int	y;
 
 	y = 0;
+	if (game->nbr_text[1] != 0)
+		return ;
 	while (line && line[i] == 32)
 		i++;
-	if (game->nbr_text[1] == 0)
-		game->so_text = malloc(sizeof(char) * (ft_strlen(line) - i) + 1);
-	while (line[i] && line[i] != '\n' && game->nbr_text[1] == 0)
+	game->so_text = malloc(sizeof(char) * (ft_strlen(line) - i) + 1);
+	while (line[i] && line[i] != '\n')
 		game->so_text[y++] = line[i++];
-	game->so_text[y] = 0;
+	game->so_text[y] = '\0';
 	game->nbr_text[1]++;
 }
 
@@ -70,6 +72,9 @@ int	check_id(t_game *game, char *line)
 int	parse_identifiers_line(t_game *game, char *line)
 {
 	if (!check_id(game, line))
-		return (ft_error(NULL, "wrong identifier"), 0);
+	{
+		free(line);
+		return (ft_error(game, "wrong identifier"), 0);
+	}
 	return (1);
 }

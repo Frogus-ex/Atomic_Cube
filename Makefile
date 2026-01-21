@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aautret <aautret@student.42.fr>            +#+  +:+       +#+         #
+#    By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/06 11:20:20 by aautret           #+#    #+#              #
-#    Updated: 2026/01/20 13:34:51 by aautret          ###   ########.fr        #
+#    Updated: 2026/01/21 14:09:52 by tlorette         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,6 +39,7 @@ SRCS := \
 	$(SRC_DIR)/parsing/parsing.c \
 	$(SRC_DIR)/find_id.c \
 	$(SRC_DIR)/init.c \
+	$(SRC_DIR)/cleaner.c \
 	$(SRC_DIR)/utils.c \
 
 # ————————————— SOURCES GNL —————————————

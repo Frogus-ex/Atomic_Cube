@@ -3,16 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   floodfill.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 10:48:26 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/20 16:13:32 by aautret          ###   ########.fr       */
+/*   Updated: 2026/01/21 14:38:38 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3D.h"
 
-//alloue l espace memoire pour tmp_map
+// alloue l espace memoire pour tmp_map
+
+void	free_tmp_map(t_map *map)
+{
+	int	i;
+
+	if (!map || !map->tmp_map)
+		return ;
+	i = 0;
+	while (i < map->height)
+	{
+		free(map->tmp_map[i]);
+		i++;
+	}
+	free(map->tmp_map);
+	map->tmp_map = NULL;
+}
 
 void	alloc_tmp_map(t_map *map)
 {
@@ -102,11 +118,15 @@ void	fill(t_map *map, int x, int y)
 // 	printf("===========================\n\n");
 // }
 
-int	flood_fill(t_map *map)
+int	flood_fill(t_game *game, t_map *map)
 {
 	map->total_size = 0;
 	fill(map, map->player_x, map->player_y);
 	if (map->total_size == -1)
-		return (ft_error(NULL, "Map is invalid"), 1);
+	{
+		free_tmp_map(map);
+		return (ft_error(game, "Map is invalid"), 1);
+	}
+	free_tmp_map(map);
 	return (0);
 }

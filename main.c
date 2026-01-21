@@ -6,7 +6,7 @@
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 13:18:39 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/21 10:55:30 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/01/21 14:41:06 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,10 @@ int	main(int ac, char **av)
 	if (!player)
 		return (free(map), free_all(game), 1);
 	if (parsing(game, av[1]))
-		return (free(img), free_all(game), 1);
+		return (free(img), free_all(game), free(map), 1);
 	read_from_map(game, map, av[1]);
-	if (flood_fill(map))
-		return (free(map), free_all(game), 1);
+	if (flood_fill(game, map))
+		return (free_map(map), free(img), free_all(game), 1);
 	img->game = game;
 	img->map = map;
 	img->player = player;
@@ -45,8 +45,7 @@ int	main(int ac, char **av)
 	img->player->origin_x = img->map->player_x * TILE_SIZE + TILE_SIZE / 2;
 	img->player->origin_y = img->map->player_y * TILE_SIZE + TILE_SIZE / 2;
 	init_mlx(game, map, img);
-	// make_pixel(map, img);
 	draw_minimap(map, img);
 	mlx_loop(game->mlx);
-	return (free(map), free_all(game), 0);
+	return (free(img), free_map(map), free_all(game), 0);
 }

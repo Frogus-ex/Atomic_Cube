@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 13:40:17 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/20 16:02:17 by aautret          ###   ########.fr       */
+/*   Updated: 2026/01/21 14:44:05 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,10 @@ void	free_all(t_game *game)
 	if (game->win && game->mlx)
 		mlx_destroy_window(game->mlx, game->win);
 	if (game->mlx)
+	{
 		mlx_destroy_display(game->mlx);
+		free(game->mlx);
+	}
 	if (game->fd >= 0)
 		close(game->fd);
 	free(game);
@@ -56,7 +59,8 @@ void	free_all(t_game *game)
 
 void	ft_error(t_game *game, char *s)
 {
-	printf("%s\n", s);
+	if (s)
+		fprintf(stderr, "%s\n", s);
 	free_all(game);
 }
 
@@ -70,4 +74,13 @@ int	ft_gnlen(char *gnl)
 		i++;
 	}
 	return (i);
+}
+
+void	free_map(t_map *map)
+{
+	if (!map)
+		return ;
+	free_map_array(map);
+	free_tmp_map(map);
+	free(map);
 }

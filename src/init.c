@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 13:25:04 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/17 14:17:28 by aautret          ###   ########.fr       */
+/*   Updated: 2026/01/21 13:21:02 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,8 @@ void	init_mlx(t_game *game, t_map *map, t_img *img)
 	mlx_get_screen_size(game->mlx, &img->screen_width, &img->screen_height);
 	if (img->width > img->screen_width || img->height > img->screen_height)
 	{
-		img->width = img->screen_width - 100;
-		img->height = img->screen_height - 100;
+		img->width = img->screen_width;
+		img->height = img->screen_height;
 	}
 	game->win = mlx_new_window(game->mlx, img->width, img->height, WND_NAME);
 	if (!game->win)

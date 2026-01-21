@@ -6,7 +6,7 @@
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 13:13:10 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/21 10:51:51 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/01/21 14:38:51 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,17 +97,20 @@ void			init_mlx(t_game *game, t_map *map, t_img *img);
 void			free_all(t_game *game);
 void			ft_error(t_game *game, char *s);
 int				ft_gnlen(char *gnl);
+void			free_map(t_map *map);
 
 /************************************************************************
  *								PARSING									*
  ***********************************************************************/
 // floodfill.c
+void			free_tmp_map(t_map *map);
 void			alloc_tmp_map(t_map *map);
 void			tmp_map_copy(t_map *map, char *line);
 void			fill(t_map *map, int x, int y);
-int				flood_fill(t_map *map);
+int				flood_fill(t_game *game, t_map *map);
 
 // map_copy.c
+void			free_map_array(t_map *map);
 void			read_from_map(t_game *game, t_map *map, char *av);
 int				get_map_height(char *av);
 int				get_greater_width(char *av);
@@ -128,5 +131,8 @@ int				check_cub_file(t_game *game, char *av);
 // parsing.c
 int				detector_start_map(char *line);
 int				parsing(t_game *game, char *av);
+
+// cleaner.c
+void			free_map_array(t_map *map);
 
 #endif
