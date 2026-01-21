@@ -6,7 +6,7 @@
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 12:47:24 by aautret           #+#    #+#             */
-/*   Updated: 2026/01/21 17:41:19 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/01/21 17:55:08 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,16 @@ int	cleanup(t_game *game)
 		exit(EXIT_FAILURE);
 	if (game->map)
 		free_all(game);
+	if (game->img && game->mlx && game->img->img)
+		mlx_destroy_image(game->mlx, game->img->img);
+	if (game->win)
+		mlx_destroy_window(game->mlx, game->win);
+	if (game->mlx)
+	{
+		mlx_destroy_display(game->mlx);
+		free(game->mlx);
+	}
+	free(game);
 	exit(EXIT_FAILURE);
 }
 
@@ -54,4 +64,12 @@ int	cross_close(t_game *game)
 {
 	cleanup(game);
 	return (0);
+}
+
+int	find_biggest(t_img *img)
+{
+	if (img->screen_height <= img->screen_width)
+		return (img->screen_height);
+	else
+		return (img->screen_width);
 }
