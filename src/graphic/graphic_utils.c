@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   graphic_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 12:47:24 by aautret           #+#    #+#             */
-/*   Updated: 2026/01/21 11:05:10 by aautret          ###   ########.fr       */
+/*   Updated: 2026/01/21 18:55:36 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,16 +41,6 @@ int	cleanup(t_game *game)
 		exit(EXIT_FAILURE);
 	if (game->map)
 		free_all(game);
-	if (game->img && game->mlx && game->img->img)
-		mlx_destroy_image(game->mlx, game->img->img);
-	if (game->win)
-		mlx_destroy_window(game->mlx, game->win);
-	if (game->mlx)
-	{
-		mlx_destroy_display(game->mlx);
-		free(game->mlx);
-	}
-	free(game);
 	exit(EXIT_FAILURE);
 }
 

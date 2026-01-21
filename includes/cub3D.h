@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 13:13:10 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/19 10:34:14 by aautret          ###   ########.fr       */
+/*   Updated: 2026/01/21 19:02:14 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,15 +97,18 @@ void			init_mlx(t_game *game, t_map *map, t_img *img);
 void			free_all(t_game *game);
 void			ft_error(t_game *game, char *s);
 int				ft_gnlen(char *gnl);
+void			free_map_array(t_map *map);
+void			free_map(t_map *map);
 
 /************************************************************************
  *								PARSING									*
  ***********************************************************************/
 // floodfill.c
-void			alloc_tmp_map(t_map *map);
+void			free_tmp_map(t_map *map);
+int				alloc_tmp_map(t_map *map);
 void			tmp_map_copy(t_map *map, char *line);
 void			fill(t_map *map, int x, int y);
-int				flood_fill(t_map *map);
+int				flood_fill(t_game *game, t_map *map);
 
 // map_copy.c
 void			read_from_map(t_game *game, t_map *map, char *av);

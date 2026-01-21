@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   floodfill.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 10:48:26 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/20 16:13:32 by aautret          ###   ########.fr       */
+/*   Updated: 2026/01/21 19:02:14 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,46 @@
 
 //alloue l espace memoire pour tmp_map
 
-void	alloc_tmp_map(t_map *map)
+void	free_tmp_map(t_map *map)
+{
+	int	i;
+
+	if (!map || !map->tmp_map)
+		return ;
+	i = 0;
+	while (i < map->height)
+	{
+		if (map->tmp_map[i])
+			free(map->tmp_map[i]);
+		i++;
+	}
+	free(map->tmp_map);
+	map->tmp_map = NULL;
+}
+
+int	alloc_tmp_map(t_map *map)
 {
 	int	i;
 
 	map->tmp_map = malloc(sizeof(char *) * (map->height + 1));
 	if (!map->tmp_map)
-		return ;
+		return (0);
 	i = 0;
 	while (i < map->height)
 	{
 		map->tmp_map[i] = calloc(map->width + 1, sizeof(char));
 		if (!map->tmp_map[i])
-			return ;
+		{
+			while (--i >= 0)
+				free(map->tmp_map[i]);
+			free(map->tmp_map);
+			map->tmp_map = NULL;
+			return (0);
+		}
 		i++;
 	}
 	map->tmp_map[map->height] = NULL;
+	return (1);
 }
 
 void	tmp_map_copy(t_map *map, char *line)
@@ -102,11 +126,15 @@ void	fill(t_map *map, int x, int y)
 // 	printf("===========================\n\n");
 // }
 
-int	flood_fill(t_map *map)
+int	flood_fill(t_game *game, t_map *map)
 {
 	map->total_size = 0;
 	fill(map, map->player_x, map->player_y);
 	if (map->total_size == -1)
-		return (ft_error(NULL, "Map is invalid"), 1);
+	{
+		free_tmp_map(map);
+		return (ft_error(game, "Map is invalid"), 1);
+	}
+	free_tmp_map(map);
 	return (0);
 }

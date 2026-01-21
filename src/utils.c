@@ -3,14 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 13:40:17 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/20 16:02:17 by aautret          ###   ########.fr       */
+/*   Updated: 2026/01/21 19:02:05 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
+
+void	free_map_array(t_map *map)
+{
+	int	i;
+
+	if (!map || !map->map)
+		return ;
+	i = 0;
+	while (i < map->height)
+	{
+		free(map->map[i]);
+		i++;
+	}
+	free(map->map);
+	map->map = NULL;
+}
 
 static void	free_struct(t_game *game)
 {
@@ -39,6 +55,8 @@ void	free_all(t_game *game)
 	if (!game)
 		return ;
 	free_struct(game);
+	if (game->map)
+		free_map(game->map);
 	if (game->img)
 	{
 		if (game->img->img && game->mlx)
@@ -48,7 +66,10 @@ void	free_all(t_game *game)
 	if (game->win && game->mlx)
 		mlx_destroy_window(game->mlx, game->win);
 	if (game->mlx)
+	{
 		mlx_destroy_display(game->mlx);
+		free(game->mlx);
+	}
 	if (game->fd >= 0)
 		close(game->fd);
 	free(game);
@@ -70,4 +91,13 @@ int	ft_gnlen(char *gnl)
 		i++;
 	}
 	return (i);
+}
+
+void	free_map(t_map *map)
+{
+	if (!map)
+		return ;
+	free_map_array(map);
+	free_tmp_map(map);
+	free(map);
 }
