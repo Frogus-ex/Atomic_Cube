@@ -6,7 +6,7 @@
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 17:07:26 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/21 10:56:21 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/01/21 17:53:27 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,9 @@ typedef struct s_img
 	int					line_length;
 	double				distance_x;
 	double				distance_y;
+	double				wall_distance_x;
+	double				wall_distance_y;
+	double				wall_distance;
 	t_game				*game;
 	t_map				*map;
 	t_player			*player;
@@ -53,6 +56,7 @@ void					draw_minimap(t_map *map, t_img *img);
 void					my_put_pixel(t_img *img, int x, int y, int color);
 int						cleanup(t_game *game);
 int						cross_close(t_game *game);
+int						find_biggest(t_img *img);
 
 // init_vison.c
 void					get_distance(t_img *img);

@@ -6,7 +6,7 @@
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 16:38:28 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/21 17:24:50 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/01/21 17:55:42 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,7 @@ void	map_copy(t_map *map, char *line)
 	map->x = 0;
 	while (map->x < map->width)
 	{
-		if (map->x < line_len && line[map->x] && line[map->x] != '\n')
+		if (line[map->x] && line[map->x])
 		{
 			map->map[map->y][map->x] = line[map->x];
 			if (line[map->x] == 'S' || line[map->x] == 'E'
@@ -138,7 +138,7 @@ void	map_copy(t_map *map, char *line)
 		}
 		else
 			map->map[map->y][map->x] = 32;
-		if (map->x < line_len && line[map->x] != '\n')
+		if (map->x < ft_strlen(line))
 			map->tmp_map[map->y][map->x] = line[map->x];
 		else
 			map->tmp_map[map->y][map->x] = ' ';

@@ -6,11 +6,29 @@
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 16:56:26 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/21 10:59:09 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/01/21 17:54:42 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3D.h"
+
+int	check_colision(t_img *img, double px, double py)
+{
+	int	tx;
+	int	ty;
+
+	if (!img || !img->map || !img->map->map || px < 0 || py < 0)
+		return (0);
+	tx = (int)floor(px / TILE_SIZE);
+	ty = (int)floor(py / TILE_SIZE);
+	if (ty < 0 || ty >= img->map->height || tx < 0 || tx >= img->map->width)
+		return (0);
+	if (!img->map->map[ty] || !img->map->map[ty][tx])
+		return (0);
+	if (img->map->map[ty][tx] == '1')
+		return (0);
+	return (1);
+}
 
 /**
  * @brief Trace un rayon sur la mini-map pour un angle absolu.
@@ -33,10 +51,12 @@ static void	draw_angle_new(t_img *img, double angle)
 	step_x = (img->distance_x - img->player->origin_x) / 110;
 	step_y = (img->distance_y - img->player->origin_y) / 110;
 	i = 0;
-	while (i < ADJACENT)
+	while (i < find_biggest(img))
 	{
 		current_x = img->player->origin_x + step_x * i;
 		current_y = img->player->origin_y + step_y * i;
+		if (!check_colision(img, current_x, current_y))
+			break ;
 		my_put_pixel(img, current_x, current_y, 0xFFFF00);
 		i++;
 	}
