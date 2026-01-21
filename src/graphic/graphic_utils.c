@@ -6,7 +6,7 @@
 /*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 12:47:24 by aautret           #+#    #+#             */
-/*   Updated: 2026/01/20 15:45:57 by aautret          ###   ########.fr       */
+/*   Updated: 2026/01/21 11:05:10 by aautret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,4 +64,12 @@ int	cross_close(t_game *game)
 {
 	cleanup(game);
 	return (0);
+}
+
+int	find_biggest(t_img *img)
+{
+	if (img->screen_height <= img->screen_width)
+		return (img->screen_height);
+	else
+		return (img->screen_width);
 }
