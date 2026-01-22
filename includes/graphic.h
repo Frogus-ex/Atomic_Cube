@@ -6,7 +6,7 @@
 /*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 17:07:26 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/21 11:56:15 by aautret          ###   ########.fr       */
+/*   Updated: 2026/01/22 14:42:53 by aautret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,7 @@ typedef struct s_img
 	int					line_length;
 	double				distance_x;
 	double				distance_y;
-	double				wall_distance_x;
-	double				wall_distance_y;
-	double				wall_distance;
+	int				wall_distance;
 	t_game				*game;
 	t_map				*map;
 	t_player			*player;
@@ -59,7 +57,7 @@ int						cross_close(t_game *game);
 int						find_biggest(t_img *img);
 
 // init_vison.c
-void					get_distance(t_img *img);
+void					get_distance(t_img *img, double xm, double ym);
 
 // key_handle.c
 int						player_input(int keycode, t_img *img);
