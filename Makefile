@@ -6,7 +6,7 @@
 #    By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/06 11:20:20 by aautret           #+#    #+#              #
-#    Updated: 2026/01/21 17:53:04 by tlorette         ###   ########.fr        #
+#    Updated: 2026/01/23 11:44:39 by tlorette         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ CFLAGS		:= -Wall -Wextra -Werror -g -I. -I$(MLX_DIR) -I$(LIBFT_DIR) -I$(GNL_DIR)
 # ————————————— SOURCES OPÉRATIONNELLES —————————————
 SRCS := \
 	main.c \
+	$(SRC_DIR)/graphic/draw_cub3d.c \
 	$(SRC_DIR)/graphic/draw_map_util.c \
 	$(SRC_DIR)/graphic/draw_minimap.c \
 	$(SRC_DIR)/graphic/graphic_utils.c \

@@ -6,7 +6,7 @@
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 13:13:10 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/23 11:20:50 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/01/23 11:23:47 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,6 @@ void			fill(t_map *map, int x, int y);
 int				flood_fill(t_game *game, t_map *map);
 
 // map_copy.c
-void			free_map_array(t_map *map);
 void			read_from_map(t_game *game, t_map *map, char *av);
 int				get_map_height(char *av);
 int				get_greater_width(char *av);

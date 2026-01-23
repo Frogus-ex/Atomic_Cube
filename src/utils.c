@@ -6,27 +6,11 @@
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 13:40:17 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/23 11:21:06 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/01/23 11:24:18 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
-
-void	free_map_array(t_map *map)
-{
-	int	i;
-
-	if (!map || !map->map)
-		return ;
-	i = 0;
-	while (i < map->height)
-	{
-		free(map->map[i]);
-		i++;
-	}
-	free(map->map);
-	map->map = NULL;
-}
 
 static void	free_struct(t_game *game)
 {

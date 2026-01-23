@@ -6,7 +6,7 @@
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 16:56:26 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/23 11:21:09 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/01/23 14:07:08 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	check_colision(t_img *img, double px, double py)
  * @param img image cible
  * @param angle angle du rayon en radians
  */
-static void	draw_angle_new(t_img *img, double angle)
+static void	draw_angle_new(t_img *img, double angle, int collumn)
 {
 	double	step_x;
 	double	step_y;
@@ -57,9 +57,8 @@ static void	draw_angle_new(t_img *img, double angle)
 		current_y = img->player->origin_y + step_y * i;
 		if (!check_colision(img, current_x, current_y))
 		{
-			get_distance(img, current_x, current_y);
-			img->wall_distance *= cos(angle - img->player->view_angle);
-			printf("wall distance : %f\n", img->wall_distance);
+			get_distance(img, current_x, current_y, angle);
+			draw_wall(img, collumn, img->wall_size);
 			break ;
 		}
 		my_put_pixel(img, current_x, current_y, 0xFFFF00);
@@ -80,11 +79,11 @@ static void	calc_and_draw_angle(t_img *img)
 	int		i;
 
 	i = 0;
-	angle_step = (M_PI / 4) / img->screen_width;
-	while (i < img->screen_width)
+	angle_step = (M_PI / 4) / img->width;
+	while (i < img->width)
 	{
 		angle = img->player->direction_vue - (M_PI / 8) + (i * angle_step);
-		draw_angle_new(img, angle);
+		draw_angle_new(img, angle, i);
 		i++;
 	}
 }
