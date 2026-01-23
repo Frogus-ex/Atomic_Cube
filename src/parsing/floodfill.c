@@ -6,7 +6,7 @@
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 10:48:26 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/23 11:21:23 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/01/23 11:21:56 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,23 +24,6 @@ void	free_tmp_map(t_map *map)
 	while (i < map->height)
 	{
 		free(map->tmp_map[i]);
-		i++;
-	}
-	free(map->tmp_map);
-	map->tmp_map = NULL;
-}
-
-void	free_tmp_map(t_map *map)
-{
-	int	i;
-
-	if (!map || !map->tmp_map)
-		return ;
-	i = 0;
-	while (i < map->height)
-	{
-		if (map->tmp_map[i])
-			free(map->tmp_map[i]);
 		i++;
 	}
 	free(map->tmp_map);

@@ -6,7 +6,7 @@
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 13:25:04 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/23 11:21:00 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/01/23 11:22:13 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ void	img_init(t_img **img)
 	*img = ft_calloc(1, sizeof(t_img));
 	if (!*img)
 		return (ft_error(NULL, "img init failed"));
-	(*img)->wall_distance = malloc(sizeof(double) * (*img)->screen_width);
 }
 
 void	player_init(t_player **player, t_game *game)
