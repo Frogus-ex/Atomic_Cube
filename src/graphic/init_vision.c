@@ -3,27 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   init_vision.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 17:36:27 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/15 17:41:43 by aautret          ###   ########.fr       */
+/*   Updated: 2026/01/23 11:15:19 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3D.h"
 
 /**
- * @brief Get the distance objectCalcule la position finale d'un rayon selon 
- * l'angle et la distance de vue du joueur
+ * @brief Calcul la distance du rayon entre le player et le mur et le stock dans
+ * la structure img
  * 
  * @param img 
  */
-void	get_distance(t_img *img)
+void	get_distance(t_img *img, double xm, double ym)
 {
-	if (!img || !img->player)
-		return ;
-	img->distance_x = img->player->origin_x + img->player->view_distance
-		* cos(img->player->view_angle);
-	img->distance_y = img->player->origin_y + img->player->view_distance
-		* sin(img->player->view_angle);
+	double	a;
+	double	b;
+
+	a = pow(xm - img->player->origin_x, 2);
+	b = pow(ym - img->player->origin_y, 2);
+	img->wall_distance = (int)sqrt(a + b);
 }
+
+
+// A REVOIR : ENDROIT OU STOCKE LE RAYON CAR IL EST RE-ECRASER A CHAQUE FOIS

@@ -6,7 +6,7 @@
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 10:48:26 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/21 17:55:25 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/01/23 11:21:23 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,22 +30,46 @@ void	free_tmp_map(t_map *map)
 	map->tmp_map = NULL;
 }
 
-void	alloc_tmp_map(t_map *map)
+void	free_tmp_map(t_map *map)
+{
+	int	i;
+
+	if (!map || !map->tmp_map)
+		return ;
+	i = 0;
+	while (i < map->height)
+	{
+		if (map->tmp_map[i])
+			free(map->tmp_map[i]);
+		i++;
+	}
+	free(map->tmp_map);
+	map->tmp_map = NULL;
+}
+
+int	alloc_tmp_map(t_map *map)
 {
 	int	i;
 
 	map->tmp_map = malloc(sizeof(char *) * (map->height + 1));
 	if (!map->tmp_map)
-		return ;
+		return (0);
 	i = 0;
 	while (i < map->height)
 	{
 		map->tmp_map[i] = calloc(map->width + 1, sizeof(char));
 		if (!map->tmp_map[i])
-			return ;
+		{
+			while (--i >= 0)
+				free(map->tmp_map[i]);
+			free(map->tmp_map);
+			map->tmp_map = NULL;
+			return (0);
+		}
 		i++;
 	}
 	map->tmp_map[map->height] = NULL;
+	return (1);
 }
 
 void	tmp_map_copy(t_map *map, char *line)

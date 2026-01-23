@@ -6,7 +6,7 @@
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 16:56:26 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/21 17:54:42 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/01/23 11:21:09 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,12 @@ static void	draw_angle_new(t_img *img, double angle)
 		current_x = img->player->origin_x + step_x * i;
 		current_y = img->player->origin_y + step_y * i;
 		if (!check_colision(img, current_x, current_y))
+		{
+			get_distance(img, current_x, current_y);
+			img->wall_distance *= cos(angle - img->player->view_angle);
+			printf("wall distance : %f\n", img->wall_distance);
 			break ;
+		}
 		my_put_pixel(img, current_x, current_y, 0xFFFF00);
 		i++;
 	}
