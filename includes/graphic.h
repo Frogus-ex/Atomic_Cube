@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   graphic.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 17:07:26 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/22 14:42:53 by aautret          ###   ########.fr       */
+/*   Updated: 2026/01/23 11:14:42 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ typedef struct s_img
 	int					line_length;
 	double				distance_x;
 	double				distance_y;
-	int				wall_distance;
+	double				wall_distance;
 	t_game				*game;
 	t_map				*map;
 	t_player			*player;

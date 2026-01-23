@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 13:25:04 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/17 14:17:28 by aautret          ###   ########.fr       */
+/*   Updated: 2026/01/23 11:00:25 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	img_init(t_img **img)
 	*img = ft_calloc(1, sizeof(t_img));
 	if (!*img)
 		return (ft_error(NULL, "img init failed"));
+	(*img)->wall_distance = malloc(sizeof(double) * (*img)->screen_width);
 }
 
 void	player_init(t_player **player, t_game *game)

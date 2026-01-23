@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_vision.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 17:36:27 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/22 14:51:47 by aautret          ###   ########.fr       */
+/*   Updated: 2026/01/23 11:15:19 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,7 @@ void	get_distance(t_img *img, double xm, double ym)
 	a = pow(xm - img->player->origin_x, 2);
 	b = pow(ym - img->player->origin_y, 2);
 	img->wall_distance = (int)sqrt(a + b);
-	// printf("wall distance : %d\n", img->wall_distance);
 }
 
 
-// A REVOIR : ENDROIT OU STOCKE LE RAYON CAR IL EST RE-ECRASER A CHAQUE FOIS 
+// A REVOIR : ENDROIT OU STOCKE LE RAYON CAR IL EST RE-ECRASER A CHAQUE FOIS

@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   draw_minimap.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 16:56:26 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/22 14:41:14 by aautret          ###   ########.fr       */
+/*   Updated: 2026/01/23 11:15:43 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3D.h"
-
 
 int	check_colision(t_img *img, double px, double py)
 {
@@ -59,6 +58,8 @@ static void	draw_angle_new(t_img *img, double angle)
 		if (!check_colision(img, current_x, current_y))
 		{
 			get_distance(img, current_x, current_y);
+			img->wall_distance *= cos(angle - img->player->view_angle);
+			printf("wall distance : %f\n", img->wall_distance);
 			break ;
 		}
 		my_put_pixel(img, current_x, current_y, 0xFFFF00);
