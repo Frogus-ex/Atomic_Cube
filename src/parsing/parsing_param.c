@@ -1,20 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   parsing_param.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: frogus <frogus@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 14:56:24 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/07 16:35:41 by frogus           ###   ########.fr       */
+/*   Updated: 2026/01/20 16:06:42 by aautret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3D.h"
+#include "../includes/cub3D.h"
 
-// toutes les fonction ft_error devrons contenir un free game ulterieurement
-
-int	check_arg_param(int ac, char **av)
+void	check_arg_param(int ac, char **av)
 {
 	int		len;
 	char	*name;
@@ -24,23 +22,30 @@ int	check_arg_param(int ac, char **av)
 	name = av[1];
 	len = ft_strlen(name);
 	if (len < 5 || ft_strncmp(name + len - 4, ".cub", 4) != 0)
-		return (ft_error(NULL, "file extention must be .cub"), 0);
+		ft_error(NULL, "file extention must be .cub");
 	if (ft_strnstr(name, ".cub", len - 4))
-		return (ft_error(NULL, "file extention must be .cub"), 0);
-	return (1);
+		ft_error(NULL, "file extention must be .cub");
 }
 
-int	count_space(char *line)
+int	check_cub_file(t_game *game, char *av)
 {
-	int	i;
-	int	space;
+	char	*stash;
+	char	*line;
 
-	i = -1;
-	space = 0;
-	while (line[++i])
+	stash = NULL;
+	game->fd = open(av, O_RDONLY);
+	if (game->fd < 0)
+		return (ft_error(NULL, "file doesn t exist"), 1);
+	game->nbr_line = 0;
+	line = get_next_line(game->fd, &stash);
+	if (!line)
+		return (free(line), close(game->fd), 1);
+	while (line)
 	{
-		if (line[i] == 32)
-			space++;
+		game->nbr_line = ft_gnlen(line);
+		free(line);
+		line = get_next_line(game->fd, &stash);
 	}
-	return (space);
+	free(stash);
+	return (close(game->fd), 0);
 }

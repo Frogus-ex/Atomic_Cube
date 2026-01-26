@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: frogus <frogus@student.42.fr>              +#+  +:+       +#+         #
+#    By: aautret <aautret@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/06 11:20:20 by aautret           #+#    #+#              #
-#    Updated: 2026/01/07 13:57:11 by frogus           ###   ########.fr        #
+#    Updated: 2026/01/20 13:34:51 by aautret          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,13 +26,20 @@ CFLAGS		:= -Wall -Wextra -Werror -g -I. -I$(MLX_DIR) -I$(LIBFT_DIR) -I$(GNL_DIR)
 # ————————————— SOURCES OPÉRATIONNELLES —————————————
 SRCS := \
 	main.c \
-	$(SRC_DIR)/cleaner.c \
-	$(SRC_DIR)/init.c \
-	$(SRC_DIR)/parsing_map.c \
-	$(SRC_DIR)/parsing.c \
-	$(SRC_DIR)/utils.c \
+	$(SRC_DIR)/graphic/draw_map_util.c \
+	$(SRC_DIR)/graphic/draw_minimap.c \
+	$(SRC_DIR)/graphic/graphic_utils.c \
+	$(SRC_DIR)/graphic/init_vision.c\
+	$(SRC_DIR)/graphic/key_handle.c \
+	$(SRC_DIR)/parsing/floodfill.c \
+	$(SRC_DIR)/parsing/map_copy.c \
+	$(SRC_DIR)/parsing/parsing_identifiers.c \
+	$(SRC_DIR)/parsing/parsing_map.c \
+	$(SRC_DIR)/parsing/parsing_param.c \
+	$(SRC_DIR)/parsing/parsing.c \
 	$(SRC_DIR)/find_id.c \
-	$(SRC_DIR)/parsing_identifiers.c \
+	$(SRC_DIR)/init.c \
+	$(SRC_DIR)/utils.c \
 
 # ————————————— SOURCES GNL —————————————
 GNL_SRCS := \
