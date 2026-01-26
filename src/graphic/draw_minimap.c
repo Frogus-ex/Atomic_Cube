@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_minimap.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
+/*   By: frogus <frogus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 16:56:26 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/23 14:07:08 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/01/26 16:16:58 by frogus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ static void	draw_angle_new(t_img *img, double angle, int collumn)
 		{
 			get_distance(img, current_x, current_y, angle);
 			draw_wall(img, collumn, img->wall_size);
+			printf("%d", (int)angle);
+			// draw_texture(img, (int)angle);
 			break ;
 		}
 		my_put_pixel(img, current_x, current_y, 0xFFFF00);
@@ -88,33 +90,33 @@ static void	calc_and_draw_angle(t_img *img)
 	}
 }
 
-static void	draw_player_circle(t_img *img, int cx, int cy, int radius)
-{
-	int	x;
-	int	y;
-	int	err;
-	int	qx;
-	int	xi;
+// static void	draw_player_circle(t_img *img, int cx, int cy, int radius)
+// {
+// 	int	x;
+// 	int	y;
+// 	int	err;
+// 	int	qx;
+// 	int	xi;
 
-	x = -radius;
-	y = 0;
-	err = 2 - 2 * radius;
-	while (x <= 0)
-	{
-		qx = cx - x;
-		xi = cx + x;
-		while (xi <= qx)
-		{
-			my_put_pixel(img, xi, cy + y, 0xFFFFFFFF);
-			my_put_pixel(img, xi, cy - y, 0xFFFFFFFF);
-			xi++;
-		}
-		if (err <= y)
-			err += ++y * 2 + 1;
-		if (err > x || err > y)
-			err += ++x * 2 + 1;
-	}
-}
+// 	x = -radius;
+// 	y = 0;
+// 	err = 2 - 2 * radius;
+// 	while (x <= 0)
+// 	{
+// 		qx = cx - x;
+// 		xi = cx + x;
+// 		while (xi <= qx)
+// 		{
+// 			my_put_pixel(img, xi, cy + y, 0xFFFFFFFF);
+// 			my_put_pixel(img, xi, cy - y, 0xFFFFFFFF);
+// 			xi++;
+// 		}
+// 		if (err <= y)
+// 			err += ++y * 2 + 1;
+// 		if (err > x || err > y)
+// 			err += ++x * 2 + 1;
+// 	}
+// }
 
 /**
  * @brief Remplit une tuile (carre de TILE_SIZE) avec une couleur.
@@ -168,8 +170,8 @@ void	draw_minimap(t_map *map, t_img *img)
 		}
 		y++;
 	}
-	draw_player_circle(img, img->player->origin_x, img->player->origin_y,
-		TILE_SIZE / 4);
+	// draw_player_circle(img, img->player->origin_x, img->player->origin_y,
+	// 	TILE_SIZE / 4);
 	calc_and_draw_angle(img);
 	mlx_put_image_to_window(img->game->mlx, img->game->win, img->img, 0, 0);
 }

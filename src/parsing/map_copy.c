@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_copy.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
+/*   By: frogus <frogus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 16:38:28 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/23 11:21:27 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/01/26 15:34:40 by frogus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,8 @@ int	get_map_height(char *av)
 	char	*line;
 	char	*stash;
 	int		fd;
-	int		i;
 	int		height;
 
-	i = 0;
 	height = 0;
 	stash = NULL;
 	fd = open(av, O_RDONLY);
