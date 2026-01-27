@@ -6,7 +6,7 @@
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 17:07:26 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/27 13:26:51 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/01/27 18:18:20 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,10 @@ typedef struct s_texture
 	int					tex_bpp;
 	int					tex_line_len;
 	int					tex_endian;
+	int					tex_x;
+	int					tex_y;
+	int					side;
+	double				wall_x;
 }						t_texture;
 
 typedef struct s_img
@@ -54,6 +58,8 @@ typedef struct s_img
 	double				wall_size;
 	double				wall_start;
 	double				wall_end;
+	double				ray_dir_x;
+	double				ray_dir_y;
 	t_game				*game;
 	t_map				*map;
 	t_player			*player;
@@ -71,6 +77,8 @@ void					draw_positive_height(t_img *img);
 
 // draw_minimap.c
 void					draw_minimap(t_map *map, t_img *img);
+void					get_wall_hit(t_texture *texture, double current_x,
+							double current_y);
 
 // graphic_utils.c
 void					my_put_pixel(t_img *img, int x, int y, int color);
@@ -87,8 +95,9 @@ int						player_input(int keycode, t_img *img);
 void					player_moves(t_img *img, int new_y, int new_x);
 
 // draw_cub3d.c
-void					draw_wall(t_img *img, int x, double wall_size);
+void					draw_wall(t_img *img, int x, double wall_size,
+							double angle);
 void					load_textures(t_game *game);
-void					draw_wall_text(t_img *img, int x, int y);
+void					draw_wall_text(t_img *img, int x, int y, double angle);
 
 #endif

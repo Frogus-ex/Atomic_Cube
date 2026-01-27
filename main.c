@@ -6,7 +6,7 @@
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 13:18:39 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/23 11:55:57 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/01/27 14:55:41 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,15 @@ int	main(int ac, char **av)
 	if (!map)
 		return (free(game), 1);
 	game->map = map;
-	img_init(&img);
+	text_init(&game->textures);
+	if (!game->textures)
+		return (free_all(game), 1);
+	img_init(&img, game);
 	if (!img)
 		return (free_all(game), 1);
 	game->img = img;
 	player_init(&player, game);
 	if (!player)
-		return (free_all(game), 1);
-	text_init(&game->textures);
-	if (!game->textures)
 		return (free_all(game), 1);
 	if (parsing(game, av[1]))
 		return (free_all(game), 1);
