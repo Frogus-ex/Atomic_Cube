@@ -6,7 +6,7 @@
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 17:36:27 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/23 14:07:42 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/01/27 13:46:31 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,6 @@ void	get_distance(t_img *img, double xm, double ym, double angle)
 	if (img->wall_distance <= 0.1)
 		return ;
 	img->wall_size = (img->height / img->wall_distance) * TILE_SIZE;
-	if (img->wall_size > img->height * 0.5)
-		img->wall_size = img->height * 0.5;
 }
 
 // A REVOIR : ENDROIT OU STOCKE LE RAYON CAR IL EST RE-ECRASER A CHAQUE FOIS

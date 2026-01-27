@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: frogus <frogus@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 13:25:04 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/26 16:15:42 by frogus           ###   ########.fr       */
+/*   Updated: 2026/01/27 12:45:17 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,8 @@ void	game_init(t_game **game)
 		ft_error(*game, "nbr_text allocation failed");
 		*game = NULL;
 		return ;
-	}	(*game)->textures = ft_calloc(1, sizeof(t_texture));
-	if (!(*game)->textures)
-	{
-		ft_error(*game, "textures allocation failed");
-		*game = NULL;
-		return;
-	}	(*game)->nbr_line = 0;
+	}
+	(*game)->nbr_line = 0;
 }
 
 void	map_init(t_map **map)
@@ -61,6 +56,13 @@ void	player_init(t_player **player, t_game *game)
 	game->player = *player;
 }
 
+void	text_init(t_texture **text)
+{
+	*text = ft_calloc(1, sizeof(t_texture));
+	if (!*text)
+		return (ft_error(NULL, "map init failed"));
+}
+
 void	init_mlx(t_game *game, t_map *map, t_img *img)
 {
 	if (!game || !map || !img)
@@ -73,7 +75,7 @@ void	init_mlx(t_game *game, t_map *map, t_img *img)
 	game->mlx = mlx_init();
 	if (!game->mlx)
 		return (ft_error(game, "mlx_init failed"));
-	load_textures(game);
+	// load_textures(game);
 	mlx_get_screen_size(game->mlx, &img->screen_width, &img->screen_height);
 	if (img->width > img->screen_width || img->height > img->screen_height)
 	{

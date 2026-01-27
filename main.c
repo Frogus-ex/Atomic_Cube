@@ -35,6 +35,9 @@ int	main(int ac, char **av)
 	player_init(&player, game);
 	if (!player)
 		return (free_all(game), 1);
+	text_init(&game->textures);
+	if (!game->textures)
+		return (free_all(game), 1);
 	if (parsing(game, av[1]))
 		return (free_all(game), 1);
 	read_from_map(game, map, av[1]);

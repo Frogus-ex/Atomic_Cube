@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_minimap.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: frogus <frogus@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 16:56:26 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/26 16:16:58 by frogus           ###   ########.fr       */
+/*   Updated: 2026/01/27 13:27:00 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,6 @@ static void	draw_angle_new(t_img *img, double angle, int collumn)
 		{
 			get_distance(img, current_x, current_y, angle);
 			draw_wall(img, collumn, img->wall_size);
-			printf("%d", (int)angle);
-			// draw_texture(img, (int)angle);
 			break ;
 		}
 		my_put_pixel(img, current_x, current_y, 0xFFFF00);
