@@ -1,18 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_minimap.c                                     :+:      :+:    :+:   */
+/*   draw_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 16:56:26 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/28 11:21:16 by aautret          ###   ########.fr       */
+/*   Updated: 2026/01/28 13:45:06 by aautret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3D.h"
 
-int	check_colision(t_img *img, double px, double py)
+/**
+ * @brief Vérifie si une position (en pixels) est franchissable (pas de mur).
+ * Teste les bornes, convertit en coordonnées de tuile et vérifie la
+ * présence d'un mur ('1') dans la grille.
+ * 
+ * @param img
+ * @param px Coordonnée X en pixels à tester.
+ * @param py Coordonnée Y en pixels à tester.
+ * @return int 1 si la position est libre (pas de mur), 0 sinon.
+ * @note Renvoie 0 aussi en cas d'arguments invalides ou hors limites.
+ */
+static int	check_colision(t_img *img, double px, double py)
 {
 	int	tx;
 	int	ty;
@@ -31,9 +42,17 @@ int	check_colision(t_img *img, double px, double py)
 }
 
 /**
- * @brief Trace un rayon sur la mini-map pour un angle absolu.
- * @param img image cible
- * @param angle angle du rayon en radians
+ * @brief Trace un seul rayon pour un angle donné et affiche la colonne.
+ * 
+ * Calcule un pas le long du rayon depuis la position du joueur jusqu'à la
+ * distance maximale, teste les collisions tuile par tuile, récupère la face
+ * touchée (get_wall_hit), calcule la distance corrigée (get_distance)
+ * puis dessine la colonne correspondante (draw_wall).
+ * 
+ * @param img
+ * @param angle Angle du rayon en radians.
+ * @param collumn Indice de colonne écran (coordonnée X) à dessiner.
+ * @note Fonction interne statique / arrête le raycast dès la première collision.
  */
 static void	draw_angle_new(t_img *img, double angle, int collumn)
 {
@@ -62,16 +81,18 @@ static void	draw_angle_new(t_img *img, double angle, int collumn)
 			draw_wall(img, collumn, img->wall_size, angle);
 			break ;
 		}
-		// my_put_pixel(img, current_x, current_y, 0xFFFF00);
 		i++;
 	}
 }
 
 /**
- * @brief Dessine les rayons depuis la position courante du joueur
- *
- * Calcule et affiche le faisceau de rayons autour de la direction vue.
- * @param img image cible
+ * @brief Balaye l'écran par colonnes et appelle le traceur de rayon.
+ * 
+ * Calcule l'incrément d'angle en fonction de img->width (résolution horizontale)
+ * et itère sur chaque colonne pour lancer draw_angle_new.
+ * 
+ * @param img
+ * @note Met en place l'intervalle d'angles centré sur player->direction_vue.
  */
 static void	calc_and_draw_angle(t_img *img)
 {
@@ -89,12 +110,13 @@ static void	calc_and_draw_angle(t_img *img)
 	}
 }
 
-
-
 /**
- * @brief Redessine la mini-carte (tuiles, joueur, rayons) et affiche la frame.
- * @param map representation grille
- * @param img image cible
+ * @brief Redessine la scène (mini-map / rayons / murs) et affiche l'image.
+ * 
+ * Lance le calcul et le rendu des rayons, puis pousse l'image résultante vers
+ * la fenêtre via mlx_put_image_to_window.
+ * 
+ * @param img
  */
 void	put_cub3d_to_wnd(t_img *img)
 {

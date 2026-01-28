@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_copy.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: frogus <frogus@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 16:38:28 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/26 15:34:40 by frogus           ###   ########.fr       */
+/*   Updated: 2026/01/28 13:58:22 by aautret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void	read_from_map(t_game *game, t_map *map, char *av)
 	line = get_next_line(game->fd, &stash);
 	map_alloc(map, av);
 	if (!alloc_tmp_map(map))
-		return (free(line), free(stash), close(game->fd),
-			ft_error(game, "tmp_map allocation failed"));
+		return (free(line), free(stash), close(game->fd), ft_error(game,
+				"tmp_map allocation failed"));
 	map->y = 0;
 	while (line)
 	{
@@ -69,18 +69,16 @@ int	get_greater_width(char *av)
 {
 	char	*line;
 	char	*stash;
-	int		fd;
 	int		i;
-	int		greater_width;
 
 	stash = NULL;
-	fd = open(av, O_RDONLY);
+	int (fd) = open(av, O_RDONLY);
 	if (fd < 0)
 		return (free(stash), close(fd), 1);
 	line = get_next_line(fd, &stash);
 	if (!line)
 		return (free(line), free(stash), close(fd), 1);
-	greater_width = 0;
+	int (greater_width) = 0;
 	while (line)
 	{
 		if (detector_start_map(line) == 1)

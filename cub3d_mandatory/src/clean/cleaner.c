@@ -1,16 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   cleaner.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/17 13:40:17 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/23 11:24:18 by tlorette         ###   ########.fr       */
+/*   Created: 2026/01/21 14:08:43 by tlorette          #+#    #+#             */
+/*   Updated: 2026/01/28 13:06:30 by aautret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
+
+void	free_map_array(t_map *map)
+{
+	int	i;
+
+	if (!map || !map->map)
+		return ;
+	i = 0;
+	while (i < map->height)
+	{
+		free(map->map[i]);
+		i++;
+	}
+	free(map->map);
+	map->map = NULL;
+}
 
 static void	free_struct(t_game *game)
 {
@@ -59,24 +75,6 @@ void	free_all(t_game *game)
 	free(game);
 }
 
-void	ft_error(t_game *game, char *s)
-{
-	printf("%s\n", s);
-	free_all(game);
-}
-
-int	ft_gnlen(char *gnl)
-{
-	int	i;
-
-	i = 0;
-	while (gnl[i] && gnl[i] != '\n')
-	{
-		i++;
-	}
-	return (i);
-}
-
 void	free_map(t_map *map)
 {
 	if (!map)
@@ -84,4 +82,19 @@ void	free_map(t_map *map)
 	free_map_array(map);
 	free_tmp_map(map);
 	free(map);
+}
+
+/**
+ * @brief Libère la mémoire et ferme proprement le programme
+ *
+ * @param game
+ * @return int
+ */
+int	cleanup(t_game *game)
+{
+	if (!game)
+		exit(EXIT_FAILURE);
+	if (game->map)
+		free_all(game);
+	exit(EXIT_FAILURE);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 13:13:10 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/27 14:53:13 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/01/28 13:49:41 by aautret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 # include "GNL/get_next_line.h"
 # include "config.h"
-# include "graphic.h"
+# include "game.h"
 # include "libft/libft.h"
 # include "mlx.h"
 # include <fcntl.h>
@@ -78,14 +78,23 @@ typedef struct s_game
 }				t_game;
 
 /************************************************************************
- *									SRC									*
+ *									CLEAN								*
  ***********************************************************************/
+// cleaner.c
+void			free_map_array(t_map *map);
+void			free_all(t_game *game);
+void			free_map(t_map *map);
+int				cleanup(t_game *game);
 
-// find_id.c
+/************************************************************************
+ *								INITIALISATION							*
+ ***********************************************************************/
+// init_textures.c
 void			grab_we_text(t_game *game, char *line, int i);
 void			grab_ea_text(t_game *game, char *line, int i);
 void			grab_f_text(t_game *game, char *line, int i);
 void			grab_c_text(t_game *game, char *line, int i);
+void			load_textures(t_game *game);
 
 // init.c
 void			game_init(t_game **game);
@@ -94,12 +103,6 @@ void			img_init(t_img **img, t_game *game);
 void			player_init(t_player **player, t_game *game);
 void			text_init(t_texture **text);
 void			init_mlx(t_game *game, t_map *map, t_img *img);
-
-// utils.c
-void			free_all(t_game *game);
-void			ft_error(t_game *game, char *s);
-int				ft_gnlen(char *gnl);
-void			free_map(t_map *map);
 
 /************************************************************************
  *								PARSING									*
@@ -136,4 +139,10 @@ int				parsing(t_game *game, char *av);
 // cleaner.c
 void			free_map_array(t_map *map);
 
+/************************************************************************
+ *								UTILS									*
+ ***********************************************************************/
+// utils.c
+void			ft_error(t_game *game, char *s);
+int				ft_gnlen(char *gnl);
 #endif

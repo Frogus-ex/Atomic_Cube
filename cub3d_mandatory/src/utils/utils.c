@@ -1,29 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cleaner.c                                          :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/21 14:08:43 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/21 14:09:17 by tlorette         ###   ########.fr       */
+/*   Created: 2025/12/17 13:40:17 by tlorette          #+#    #+#             */
+/*   Updated: 2026/01/28 13:52:37 by aautret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
 
-void	free_map_array(t_map *map)
+void	ft_error(t_game *game, char *s)
+{
+	printf("%s\n", s);
+	free_all(game);
+}
+
+int	ft_gnlen(char *gnl)
 {
 	int	i;
 
-	if (!map || !map->map)
-		return ;
 	i = 0;
-	while (i < map->height)
+	while (gnl[i] && gnl[i] != '\n')
 	{
-		free(map->map[i]);
 		i++;
 	}
-	free(map->map);
-	map->map = NULL;
+	return (i);
 }

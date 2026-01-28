@@ -6,7 +6,7 @@
 #    By: aautret <aautret@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/06 11:20:20 by aautret           #+#    #+#              #
-#    Updated: 2026/01/28 11:10:57 by aautret          ###   ########.fr        #
+#    Updated: 2026/01/28 13:10:21 by aautret          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,22 +30,21 @@ CFLAGS		:= -Wall -Wextra -Werror -g -I. -I$(MLX_DIR) -I$(LIBFT_DIR) -I$(GNL_DIR)
 # ————————————— SOURCES OPÉRATIONNELLES —————————————
 SRCS := \
 	main.c \
-	$(SRC_DIR_MAND)/graphic/draw_cub3d.c \
-	$(SRC_DIR_MAND)/graphic/draw_map_util.c \
-	$(SRC_DIR_MAND)/graphic/draw_minimap.c \
-	$(SRC_DIR_MAND)/graphic/graphic_utils.c \
-	$(SRC_DIR_MAND)/graphic/init_vision.c \
-	$(SRC_DIR_MAND)/graphic/key_handle.c \
+	$(SRC_DIR_MAND)/clean/cleaner.c \
+	$(SRC_DIR_MAND)/game/draw_game.c \
+	$(SRC_DIR_MAND)/game/game_utils.c \
+	$(SRC_DIR_MAND)/game/manage_moves.c \
+	$(SRC_DIR_MAND)/game/manage_textures.c \
+	$(SRC_DIR_MAND)/game/raycaster.c \
+	$(SRC_DIR_MAND)/initialisation/init_textures.c \
+	$(SRC_DIR_MAND)/initialisation/init.c \
 	$(SRC_DIR_MAND)/parsing/floodfill.c \
 	$(SRC_DIR_MAND)/parsing/map_copy.c \
 	$(SRC_DIR_MAND)/parsing/parsing_identifiers.c \
 	$(SRC_DIR_MAND)/parsing/parsing_map.c \
 	$(SRC_DIR_MAND)/parsing/parsing_param.c \
 	$(SRC_DIR_MAND)/parsing/parsing.c \
-	$(SRC_DIR_MAND)/find_id.c \
-	$(SRC_DIR_MAND)/init.c \
-	$(SRC_DIR_MAND)/cleaner.c \
-	$(SRC_DIR_MAND)/utils.c
+	$(SRC_DIR_MAND)/utils/utils.c
 
 # ————————————— SOURCES GNL —————————————
 GNL_SRCS := \

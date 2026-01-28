@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   graphic.h                                          :+:      :+:    :+:   */
+/*   game.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 17:07:26 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/28 11:28:13 by aautret          ###   ########.fr       */
+/*   Updated: 2026/01/28 11:53:00 by aautret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GRAPHIC_H
-# define GRAPHIC_H
+#ifndef GAME_H
+# define GAME_H
 
 # include "cub3D.h"
 
@@ -67,37 +67,28 @@ typedef struct s_img
 }						t_img;
 
 /************************************************************************
- *									GRAPHIC								*
+ *									GAME								*
  ***********************************************************************/
-// draw_map_util.c
-int						calc_height(t_img *img);
-void					draw_adjacent(t_img *img);
-void					draw_negative_height(t_img *img);
-void					draw_positive_height(t_img *img);
-
-// draw_minimap.c
+// draw_game.c
 void					put_cub3d_to_wnd(t_img *img);
-void					get_wall_hit(t_texture *texture, double current_x,
-							double current_y);
 
-// graphic_utils.c
+// game_utils.c
 void					my_put_pixel(t_img *img, int x, int y, int color);
-int						cleanup(t_game *game);
 int						cross_close(t_game *game);
 int						find_biggest(t_img *img);
 
-// init_vison.c
+// manage_moves.c
+int						player_input(int keycode, t_img *img);
+
+// manage_textures
+void					draw_wall_text(t_img *img, int x, int y, double angle);
+
+// raycaster.c
+void					get_wall_hit(t_texture *texture, double current_x,
+							double current_y);
 void					get_distance(t_img *img, double xm, double ym,
 							double angle);
-
-// key_handle.c
-int						player_input(int keycode, t_img *img);
-void					player_moves(t_img *img, int new_y, int new_x);
-
-// draw_cub3d.c
 void					draw_wall(t_img *img, int x, double wall_size,
 							double angle);
-void					load_textures(t_game *game);
-void					draw_wall_text(t_img *img, int x, int y, double angle);
 
 #endif
