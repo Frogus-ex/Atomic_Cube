@@ -6,7 +6,7 @@
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 11:51:15 by aautret           #+#    #+#             */
-/*   Updated: 2026/01/28 15:06:15 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/01/28 16:29:36 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,22 +94,22 @@ void	get_distance(t_img *img, double xm, double ym, double angle)
 void	draw_wall(t_img *img, int x, double wall_size, double angle)
 {
 	int	y;
-	int	color_f;
 	int	color_c;
+	int	color_f;
 
+	color_f = (img->game->f_text_rgb[0] << 16) | (img->game->f_text_rgb[1] << 8) | img->game->f_text_rgb[2];
+	color_c = (img->game->c_text_rgb[0] << 16) | (img->game->c_text_rgb[1] << 8) | img->game->c_text_rgb[2];
 	y = 0;
 	img->wall_start = (img->height / 2) - (wall_size / 2);
 	img->wall_end = (img->height / 2) + (wall_size / 2);
-	color_c = ft_atoi(img->game->c_text);
-	color_f = ft_atoi(img->game->f_text);
 	while (y < img->height)
 	{
 		if (y < img->wall_start)
-			my_put_pixel(img, x, y, color_f);
+			my_put_pixel(img, x, y, color_c);
 		else if (y < img->wall_end)
 			draw_wall_text(img, x, y, angle);
 		else
-			my_put_pixel(img, x, y, color_c);
+			my_put_pixel(img, x, y, color_f);
 		y++;
 	}
 }
