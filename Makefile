@@ -6,7 +6,7 @@
 #    By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/06 11:20:20 by aautret           #+#    #+#              #
-#    Updated: 2026/01/28 14:08:44 by tlorette         ###   ########.fr        #
+#    Updated: 2026/01/28 14:10:07 by tlorette         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,7 @@ SRCS := \
 	$(SRC_DIR_MAND)/game/draw_game.c \
 	$(SRC_DIR_MAND)/game/game_utils.c \
 	$(SRC_DIR_MAND)/game/manage_moves.c \
+	$(SRC_DIR_MAND)/game/manage_moves_utils.c \
 	$(SRC_DIR_MAND)/game/manage_textures.c \
 	$(SRC_DIR_MAND)/game/raycaster.c \
 	$(SRC_DIR_MAND)/initialisation/init_textures.c \
