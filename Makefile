@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aautret <aautret@student.42.fr>            +#+  +:+       +#+         #
+#    By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/06 11:20:20 by aautret           #+#    #+#              #
-#    Updated: 2026/01/28 11:10:57 by aautret          ###   ########.fr        #
+#    Updated: 2026/01/28 12:53:38 by tlorette         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,6 +36,7 @@ SRCS := \
 	$(SRC_DIR_MAND)/graphic/graphic_utils.c \
 	$(SRC_DIR_MAND)/graphic/init_vision.c \
 	$(SRC_DIR_MAND)/graphic/key_handle.c \
+	$(SRC_DIR_MAND)/graphic/key_handle_utils.c \
 	$(SRC_DIR_MAND)/parsing/floodfill.c \
 	$(SRC_DIR_MAND)/parsing/map_copy.c \
 	$(SRC_DIR_MAND)/parsing/parsing_identifiers.c \

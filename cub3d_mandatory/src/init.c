@@ -6,7 +6,7 @@
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 13:25:04 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/27 18:28:40 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/01/28 13:30:32 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,8 @@ void	init_mlx(t_game *game, t_map *map, t_img *img)
 			&img->line_length, &img->endian);
 	if (!img->addr)
 		return (ft_error(game, "mlx_get_data_addr failed"));
-	mlx_hook(game->win, 2, 1L << 0, player_input, img);
+	mlx_hook(game->win, 2, 1L << 0, key_press, game);
+	mlx_hook(game->win, 3, 1L << 1, key_released, game);
 	mlx_hook(game->win, 17, 0, cross_close, game);
+	mlx_loop_hook(game->mlx, player_input, game);
 }

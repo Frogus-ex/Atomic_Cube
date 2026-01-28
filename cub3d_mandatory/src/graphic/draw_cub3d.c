@@ -6,7 +6,7 @@
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 11:44:23 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/27 18:31:07 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/01/28 13:45:31 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ void	draw_wall(t_img *img, int x, double wall_size, double angle)
 	while (y < img->height)
 	{
 		if (y < img->wall_start)
-			my_put_pixel(img, x, y, 0xE11E00);
+			my_put_pixel(img, x, y, 0x3D2817);
 		else if (y < img->wall_end)
 			draw_wall_text(img, x, y, angle);
 		else
-			my_put_pixel(img, x, y, 0xDC6400);
+			my_put_pixel(img, x, y, 0x2F2F2F);
 		y++;
 	}
 }

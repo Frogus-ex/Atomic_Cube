@@ -6,7 +6,7 @@
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 13:13:10 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/27 14:53:13 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/01/28 13:19:15 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,12 @@ typedef struct s_player
 	int			origin_y;
 	int			origin_x;
 	int			view_distance;
+	int			w_pressed;
+	int			s_pressed;
+	int			a_pressed;
+	int			d_pressed;
+	int			left_pressed;
+	int			right_pressed;
 	double		direction_vue;
 	double		view_angle;
 

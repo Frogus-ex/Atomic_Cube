@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_handle.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 11:38:02 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/28 11:22:12 by aautret          ###   ########.fr       */
+/*   Updated: 2026/01/28 13:17:21 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,35 +93,41 @@ static double	calc_dy(t_img *img, int keycode)
  *  - LEFT/RIGHT : rotation de la vue (modifie direction_vue et redessine)
  *  - ESC : quitte via cleanup()
  *
- * @param keycode Code de la touche reçue.
- * @param img
+ * @param param Pointeur vers t_img casté en void*
  * @return int Toujours 0.
  */
-int	player_input(int keycode, t_img *img)
+int	player_input(t_game *game)
 {
-	if (keycode == ESC)
-		cleanup(img->game);
-	if (keycode == W)
-		moving_pix_by_pix(img, calc_dx(img, keycode), calc_dy(img, keycode));
-	if (keycode == S)
-		moving_pix_by_pix(img, calc_dx(img, keycode), calc_dy(img, keycode));
-	if (keycode == A)
-		moving_pix_by_pix(img, calc_dx(img, keycode), calc_dy(img, keycode));
-	if (keycode == D)
-		moving_pix_by_pix(img, calc_dx(img, keycode), calc_dy(img, keycode));
-	if (keycode == RIGHT)
+	int		need_redraw;
+	t_img	*img;
+
+	if (!game || !game->img || !game->player)
+		return (0);
+	img = game->img;
+	need_redraw = 0;
+	if (game->player->w_pressed)
+		moving_pix_by_pix(img, calc_dx(img, W), calc_dy(img, W));
+	if (game->player->s_pressed)
+		moving_pix_by_pix(img, calc_dx(img, S), calc_dy(img, S));
+	if (game->player->a_pressed)
+		moving_pix_by_pix(img, calc_dx(img, A), calc_dy(img, A));
+	if (game->player->d_pressed)
+		moving_pix_by_pix(img, calc_dx(img, D), calc_dy(img, D));
+	if (game->player->right_pressed)
 	{
-		img->player->direction_vue += 0.1;
-		if (img->player->direction_vue >= 2 * M_PI)
-			img->player->direction_vue -= 2 * M_PI;
+		game->player->direction_vue += 0.05;
+		if (game->player->direction_vue >= 2 * M_PI)
+			game->player->direction_vue -= 2 * M_PI;
+		need_redraw = 1;
 	}
-	if (keycode == LEFT)
+	if (game->player->left_pressed)
 	{
-		img->player->direction_vue -= 0.1;
-		if (img->player->direction_vue < 0)
-			img->player->direction_vue += 2 * M_PI;
+		game->player->direction_vue -= 0.05;
+		if (game->player->direction_vue < 0)
+			game->player->direction_vue += 2 * M_PI;
+		need_redraw = 1;
 	}
-	if (keycode == LEFT || keycode == RIGHT)
+	if (need_redraw)
 		put_cub3d_to_wnd(img);
 	return (0);
 }

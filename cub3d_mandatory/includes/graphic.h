@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   graphic.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 17:07:26 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/28 11:28:13 by aautret          ###   ########.fr       */
+/*   Updated: 2026/01/28 13:34:19 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,12 @@ void					get_distance(t_img *img, double xm, double ym,
 							double angle);
 
 // key_handle.c
-int						player_input(int keycode, t_img *img);
+int						player_input(t_game *game);
 void					player_moves(t_img *img, int new_y, int new_x);
+
+// key_handle_utils.c
+int						key_press(int keycode, t_game *game);
+int						key_released(int keycode, t_game *game);
 
 // draw_cub3d.c
 void					draw_wall(t_img *img, int x, double wall_size,

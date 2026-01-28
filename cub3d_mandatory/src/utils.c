@@ -6,7 +6,7 @@
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 13:40:17 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/23 11:24:18 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/01/28 11:41:21 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,18 @@ void	free_all(t_game *game)
 	free_struct(game);
 	if (game->map)
 		free_map(game->map);
+	if (game->textures)
+	{
+		if (game->textures->tex_no_img && game->mlx)
+			mlx_destroy_image(game->mlx, game->textures->tex_no_img);
+		if (game->textures->tex_so_img && game->mlx)
+			mlx_destroy_image(game->mlx, game->textures->tex_so_img);
+		if (game->textures->tex_ea_img && game->mlx)
+			mlx_destroy_image(game->mlx, game->textures->tex_ea_img);
+		if (game->textures->tex_we_img && game->mlx)
+			mlx_destroy_image(game->mlx, game->textures->tex_we_img);
+		free(game->textures);
+	}
 	if (game->img)
 	{
 		if (game->img->img && game->mlx)

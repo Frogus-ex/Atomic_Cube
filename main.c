@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 13:18:39 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/28 11:22:32 by aautret          ###   ########.fr       */
+/*   Updated: 2026/01/28 13:21:10 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int	main(int ac, char **av)
 	t_map		*map;
 	t_img		*img;
 	t_player	*player;
+	t_texture	*texture;
 
 	if (ac != 2)
 		return (ft_error(NULL, "wrong number of args"), 1);
@@ -28,9 +29,10 @@ int	main(int ac, char **av)
 	if (!map)
 		return (free(game), 1);
 	game->map = map;
-	text_init(&game->textures);
-	if (!game->textures)
+	text_init(&texture);
+	if (!texture)
 		return (free_all(game), 1);
+	game->textures = texture;
 	img_init(&img, game);
 	if (!img)
 		return (free_all(game), 1);
