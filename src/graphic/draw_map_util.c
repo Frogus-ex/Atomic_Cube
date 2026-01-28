@@ -6,7 +6,7 @@
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 16:54:58 by aautret           #+#    #+#             */
-/*   Updated: 2026/01/16 12:47:39 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/01/27 12:52:03 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	calc_height(t_img *img)
 void	draw_adjacent(t_img *img)
 {
 	double	step_x;
-	double	step_y;
+	// double	step_y;
 	double	current_x;
 	double	current_y;
 	int		i;
@@ -55,7 +55,7 @@ void	draw_adjacent(t_img *img)
 	img->distance_y = img->player->origin_y + 100
 		* sin(img->player->view_angle);
 	step_x = (img->distance_x - img->player->origin_x) / ADJACENT;
-	step_y = (img->distance_y - img->player->origin_y) / ADJACENT;
+	// step_y = (img->distance_y - img->player->origin_y) / ADJACENT;
 	i = 0;
 	while (i < ADJACENT)
 	{
@@ -73,7 +73,7 @@ void	draw_adjacent(t_img *img)
  */
 void	draw_negative_height(t_img *img)
 {
-	double	step_x;
+	// double	step_x;
 	double	step_y;
 	double	current_x;
 	double	current_y;
@@ -84,7 +84,7 @@ void	draw_negative_height(t_img *img)
 	img->player->view_angle = (-M_PI / 8);
 	img->distance_x = img->player->origin_x + 100
 		* cos(img->player->view_angle);
-	step_x = (img->distance_x - img->player->origin_x) / ADJACENT;
+	// step_x = (img->distance_x - img->player->origin_x) / ADJACENT;
 	step_y = (img->distance_y - img->player->origin_y) / ADJACENT;
 	i = 0;
 	while (i < ADJACENT)
@@ -103,7 +103,7 @@ void	draw_negative_height(t_img *img)
  */
 void	draw_positive_height(t_img *img)
 {
-	double	step_x;
+	// double	step_x;
 	double	step_y;
 	double	current_x;
 	double	current_y;
@@ -114,7 +114,7 @@ void	draw_positive_height(t_img *img)
 	img->player->view_angle = (M_PI / 8);
 	img->distance_x = img->player->origin_x + 100
 		* cos(img->player->view_angle);
-	step_x = (img->distance_x - img->player->origin_x) / ADJACENT;
+	// step_x = (img->distance_x - img->player->origin_x) / ADJACENT;
 	step_y = (img->distance_y - img->player->origin_y) / ADJACENT;
 	i = 0;
 	while (i < ADJACENT)

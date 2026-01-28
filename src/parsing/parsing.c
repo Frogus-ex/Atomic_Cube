@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 14:56:24 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/20 16:11:38 by aautret          ###   ########.fr       */
+/*   Updated: 2026/01/21 17:56:01 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ static int	detector_and_store_line(t_game *game, char *line,
 	if (*state == PARSES_IDENTIFIERS)
 	{
 		if (detect == -1)
-			return (ft_error(NULL, "error: invalid line before map start"), 1);
+			return (ft_error(game, "error: invalid line before map start"), 1);
 		if (detect == 1)
 		{
 			*state = PARSE_MAP;
@@ -117,16 +117,16 @@ int	parsing(t_game *game, char *av)
 		return (ft_error(NULL, "file doesnt exist"), 1);
 	line = get_next_line(game->fd, &stash);
 	if (!line)
-		return (free(line), free(stash), close(game->fd), 1);
+		return (free(stash), close(game->fd), 1);
 	while (line && status == 0)
 	{
 		if (detector_and_store_line(game, line, &state) == 1)
-			return (free(line), free(stash), 1);
+			return (free(line), free(stash), close(game->fd), 1);
 		free(line);
 		line = get_next_line(game->fd, &stash);
 	}
 	game->nbr_line++;
 	if (!count_text(game))
-		return (ft_error(NULL, "wrong number of textures"), 1);
+		return (ft_error(game, "wrong number of textures"), 1);
 	return (free(line), free(stash), close(game->fd), status);
 }

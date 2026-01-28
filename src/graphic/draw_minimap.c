@@ -6,7 +6,7 @@
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 16:56:26 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/23 11:15:43 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/01/27 18:30:39 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	check_colision(t_img *img, double px, double py)
  * @param img image cible
  * @param angle angle du rayon en radians
  */
-static void	draw_angle_new(t_img *img, double angle)
+static void	draw_angle_new(t_img *img, double angle, int collumn)
 {
 	double	step_x;
 	double	step_y;
@@ -57,9 +57,9 @@ static void	draw_angle_new(t_img *img, double angle)
 		current_y = img->player->origin_y + step_y * i;
 		if (!check_colision(img, current_x, current_y))
 		{
-			get_distance(img, current_x, current_y);
-			img->wall_distance *= cos(angle - img->player->view_angle);
-			printf("wall distance : %f\n", img->wall_distance);
+			get_wall_hit(img->texture, current_x, current_y);
+			get_distance(img, current_x, current_y, angle);
+			draw_wall(img, collumn, img->wall_size, angle);
 			break ;
 		}
 		my_put_pixel(img, current_x, current_y, 0xFFFF00);
@@ -80,42 +80,42 @@ static void	calc_and_draw_angle(t_img *img)
 	int		i;
 
 	i = 0;
-	angle_step = (M_PI / 4) / img->screen_width;
-	while (i < img->screen_width)
+	angle_step = (M_PI / 4) / img->width;
+	while (i < img->width)
 	{
 		angle = img->player->direction_vue - (M_PI / 8) + (i * angle_step);
-		draw_angle_new(img, angle);
+		draw_angle_new(img, angle, i);
 		i++;
 	}
 }
 
-static void	draw_player_circle(t_img *img, int cx, int cy, int radius)
-{
-	int	x;
-	int	y;
-	int	err;
-	int	qx;
-	int	xi;
+// static void	draw_player_circle(t_img *img, int cx, int cy, int radius)
+// {
+// 	int	x;
+// 	int	y;
+// 	int	err;
+// 	int	qx;
+// 	int	xi;
 
-	x = -radius;
-	y = 0;
-	err = 2 - 2 * radius;
-	while (x <= 0)
-	{
-		qx = cx - x;
-		xi = cx + x;
-		while (xi <= qx)
-		{
-			my_put_pixel(img, xi, cy + y, 0xFFFFFFFF);
-			my_put_pixel(img, xi, cy - y, 0xFFFFFFFF);
-			xi++;
-		}
-		if (err <= y)
-			err += ++y * 2 + 1;
-		if (err > x || err > y)
-			err += ++x * 2 + 1;
-	}
-}
+// 	x = -radius;
+// 	y = 0;
+// 	err = 2 - 2 * radius;
+// 	while (x <= 0)
+// 	{
+// 		qx = cx - x;
+// 		xi = cx + x;
+// 		while (xi <= qx)
+// 		{
+// 			my_put_pixel(img, xi, cy + y, 0xFFFFFFFF);
+// 			my_put_pixel(img, xi, cy - y, 0xFFFFFFFF);
+// 			xi++;
+// 		}
+// 		if (err <= y)
+// 			err += ++y * 2 + 1;
+// 		if (err > x || err > y)
+// 			err += ++x * 2 + 1;
+// 	}
+// }
 
 /**
  * @brief Remplit une tuile (carre de TILE_SIZE) avec une couleur.
@@ -169,8 +169,8 @@ void	draw_minimap(t_map *map, t_img *img)
 		}
 		y++;
 	}
-	draw_player_circle(img, img->player->origin_x, img->player->origin_y,
-		TILE_SIZE / 4);
+	// draw_player_circle(img, img->player->origin_x, img->player->origin_y,
+	// 	TILE_SIZE / 4);
 	calc_and_draw_angle(img);
 	mlx_put_image_to_window(img->game->mlx, img->game->win, img->img, 0, 0);
 }

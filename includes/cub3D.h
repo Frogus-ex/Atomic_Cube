@@ -6,7 +6,7 @@
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 13:13:10 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/21 19:02:14 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/01/27 14:53:13 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ typedef struct s_game
 	t_player	*player;
 	t_img		*img;
 	t_map		*map;
+	t_texture	*textures;
 }				t_game;
 
 /************************************************************************
@@ -89,15 +90,15 @@ void			grab_c_text(t_game *game, char *line, int i);
 // init.c
 void			game_init(t_game **game);
 void			map_init(t_map **map);
-void			img_init(t_img **img);
+void			img_init(t_img **img, t_game *game);
 void			player_init(t_player **player, t_game *game);
+void			text_init(t_texture **text);
 void			init_mlx(t_game *game, t_map *map, t_img *img);
 
 // utils.c
 void			free_all(t_game *game);
 void			ft_error(t_game *game, char *s);
 int				ft_gnlen(char *gnl);
-void			free_map_array(t_map *map);
 void			free_map(t_map *map);
 
 /************************************************************************
@@ -131,5 +132,8 @@ int				check_cub_file(t_game *game, char *av);
 // parsing.c
 int				detector_start_map(char *line);
 int				parsing(t_game *game, char *av);
+
+// cleaner.c
+void			free_map_array(t_map *map);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 13:25:04 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/23 11:00:25 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/01/27 18:28:40 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,12 @@ void	map_init(t_map **map)
 		return (ft_error(NULL, "map init failed"));
 }
 
-void	img_init(t_img **img)
+void	img_init(t_img **img, t_game *game)
 {
 	*img = ft_calloc(1, sizeof(t_img));
 	if (!*img)
 		return (ft_error(NULL, "img init failed"));
-	(*img)->wall_distance = malloc(sizeof(double) * (*img)->screen_width);
+	(*img)->texture = game->textures;
 }
 
 void	player_init(t_player **player, t_game *game)
@@ -57,24 +57,24 @@ void	player_init(t_player **player, t_game *game)
 	game->player = *player;
 }
 
+void	text_init(t_texture **text)
+{
+	*text = ft_calloc(1, sizeof(t_texture));
+	if (!*text)
+		return (ft_error(NULL, "map init failed"));
+}
+
 void	init_mlx(t_game *game, t_map *map, t_img *img)
 {
 	if (!game || !map || !img)
 		return (ft_error(game, "init_mlx: invalid pointers"));
-	else
-	{
-		img->width = TILE_SIZE * map->width;
-		img->height = TILE_SIZE * map->height;
-	}
 	game->mlx = mlx_init();
 	if (!game->mlx)
 		return (ft_error(game, "mlx_init failed"));
+	load_textures(game);
 	mlx_get_screen_size(game->mlx, &img->screen_width, &img->screen_height);
-	if (img->width > img->screen_width || img->height > img->screen_height)
-	{
-		img->width = img->screen_width - 100;
-		img->height = img->screen_height - 100;
-	}
+	img->width = img->screen_width;
+	img->height = img->screen_height;
 	game->win = mlx_new_window(game->mlx, img->width, img->height, WND_NAME);
 	if (!game->win)
 		return (ft_error(game, "mlx_new_window failed"));

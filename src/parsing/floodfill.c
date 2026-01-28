@@ -6,13 +6,13 @@
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 10:48:26 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/21 19:02:14 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/01/23 11:21:56 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3D.h"
 
-//alloue l espace memoire pour tmp_map
+// alloue l espace memoire pour tmp_map
 
 void	free_tmp_map(t_map *map)
 {
@@ -23,8 +23,7 @@ void	free_tmp_map(t_map *map)
 	i = 0;
 	while (i < map->height)
 	{
-		if (map->tmp_map[i])
-			free(map->tmp_map[i]);
+		free(map->tmp_map[i]);
 		i++;
 	}
 	free(map->tmp_map);

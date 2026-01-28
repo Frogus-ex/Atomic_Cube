@@ -6,7 +6,7 @@
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 11:38:02 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/21 10:36:51 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/01/27 13:21:18 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,9 +110,17 @@ int	player_input(int keycode, t_img *img)
 	if (keycode == D)
 		moving_pix_by_pix(img, calc_dx(img, keycode), calc_dy(img, keycode));
 	if (keycode == RIGHT)
+	{
 		img->player->direction_vue += 0.1;
+		if (img->player->direction_vue >= 2 * M_PI)
+			img->player->direction_vue -= 2 * M_PI;
+	}
 	if (keycode == LEFT)
+	{
 		img->player->direction_vue -= 0.1;
+		if (img->player->direction_vue < 0)
+			img->player->direction_vue += 2 * M_PI;
+	}
 	if (keycode == LEFT || keycode == RIGHT)
 		draw_minimap(img->map, img);
 	return (0);

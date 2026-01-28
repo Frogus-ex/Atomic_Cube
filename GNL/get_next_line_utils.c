@@ -6,7 +6,7 @@
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 10:13:44 by tlorette          #+#    #+#             */
-/*   Updated: 2025/07/07 14:35:14 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/01/21 13:01:39 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ void	*ft_calloc(size_t count, size_t size)
 	char	*str;
 	size_t	total_size;
 
-	total_size = count * size;
-	if (size && count > SIZE_MAX / size)
+	if (size != 0 && count > SIZE_MAX / size)
 		return (NULL);
+	total_size = count * size;
 	p = malloc(total_size);
 	if (!p)
 		return (NULL);
