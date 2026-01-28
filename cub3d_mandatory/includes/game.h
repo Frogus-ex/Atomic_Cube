@@ -82,7 +82,7 @@ void					get_distance(t_img *img, double xm, double ym,
 							double angle);
 
 // key_handle.c
-int						player_input(int keycode, t_game *game);
+int						player_input(t_game *game);
 void					player_moves(t_img *img, int new_y, int new_x);
 
 // key_handle_utils.c

@@ -2,8 +2,8 @@ NO ./xpms/texture_no.xpm
 SO ./xpms/texture_so.xpm
 WE ./xpms/texture_we.xpm
 EA ./xpms/texture_ea.xpm
-F 220,100,0
-C 225,30,0
+F 82,82,82
+C 6,3,69
            11111111111111111111111110
           10000000001110000000000001
         1011000001110000000000001
