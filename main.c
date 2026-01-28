@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 13:18:39 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/27 14:55:41 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/01/28 11:22:32 by aautret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	main(int ac, char **av)
 	img->player->origin_x = img->map->player_x * TILE_SIZE + TILE_SIZE / 2;
 	img->player->origin_y = img->map->player_y * TILE_SIZE + TILE_SIZE / 2;
 	init_mlx(game, map, img);
-	draw_minimap(map, img);
+	put_cub3d_to_wnd(img);
 	mlx_loop(game->mlx);
 	return (free_all(game), 0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_handle.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 11:38:02 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/27 13:21:18 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/01/28 11:22:12 by aautret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static void	moving_pix_by_pix(t_img *img, double dx, double dy)
 		img->player->origin_x = (int)round(nx);
 		img->player->origin_y = (int)round(ny);
 	}
-	draw_minimap(img->map, img);
+	put_cub3d_to_wnd(img);
 }
 
 static double	calc_dx(t_img *img, int keycode)
@@ -122,6 +122,6 @@ int	player_input(int keycode, t_img *img)
 			img->player->direction_vue += 2 * M_PI;
 	}
 	if (keycode == LEFT || keycode == RIGHT)
-		draw_minimap(img->map, img);
+		put_cub3d_to_wnd(img);
 	return (0);
 }
