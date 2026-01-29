@@ -6,7 +6,7 @@
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 11:20:20 by aautret           #+#    #+#             */
-/*   Updated: 2026/01/21 17:55:47 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/01/29 14:11:47 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,8 @@
  */
 int	parse_map_line(t_game *game, char *line)
 {
-	int	i;
+	int (i) = 0;
 
-	i = 0;
 	while (line[i])
 	{
 		if (!ft_strchr("10NSEW \n", line[i]))
@@ -53,5 +52,7 @@ int	parse_map_line(t_game *game, char *line)
 		}
 		i++;
 	}
+	if (game->flag_players == 0)
+		return (1);
 	return (0);
 }

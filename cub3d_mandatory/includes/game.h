@@ -103,7 +103,7 @@ int						key_press(int keycode, t_game *game);
 int						key_released(int keycode, t_game *game);
 
 // draw_cub3d.c
-void					draw_wall(t_img *img, int x, double wall_size,
+void					draw_wall(t_game *game, int x, double wall_size,
 							double angle);
 int						load_textures(t_game *game);
 void					draw_wall_text(t_img *img, int x, int y, double angle);

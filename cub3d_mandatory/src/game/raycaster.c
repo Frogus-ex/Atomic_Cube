@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycaster.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 11:51:15 by aautret           #+#    #+#             */
-/*   Updated: 2026/01/29 11:49:29 by aautret          ###   ########.fr       */
+/*   Updated: 2026/01/29 13:44:09 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,5 +93,5 @@ void	cast_ray_dda(t_img *img, double ray_angle, int column)
 		get_wall_hit_dda(img, &vert, ray_angle);
 		get_distance_dda(img, &vert, ray_angle);
 	}
-	draw_wall(img, column, img->wall_size, ray_angle);
+	draw_wall(img->game, column, img->wall_size, ray_angle);
 }

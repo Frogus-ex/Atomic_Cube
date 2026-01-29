@@ -6,7 +6,7 @@
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 14:08:43 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/29 12:57:05 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/01/29 13:42:39 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,10 @@ static void	free_struct(t_game *game)
 		free(game->nbr_text);
 	if (game->player)
 		free(game->player);
-	if (game->c_text_rgb)
-		free(game->c_text_rgb);
-	if (game->f_text_rgb)
-		free(game->f_text_rgb);
+	if (game->c_rgb)
+		free(game->c_rgb);
+	if (game->f_rgb)
+		free(game->f_rgb);
 }
 
 void	free_all(t_game *game)

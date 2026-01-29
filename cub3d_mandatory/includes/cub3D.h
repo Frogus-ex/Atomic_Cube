@@ -6,7 +6,7 @@
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 13:13:10 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/29 13:33:55 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/01/29 13:42:21 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,8 @@ typedef struct s_game
 	char		*ea_text;
 	char		*f_text;
 	char		*c_text;
-	int			*c_text_rgb;
-	int			*f_text_rgb;
+	int			*c_rgb;
+	int			*f_rgb;
 	int			*nbr_text;
 	int			nbr_line;
 	int			fd;

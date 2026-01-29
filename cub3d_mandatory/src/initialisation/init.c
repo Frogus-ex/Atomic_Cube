@@ -6,7 +6,7 @@
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 13:25:04 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/29 13:34:29 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/01/29 13:35:15 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,13 +76,13 @@ void	init_ray_params(t_ray_params *params)
 	params->distance = 0;
 }
 
-void	init_mlx(t_game *game, t_map *map, t_img *img)
+int	init_mlx(t_game *game, t_map *map, t_img *img)
 {
 	if (!game || !map || !img)
 		return (ft_error(game, "init_mlx: invalid pointers"), 0);
 	game->mlx = mlx_init();
 	if (!game->mlx)
-		return (ft_error(game, "mlx_init failed"));
+		return (ft_error(game, "mlx_init failed"), 0);
 	load_textures(game);
 	img->width = SCREEN_WIDTH;
 	img->height = SCREEN_HEIGHT;
