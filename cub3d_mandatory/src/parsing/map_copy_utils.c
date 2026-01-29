@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   map_copy_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 16:15:08 by aautret           #+#    #+#             */
-/*   Updated: 2026/01/29 16:35:08 by aautret          ###   ########.fr       */
+/*   Updated: 2026/01/29 17:00:34 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
 
-static void	get_greater_width_utils(char *line, int greater_width)
+static void	get_greater_width_utils(char *line, int *greater_width)
 {
 	int	i;
 
@@ -21,8 +21,8 @@ static void	get_greater_width_utils(char *line, int greater_width)
 		i = 0;
 		while (line[i])
 			i++;
-		if (i > greater_width)
-			greater_width = i;
+		if (i > *greater_width)
+			*greater_width = i;
 	}
 }
 
@@ -41,7 +41,7 @@ int	get_greater_width(char *av)
 	int (greater_width) = 0;
 	while (line)
 	{
-		get_greater_width_utils(line, greater_width);
+		get_greater_width_utils(line, &greater_width);
 		free(line);
 		line = get_next_line(fd, &stash);
 	}
