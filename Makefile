@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aautret <aautret@student.42.fr>            +#+  +:+       +#+         #
+#    By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/06 11:20:20 by aautret           #+#    #+#              #
-#    Updated: 2026/01/29 11:47:29 by aautret          ###   ########.fr        #
+#    Updated: 2026/01/29 13:33:08 by tlorette         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,6 +45,7 @@ SRCS := \
 	$(SRC_DIR_MAND)/parsing/parsing_identifiers.c \
 	$(SRC_DIR_MAND)/parsing/parsing_map.c \
 	$(SRC_DIR_MAND)/parsing/parsing_param.c \
+	$(SRC_DIR_MAND)/parsing/parse_rgb_text.c \
 	$(SRC_DIR_MAND)/parsing/parsing.c \
 	$(SRC_DIR_MAND)/utils/utils.c
 

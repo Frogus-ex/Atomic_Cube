@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 13:25:04 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/29 11:18:37 by aautret          ###   ########.fr       */
+/*   Updated: 2026/01/29 13:34:29 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void	init_ray_params(t_ray_params *params)
 void	init_mlx(t_game *game, t_map *map, t_img *img)
 {
 	if (!game || !map || !img)
-		return (ft_error(game, "init_mlx: invalid pointers"));
+		return (ft_error(game, "init_mlx: invalid pointers"), 0);
 	game->mlx = mlx_init();
 	if (!game->mlx)
 		return (ft_error(game, "mlx_init failed"));
@@ -88,16 +88,17 @@ void	init_mlx(t_game *game, t_map *map, t_img *img)
 	img->height = SCREEN_HEIGHT;
 	game->win = mlx_new_window(game->mlx, img->width, img->height, WND_NAME);
 	if (!game->win)
-		return (ft_error(game, "mlx_new_window failed"));
+		return (ft_error(game, "mlx_new_window failed"), 0);
 	img->img = mlx_new_image(game->mlx, img->width, img->height);
 	if (!img->img)
-		return (ft_error(game, "mlx_new_image failed"));
+		return (ft_error(game, "mlx_new_image failed"), 0);
 	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel,
 			&img->line_length, &img->endian);
 	if (!img->addr)
-		return (ft_error(game, "mlx_get_data_addr failed"));
+		return (ft_error(game, "mlx_get_data_addr failed"), 0);
 	mlx_hook(game->win, 2, 1L << 0, key_press, game);
 	mlx_hook(game->win, 3, 1L << 1, key_released, game);
 	mlx_hook(game->win, 17, 0, cross_close, game);
 	mlx_loop_hook(game->mlx, player_input, game);
+	return (1);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 13:13:10 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/29 11:56:36 by aautret          ###   ########.fr       */
+/*   Updated: 2026/01/29 13:33:55 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ void			grab_we_text(t_game *game, char *line, int i);
 void			grab_ea_text(t_game *game, char *line, int i);
 void			grab_f_text(t_game *game, char *line, int i);
 void			grab_c_text(t_game *game, char *line, int i);
-void			load_textures(t_game *game);
+int				load_textures(t_game *game);
 
 // init.c
 void			game_init(t_game **game);
@@ -111,7 +111,7 @@ void			img_init(t_img **img, t_game *game);
 void			player_init(t_player **player, t_game *game);
 void			text_init(t_texture **text);
 void			init_ray_params(t_ray_params *params);
-void			init_mlx(t_game *game, t_map *map, t_img *img);
+int				init_mlx(t_game *game, t_map *map, t_img *img);
 
 /************************************************************************
  *								PARSING									*
@@ -140,8 +140,7 @@ int				parse_map_line(t_game *game, char *line);
 // parsing_param.c
 void			check_arg_param(int ac, char **av);
 int				check_cub_file(t_game *game, char *av);
-int				parse_c_rgb(t_game *game);
-int				parse_f_rgb(t_game *game);
+int				check_colors_param(t_game *game);
 
 // parsing.c
 int				detector_start_map(char *line);

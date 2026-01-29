@@ -6,7 +6,7 @@
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 13:18:39 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/28 16:11:16 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/01/29 12:51:32 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,10 @@ int	main(int ac, char **av)
 	// initialize player origin in pixels from map start position
 	img->player->origin_x = img->map->player_x * TILE_SIZE + TILE_SIZE / 2;
 	img->player->origin_y = img->map->player_y * TILE_SIZE + TILE_SIZE / 2;
-	init_mlx(game, map, img);
-	parse_c_rgb(game);
-	parse_f_rgb(game);
+	if (!check_colors_param(game))
+		return (ft_error(game, "colors param are not in RGB format"), 0);
+	if (!init_mlx(game, map, img))
+		return (0);
 	put_cub3d_to_wnd(img);
 	mlx_loop(game->mlx);
 	return (free_all(game), 0);
