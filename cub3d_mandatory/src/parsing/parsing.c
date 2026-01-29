@@ -6,7 +6,7 @@
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 14:56:24 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/29 16:30:29 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/01/29 16:55:05 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ static int	detector_and_store_line(t_game *game, char *line,
 	if (*state == PARSES_IDENTIFIERS)
 	{
 		if (detect == -1)
-			return (ft_error(game, "error: invalid line before map start"), 1);
+			return (ft_error(NULL, "error: invalid line before map start"), 1);
 		if (detect == 1)
 		{
 			*state = PARSE_MAP;
