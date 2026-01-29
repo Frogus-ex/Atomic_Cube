@@ -6,7 +6,7 @@
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 13:40:17 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/23 11:24:18 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/01/29 11:50:47 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,9 @@ void	free_all(t_game *game)
 
 void	ft_error(t_game *game, char *s)
 {
-	printf("%s\n", s);
+	write(2, "Error\n", 6);
+	write(2, s, ft_strlen(s));
+	write(2, "\n", 1);
 	free_all(game);
 }
 
