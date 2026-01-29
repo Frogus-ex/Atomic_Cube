@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_textures.c                                    :+:      :+:    :+:   */
+/*   init_textures_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 11:44:23 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/29 11:58:26 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/01/29 16:23:57 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	grab_we_text(t_game *game, char *line, int i)
 
 	y = 0;
 	if (game->nbr_text[2] != 0)
-		return ;
+		return (ft_error(NULL, "too many west textures"));
 	while (line && line[i] == 32)
 		i++;
 	game->we_text = malloc((ft_strlen(line) - i) + 1);
@@ -48,7 +48,7 @@ void	grab_ea_text(t_game *game, char *line, int i)
 
 	y = 0;
 	if (game->nbr_text[3] != 0)
-		return ;
+		return (ft_error(NULL, "too many east textures"));
 	while (line && line[i] == 32)
 		i++;
 	game->ea_text = malloc(sizeof(char) * (ft_strlen(line) - i) + 1);
@@ -71,7 +71,7 @@ void	grab_f_text(t_game *game, char *line, int i)
 
 	y = 0;
 	if (game->nbr_text[4] != 0)
-		return ;
+		return (ft_error(NULL, "too many floor textures"));
 	while (line && line[i] == 32)
 		i++;
 	game->f_text = malloc(sizeof(char) * (ft_strlen(line) - i) + 1);
@@ -94,7 +94,7 @@ void	grab_c_text(t_game *game, char *line, int i)
 
 	y = 0;
 	if (game->nbr_text[5] != 0)
-		return ;
+		return (ft_error(NULL, "too many ceilling textures"));
 	while (line && line[i] == 32)
 		i++;
 	game->c_text = malloc(sizeof(char) * (ft_strlen(line) - i) + 1);

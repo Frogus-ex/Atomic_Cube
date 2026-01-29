@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing_identifiers.c                              :+:      :+:    :+:   */
+/*   parsing_identifiers_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 09:37:30 by frogus            #+#    #+#             */
-/*   Updated: 2026/01/21 14:47:23 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/01/29 16:20:02 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ int	parse_identifiers_line(t_game *game, char *line)
 	if (!check_id(game, line))
 	{
 		free(line);
-		return (ft_error(game, "wrong identifier"), 0);
+		return (ft_error(NULL, "wrong identifier"), 0);
 	}
 	return (1);
 }
