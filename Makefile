@@ -6,7 +6,7 @@
 #    By: aautret <aautret@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/06 11:20:20 by aautret           #+#    #+#              #
-#    Updated: 2026/01/29 15:49:19 by aautret          ###   ########.fr        #
+#    Updated: 2026/01/29 16:23:27 by aautret          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,6 +69,7 @@ SRCS_MAND := \
 	$(SRC_DIR_MAND)/initialisation/init_textures.c \
 	$(SRC_DIR_MAND)/initialisation/init.c \
 	$(SRC_DIR_MAND)/parsing/floodfill.c \
+	$(SRC_DIR_MAND)/parsing/map_copy_utils.c \
 	$(SRC_DIR_MAND)/parsing/map_copy.c \
 	$(SRC_DIR_MAND)/parsing/parsing_identifiers.c \
 	$(SRC_DIR_MAND)/parsing/parsing_map.c \

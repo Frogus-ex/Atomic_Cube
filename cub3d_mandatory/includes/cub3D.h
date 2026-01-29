@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 13:13:10 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/29 13:42:21 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/01/29 16:24:47 by aautret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,11 +124,11 @@ void			fill(t_map *map, int x, int y);
 int				flood_fill(t_game *game, t_map *map);
 
 // map_copy.c
-void			read_from_map(t_game *game, t_map *map, char *av);
-int				get_map_height(char *av);
 int				get_greater_width(char *av);
-void			map_alloc(t_map *map, char *av);
-void			map_copy(t_map *map, char *line);
+int				get_map_height(char *av);
+
+// map_copy.c
+void			read_from_map(t_game *game, t_map *map, char *av);
 
 // parsing_identifiers.c
 int				check_id(t_game *game, char *line);

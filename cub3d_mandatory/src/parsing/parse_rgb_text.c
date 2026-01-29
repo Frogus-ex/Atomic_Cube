@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_rgb_text.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 11:42:18 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/29 13:44:47 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/01/29 16:30:02 by aautret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ static int	parse_all_color(t_game *game)
 
 static int	parse_c_rgb(t_game *game)
 {
-	int(i) = 0;
-	int(y) = 0;
+	int (i) = 0;
+	int (y) = 0;
 	game->c_rgb = malloc(sizeof(int) * 3);
 	while (game->c_text[i])
 	{
@@ -68,8 +68,8 @@ static int	parse_c_rgb(t_game *game)
 
 static int	parse_f_rgb(t_game *game)
 {
-	int(i) = 0;
-	int(y) = 0;
+	int (i) = 0;
+	int (y) = 0;
 	game->f_rgb = malloc(sizeof(int) * 3);
 	while (game->f_text[i])
 	{
