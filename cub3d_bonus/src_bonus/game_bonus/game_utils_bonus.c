@@ -1,0 +1,50 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   game_utils.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/01/20 12:47:24 by aautret           #+#    #+#             */
+/*   Updated: 2026/01/28 12:57:34 by aautret          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../../includes/cub3D.h"
+
+/**
+ * @brief Place un pixel couleur aux coordonnees donnees.
+ * @param img image MLX cible
+ * @param x abscisse en pixels
+ * @param y ordonnee en pixels
+ * @param color couleur ARGB
+ */
+void	my_put_pixel(t_img *img, int x, int y, int color)
+{
+	int	offset;
+
+	if (x < 0 || x >= img->width || y < 0 || y >= img->height)
+		return ;
+	offset = y * img->line_length + x * (img->bits_per_pixel / 8);
+	*(int *)(img->addr + offset) = color;
+}
+
+/**
+ * @brief Gère la fermeture de la fenêtre via la croix
+ *
+ * @param game
+ * @return int
+ */
+int	cross_close(t_game *game)
+{
+	cleanup(game);
+	return (0);
+}
+
+int	find_biggest(t_img *img)
+{
+	if (img->screen_height <= img->screen_width)
+		return (img->screen_height);
+	else
+		return (img->screen_width);
+}
