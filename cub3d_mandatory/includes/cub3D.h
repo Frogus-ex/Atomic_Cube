@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 13:13:10 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/29 16:24:47 by aautret          ###   ########.fr       */
+/*   Updated: 2026/01/29 16:43:56 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,7 @@ void			free_tmp_map(t_map *map);
 int				alloc_tmp_map(t_map *map);
 void			tmp_map_copy(t_map *map, char *line);
 void			fill(t_map *map, int x, int y);
-int				flood_fill(t_game *game, t_map *map);
+int				flood_fill(t_map *map);
 
 // map_copy.c
 int				get_greater_width(char *av);
