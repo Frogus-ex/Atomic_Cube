@@ -3,32 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   raycaster.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 11:51:15 by aautret           #+#    #+#             */
-/*   Updated: 2026/01/29 13:44:09 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/01/29 15:48:23 by aautret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3D.h"
-
-void	set_wall_dir(t_texture *texture, double ray_angle, int is_horiz)
-{
-	if (is_horiz)
-	{
-		if (sin(ray_angle) > 0)
-			texture->side = 0;
-		else
-			texture->side = 1;
-	}
-	else
-	{
-		if (cos(ray_angle) > 0)
-			texture->side = 0;
-		else
-			texture->side = 1;
-	}
-}
 
 /**
  * @brief Lance deux rayons H + V et garde le plus proche
@@ -70,15 +52,13 @@ void	cast_ray_dda(t_img *img, double ray_angle, int column)
 {
 	t_ray_params	horiz;
 	t_ray_params	vert;
-	double			horiz_dist;
-	double			vert_dist;
 
 	init_ray_params(&horiz);
 	init_ray_params(&vert);
 	setup_vertical_ray(img, ray_angle, &vert);
-	vert_dist = cast_ray(img, &vert);
+	double (vert_dist) = cast_ray(img, &vert);
 	setup_horizontal_ray(img, ray_angle, &horiz);
-	horiz_dist = cast_ray(img, &horiz);
+	double (horiz_dist) = cast_ray(img, &horiz);
 	if (horiz_dist < vert_dist)
 	{
 		horiz.distance = horiz_dist;
