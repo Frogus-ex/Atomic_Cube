@@ -6,7 +6,7 @@
 #    By: aautret <aautret@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/06 11:20:20 by aautret           #+#    #+#              #
-#    Updated: 2026/01/29 16:23:27 by aautret          ###   ########.fr        #
+#    Updated: 2026/01/29 17:11:38 by aautret          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,6 +58,7 @@ CFLAGS_BONUS := $(CFLAGS) -I$(INCLUDES_DIR_BONUS)
 
 SRCS_MAND := \
 	$(SRC_DIR_MAND)/main.c \
+	$(SRC_DIR_MAND)/clean/cleaner_utils.c \
 	$(SRC_DIR_MAND)/clean/cleaner.c \
 	$(SRC_DIR_MAND)/game/draw_game.c \
 	$(SRC_DIR_MAND)/game/game_utils.c \
@@ -66,6 +67,8 @@ SRCS_MAND := \
 	$(SRC_DIR_MAND)/game/manage_textures.c \
 	$(SRC_DIR_MAND)/game/raycaster.c \
 	$(SRC_DIR_MAND)/game/raycast_utils.c \
+	$(SRC_DIR_MAND)/initialisation/init_struct_cub3d.c \
+	$(SRC_DIR_MAND)/initialisation/init_struct_game.c \
 	$(SRC_DIR_MAND)/initialisation/init_textures.c \
 	$(SRC_DIR_MAND)/initialisation/init.c \
 	$(SRC_DIR_MAND)/parsing/floodfill.c \

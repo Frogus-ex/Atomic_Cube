@@ -6,7 +6,7 @@
 /*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 11:51:15 by aautret           #+#    #+#             */
-/*   Updated: 2026/01/29 15:48:23 by aautret          ###   ########.fr       */
+/*   Updated: 2026/01/29 16:51:37 by aautret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 /**
  * @brief Lance deux rayons H + V et garde le plus proche
- * 
+ *
  * - normalise
- * 
- * @param img 
- * @param params 
- * @param ray_angle 
+ *
+ * @param img
+ * @param params
+ * @param ray_angle
  */
 void	get_wall_hit_dda(t_img *img, t_ray_params *params, double ray_angle)
 {
@@ -42,7 +42,8 @@ void	get_distance_dda(t_img *img, t_ray_params *params, double ray_angle)
 	double	corrected_distance;
 
 	img->wall_distance = params->distance;
-	corrected_distance = img->wall_distance * cos(ray_angle - img->player->direction_vue);
+	corrected_distance = img->wall_distance * cos(ray_angle
+			- img->player->direction_vue);
 	if (corrected_distance <= 0.1)
 		corrected_distance = 0.1;
 	img->wall_size = (SCREEN_HEIGHT / corrected_distance) * TILE_SIZE;
