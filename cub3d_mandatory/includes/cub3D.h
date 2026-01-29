@@ -6,7 +6,7 @@
 /*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 13:13:10 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/29 16:24:47 by aautret          ###   ########.fr       */
+/*   Updated: 2026/01/29 17:48:02 by aautret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,9 @@ typedef struct s_game
 /************************************************************************
  *									CLEAN								*
  ***********************************************************************/
+// cleaner_utils.c
+void			free_texture_in_game(t_game *game);
+
 // cleaner.c
 void			free_map_array(t_map *map);
 void			free_all(t_game *game);
@@ -97,12 +100,24 @@ int				cleanup(t_game *game);
 /************************************************************************
  *								INITIALISATION							*
  ***********************************************************************/
+// init_struct_cub3d.c
+void			player_init(t_player **player, t_game *game);
+void			map_init(t_map **map);
+void			game_init(t_game **game);
+
+// intit_struct_game.c
+void			text_init(t_texture **text);
+void			img_init(t_img **img, t_game *game);
+void			init_ray_params(t_ray_params *params);
+int				load_textures(t_game *game);
+
 // init_textures.c
 void			grab_we_text(t_game *game, char *line, int i);
 void			grab_ea_text(t_game *game, char *line, int i);
 void			grab_f_text(t_game *game, char *line, int i);
 void			grab_c_text(t_game *game, char *line, int i);
-int				load_textures(t_game *game);
+int				load_single_texture(t_game *game, char *path, void **img,
+					char **data);
 
 // init.c
 void			game_init(t_game **game);
@@ -121,7 +136,7 @@ void			free_tmp_map(t_map *map);
 int				alloc_tmp_map(t_map *map);
 void			tmp_map_copy(t_map *map, char *line);
 void			fill(t_map *map, int x, int y);
-int				flood_fill(t_game *game, t_map *map);
+int				flood_fill(t_map *map);
 
 // map_copy.c
 int				get_greater_width(char *av);

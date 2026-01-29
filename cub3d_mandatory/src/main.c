@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 13:18:39 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/29 14:10:09 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/01/29 16:48:37 by aautret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	main(int ac, char **av)
 	if (parsing(game, av[1]))
 		return (free_all(game), 1);
 	read_from_map(game, map, av[1]);
-	if (flood_fill(game, map))
+	if (flood_fill(map))
 		return (free_all(game), 1);
 	img->game = game;
 	img->map = map;

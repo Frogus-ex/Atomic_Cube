@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   floodfill.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 10:48:26 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/23 11:21:56 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/01/29 16:48:05 by aautret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,14 +125,14 @@ void	fill(t_map *map, int x, int y)
 // 	printf("===========================\n\n");
 // }
 
-int	flood_fill(t_game *game, t_map *map)
+int	flood_fill(t_map *map)
 {
 	map->total_size = 0;
 	fill(map, map->player_x, map->player_y);
 	if (map->total_size == -1)
 	{
 		free_tmp_map(map);
-		return (ft_error(game, "Map is invalid"), 1);
+		return (ft_error(NULL, "Map is invalid"), 1);
 	}
 	free_tmp_map(map);
 	return (0);

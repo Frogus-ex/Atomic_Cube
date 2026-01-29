@@ -6,7 +6,7 @@
 /*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 00:00:00 by aautret           #+#    #+#             */
-/*   Updated: 2026/01/29 13:03:10 by aautret          ###   ########.fr       */
+/*   Updated: 2026/01/29 16:50:56 by aautret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,10 +89,12 @@ void	setup_vertical_ray(t_img *img, double ray_angle, t_ray_params *params)
 }
 
 /**
- * @brief Trouve le premier mur, avance pas a pas sur la grille jusqu'a trouver un mur
+ * @brief Trouve le premier mur, avance pas a pas sur la grille jusqu'a
+ * trouver un mur
  * 
  * - convertit les coordonnees pixel en coor grille
- * - verifie si a chaque fois on est toujours dans la map (si oui distance infinie pas de mur)
+ * - verifie si a chaque fois on est toujours dans la map
+ * (si oui distance infinie pas de mur)
  * - check si c'es tun mur (si oui on arrete)
  * - sinon on avance au prochain pas
  * 

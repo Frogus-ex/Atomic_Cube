@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cleaner.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 14:08:43 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/29 13:42:39 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/01/29 16:44:49 by aautret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,17 +62,7 @@ void	free_all(t_game *game)
 	if (game->map)
 		free_map(game->map);
 	if (game->textures)
-	{
-		if (game->textures->tex_no_img && game->mlx)
-			mlx_destroy_image(game->mlx, game->textures->tex_no_img);
-		if (game->textures->tex_so_img && game->mlx)
-			mlx_destroy_image(game->mlx, game->textures->tex_so_img);
-		if (game->textures->tex_ea_img && game->mlx)
-			mlx_destroy_image(game->mlx, game->textures->tex_ea_img);
-		if (game->textures->tex_we_img && game->mlx)
-			mlx_destroy_image(game->mlx, game->textures->tex_we_img);
-		free(game->textures);
-	}
+		free_texture_in_game(game);
 	if (game->img)
 	{
 		if (game->img->img && game->mlx)
