@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   key_handle.c                                       :+:      :+:    :+:   */
+/*   manage_moves.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 11:38:02 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/28 13:17:21 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/01/29 15:52:08 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static double	calc_dx(t_img *img, int keycode)
 	double	speed;
 
 	dx = 0.0;
-	speed = 5;
+	speed = 2.5;
 	if (keycode == W)
 		dx = cos(img->player->direction_vue) * speed;
 	else if (keycode == S)
@@ -72,7 +72,7 @@ static double	calc_dy(t_img *img, int keycode)
 	double	speed;
 
 	dy = 0.0;
-	speed = 5;
+	speed = 2.5;
 	if (keycode == W)
 		dy = sin(img->player->direction_vue) * speed;
 	else if (keycode == S)
