@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   graphic.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 17:07:26 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/28 11:27:33 by aautret          ###   ########.fr       */
+/*   Updated: 2026/01/29 11:58:46 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ void					player_moves(t_img *img, int new_y, int new_x);
 // draw_cub3d.c
 void					draw_wall(t_img *img, int x, double wall_size,
 							double angle);
-void					load_textures(t_game *game);
+int					load_textures(t_game *game);
 void					draw_wall_text(t_img *img, int x, int y, double angle);
 
 #endif

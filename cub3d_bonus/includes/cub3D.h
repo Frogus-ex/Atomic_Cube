@@ -6,7 +6,7 @@
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 13:13:10 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/27 14:53:13 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/01/29 12:00:52 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ void			map_init(t_map **map);
 void			img_init(t_img **img, t_game *game);
 void			player_init(t_player **player, t_game *game);
 void			text_init(t_texture **text);
-void			init_mlx(t_game *game, t_map *map, t_img *img);
+int				init_mlx(t_game *game, t_map *map, t_img *img);
 
 // utils.c
 void			free_all(t_game *game);

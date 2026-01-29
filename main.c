@@ -6,7 +6,7 @@
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 13:18:39 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/29 11:48:23 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/01/29 12:51:32 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,8 @@ int	main(int ac, char **av)
 	img->player->origin_y = img->map->player_y * TILE_SIZE + TILE_SIZE / 2;
 	if (!check_colors_param(game))
 		return (ft_error(game, "colors param are not in RGB format"), 0);
-	init_mlx(game, map, img);
+	if (!init_mlx(game, map, img))
+		return (0);
 	put_cub3d_to_wnd(img);
 	mlx_loop(game->mlx);
 	return (free_all(game), 0);
