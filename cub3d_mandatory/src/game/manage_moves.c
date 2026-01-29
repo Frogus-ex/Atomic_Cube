@@ -6,11 +6,25 @@
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 11:38:02 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/29 16:37:15 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/01/29 18:19:20 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
+
+int	collision_checker(t_img *img)
+{
+	if (img->map->map[(int)floor((img->ny + 10)
+				/ TILE_SIZE)][(int)floor((img->nx + 10) / TILE_SIZE)] != '1'
+		&& img->map->map[(int)floor((img->ny - 10)
+			/ TILE_SIZE)][(int)floor((img->nx - 10) / TILE_SIZE)] != '1'
+		&& img->map->map[(int)floor((img->ny + 10)
+			/ TILE_SIZE)][(int)floor((img->nx - 10) / TILE_SIZE)] != '1'
+		&& img->map->map[(int)floor((img->ny - 10)
+			/ TILE_SIZE)][(int)floor((img->nx + 10) / TILE_SIZE)] != '1')
+		return (1);
+	return (0);
+}
 
 /**
  * @brief Déplace le joueur pixel par pixel en testant la collision.
@@ -27,23 +41,19 @@
  */
 static void	moving_pix_by_pix(t_img *img, double dx, double dy)
 {
-	double	nx;
-	double	ny;
-	int		tx;
-	int		ty;
-
 	if (!img || !img->player || !img->map)
 		return ;
-	nx = (double)img->player->origin_x + dx;
-	ny = (double)img->player->origin_y + dy;
-	tx = (int)floor(nx / TILE_SIZE);
-	ty = (int)floor(ny / TILE_SIZE);
-	if (tx < 0 || ty < 0 || tx >= img->map->width || ty >= img->map->height)
+	img->nx = (double)img->player->origin_x + dx;
+	img->ny = (double)img->player->origin_y + dy;
+	img->tx = (int)floor(img->nx / TILE_SIZE);
+	img->ty = (int)floor(img->ny / TILE_SIZE);
+	if (img->tx < 0 || img->ty < 0 || img->tx >= img->map->width
+		|| img->ty >= img->map->height)
 		return ;
-	if (img->map->map[ty][tx] != '1')
+	if (img->map->map[img->ty][img->tx] != '1' && collision_checker(img))
 	{
-		img->player->origin_x = (int)round(nx);
-		img->player->origin_y = (int)round(ny);
+		img->player->origin_x = (int)round(img->nx);
+		img->player->origin_y = (int)round(img->ny);
 	}
 	put_cub3d_to_wnd(img);
 }

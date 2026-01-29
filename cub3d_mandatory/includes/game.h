@@ -60,6 +60,10 @@ typedef struct s_img
 	double				wall_end;
 	double				ray_dir_x;
 	double				ray_dir_y;
+	double				nx;
+	double				ny;
+	int					tx;
+	int					ty;
 	t_game				*game;
 	t_map				*map;
 	t_player			*player;
