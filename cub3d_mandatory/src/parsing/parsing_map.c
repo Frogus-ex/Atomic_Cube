@@ -6,7 +6,7 @@
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 11:20:20 by aautret           #+#    #+#             */
-/*   Updated: 2026/01/29 14:23:45 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/01/29 15:40:16 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,5 @@ int	parse_map_line(t_game *game, char *line)
 		}
 		i++;
 	}
-	if (game->flag_players == 0)
-		return (1);
 	return (0);
 }

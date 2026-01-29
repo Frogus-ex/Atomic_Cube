@@ -6,7 +6,7 @@
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 14:56:24 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/29 14:24:21 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/01/29 15:46:41 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,18 +102,16 @@ static int	detector_and_store_line(t_game *game, char *line,
 
 int	parsing(t_game *game, char *av)
 {
-	char			*stash;
-	char			*line;
 	int				status;
 	t_parse_state	state;
 
-	stash = NULL;
+	char *(stash) = NULL;
 	status = 0;
 	state = PARSES_IDENTIFIERS;
 	game->fd = open(av, O_RDONLY);
 	if (game->fd < 0)
 		return (ft_error(NULL, "file doesnt exist"), 1);
-	line = get_next_line(game->fd, &stash);
+	char *(line) = get_next_line(game->fd, &stash);
 	if (!line)
 		return (free(stash), close(game->fd), 1);
 	while (line && status == 0)
@@ -126,5 +124,7 @@ int	parsing(t_game *game, char *av)
 	game->nbr_line++;
 	if (!count_text(game))
 		return (ft_error(game, "wrong number of textures"), 1);
+	if (game->flag_players == 0)
+		return (printf("error: invalid number of players in map\n"), 1);
 	return (free(line), free(stash), close(game->fd), status);
 }
