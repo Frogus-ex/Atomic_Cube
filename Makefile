@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+         #
+#    By: aautret <aautret@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/06 11:20:20 by aautret           #+#    #+#              #
-#    Updated: 2026/01/28 14:10:07 by tlorette         ###   ########.fr        #
+#    Updated: 2026/01/29 11:47:29 by aautret          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,7 @@ SRCS := \
 	$(SRC_DIR_MAND)/game/manage_moves_utils.c \
 	$(SRC_DIR_MAND)/game/manage_textures.c \
 	$(SRC_DIR_MAND)/game/raycaster.c \
+	$(SRC_DIR_MAND)/game/raycast_utils.c \
 	$(SRC_DIR_MAND)/initialisation/init_textures.c \
 	$(SRC_DIR_MAND)/initialisation/init.c \
 	$(SRC_DIR_MAND)/parsing/floodfill.c \

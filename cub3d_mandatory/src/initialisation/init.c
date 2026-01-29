@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 13:25:04 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/28 14:05:56 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/01/29 11:18:37 by aautret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,18 @@ void	text_init(t_texture **text)
 		return (ft_error(NULL, "map init failed"));
 }
 
+void	init_ray_params(t_ray_params *params)
+{
+	params->ray_hit_x = 0;
+	params->ray_hit_y = 0;
+	params->step_x = 0;
+	params->step_y = 0;
+	params->map_x = 0;
+	params->map_y = 0;
+	params->found_wall = 0;
+	params->distance = 0;
+}
+
 void	init_mlx(t_game *game, t_map *map, t_img *img)
 {
 	if (!game || !map || !img)
@@ -72,9 +84,8 @@ void	init_mlx(t_game *game, t_map *map, t_img *img)
 	if (!game->mlx)
 		return (ft_error(game, "mlx_init failed"));
 	load_textures(game);
-	mlx_get_screen_size(game->mlx, &img->screen_width, &img->screen_height);
-	img->width = img->screen_width;
-	img->height = img->screen_height;
+	img->width = SCREEN_WIDTH;
+	img->height = SCREEN_HEIGHT;
 	game->win = mlx_new_window(game->mlx, img->width, img->height, WND_NAME);
 	if (!game->win)
 		return (ft_error(game, "mlx_new_window failed"));

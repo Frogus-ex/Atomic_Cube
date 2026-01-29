@@ -6,7 +6,7 @@
 /*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 11:44:23 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/28 13:52:15 by aautret          ###   ########.fr       */
+/*   Updated: 2026/01/29 11:52:27 by aautret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,21 @@
 
 static char	*get_texture_data(t_img *img, double angle)
 {
-	img->ray_dir_x = cos(angle);
-	img->ray_dir_y = sin(angle);
 	if (img->texture->side == 0)
 	{
 		if (img->ray_dir_x > 0)
-			return (img->texture->tex_we_data);
-		else
 			return (img->texture->tex_ea_data);
+		else
+			return (img->texture->tex_we_data);
 	}
 	else
 	{
 		if (img->ray_dir_y > 0)
-			return (img->texture->tex_no_data);
-		else
 			return (img->texture->tex_so_data);
+		else
+			return (img->texture->tex_no_data);
 	}
+	(void)angle;
 }
 
 void	draw_wall_text(t_img *img, int x, int y, double angle)

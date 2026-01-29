@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 13:13:10 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/28 15:47:17 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/01/29 11:56:36 by aautret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,7 @@ void			map_init(t_map **map);
 void			img_init(t_img **img, t_game *game);
 void			player_init(t_player **player, t_game *game);
 void			text_init(t_texture **text);
+void			init_ray_params(t_ray_params *params);
 void			init_mlx(t_game *game, t_map *map, t_img *img);
 
 /************************************************************************

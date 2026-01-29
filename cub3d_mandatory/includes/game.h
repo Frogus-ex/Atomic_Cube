@@ -66,6 +66,19 @@ typedef struct s_img
 	t_texture			*texture;
 }						t_img;
 
+typedef struct s_ray_params
+{
+	double				ray_hit_x;
+	double				ray_hit_y;
+	double				step_x;
+	double				step_y;
+	int					map_x;
+	int					map_y;
+	int					found_wall;
+	double				distance;
+	int					is_horizontal;
+}						t_ray_params;
+
 /************************************************************************
  *									GAME								*
  ***********************************************************************/
@@ -95,12 +108,21 @@ void					draw_wall(t_img *img, int x, double wall_size,
 void					load_textures(t_game *game);
 void					draw_wall_text(t_img *img, int x, int y, double angle);
 
+// raycaster_utils.c
+double					norme_angle(double ray_angle);
+void					setup_horizontal_ray(t_img *img, double ray_angle,
+							t_ray_params *params);
+void					setup_vertical_ray(t_img *img, double ray_angle,
+							t_ray_params *params);
+double					cast_ray(t_img *img, t_ray_params *params);
+
 // raycaster.c
-void					get_wall_hit(t_texture *texture, double current_x,
-							double current_y);
-void					get_distance(t_img *img, double xm, double ym,
-							double angle);
-void					draw_wall(t_img *img, int x, double wall_size,
-							double angle);
+void					set_wall_dir(t_texture *texture, double ray_angle,
+							int is_horiz);
+void					get_wall_hit_dda(t_img *img, t_ray_params *params,
+							double ray_angle);
+void					get_distance_dda(t_img *img, t_ray_params *params,
+							double ray_angle);
+void					cast_ray_dda(t_img *img, double ray_angle, int column);
 
 #endif

@@ -6,11 +6,9 @@
 /*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 10:58:21 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/20 15:51:30 by aautret          ###   ########.fr       */
+/*   Updated: 2026/01/29 13:08:15 by aautret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-// petit .h pour tout les DEFINE exemple tailles de l ecran.
 
 #ifndef CONFIG_H
 # define CONFIG_H
@@ -27,8 +25,10 @@
 
 # define ADJACENT 100
 # define IMG_PXL 50
-// # define NUM_RAY 100 //largeur de l'ecran
+# define SCREEN_WIDTH 1200 //initialisation claire
+# define SCREEN_HEIGHT 800 //initialisation claire
 # define TILE_SIZE 50
+# define FOV 1.0471975512 // champs de vision/angle de vie = 60 degres
 # define WND_NAME "AtomiCube"
 
 #endif
