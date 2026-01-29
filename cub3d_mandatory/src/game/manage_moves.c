@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   key_handle.c                                       :+:      :+:    :+:   */
+/*   manage_moves.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 11:38:02 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/28 13:17:21 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/01/29 15:46:03 by aautret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,18 @@ static double	calc_dy(t_img *img, int keycode)
 	return (dy);
 }
 
+static void	simple_mooves(t_game *game, t_img *img)
+{
+	if (game->player->w_pressed)
+		moving_pix_by_pix(img, calc_dx(img, W), calc_dy(img, W));
+	if (game->player->s_pressed)
+		moving_pix_by_pix(img, calc_dx(img, S), calc_dy(img, S));
+	if (game->player->a_pressed)
+		moving_pix_by_pix(img, calc_dx(img, A), calc_dy(img, A));
+	if (game->player->d_pressed)
+		moving_pix_by_pix(img, calc_dx(img, D), calc_dy(img, D));
+}
+
 /**
  * @brief Gère les entrées clavier et déclenche les actions correspondantes
  *
@@ -105,14 +117,7 @@ int	player_input(t_game *game)
 		return (0);
 	img = game->img;
 	need_redraw = 0;
-	if (game->player->w_pressed)
-		moving_pix_by_pix(img, calc_dx(img, W), calc_dy(img, W));
-	if (game->player->s_pressed)
-		moving_pix_by_pix(img, calc_dx(img, S), calc_dy(img, S));
-	if (game->player->a_pressed)
-		moving_pix_by_pix(img, calc_dx(img, A), calc_dy(img, A));
-	if (game->player->d_pressed)
-		moving_pix_by_pix(img, calc_dx(img, D), calc_dy(img, D));
+	simple_mooves(game, img);
 	if (game->player->right_pressed)
 	{
 		game->player->direction_vue += 0.05;
