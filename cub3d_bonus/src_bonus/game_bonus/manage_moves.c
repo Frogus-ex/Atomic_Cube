@@ -41,7 +41,6 @@ static void	moving_pix_by_pix(t_img *img, double dx, double dy)
 		img->player->origin_x = (int)round(img->nx);
 		img->player->origin_y = (int)round(img->ny);
 	}
-	render_frame(img);
 }
 
 static double	calc_dx(t_img *img, int keycode)

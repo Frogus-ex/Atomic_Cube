@@ -6,7 +6,7 @@
 /*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/30 11:19:28 by aautret           #+#    #+#             */
-/*   Updated: 2026/01/30 18:01:02 by aautret          ###   ########.fr       */
+/*   Updated: 2026/01/30 18:23:38 by aautret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,9 @@ static int	calculate_tile_size(t_map *map)
 
 int	check_colision(t_img *img, double px, double py)
 {
-	int	tx;
-	int	ty;
+	int		tx;
+	int		ty;
+	char	cell;
 
 	if (!img || !img->map || !img->map->map || px < 0 || py < 0)
 		return (0);
@@ -37,9 +38,12 @@ int	check_colision(t_img *img, double px, double py)
 		return (0);
 	if (!img->map->map[ty] || !img->map->map[ty][tx])
 		return (0);
-	if (img->map->map[ty][tx] == '1')
+	cell = img->map->map[ty][tx];
+	if (cell == '1' || cell == ' ')
 		return (0);
-	return (1);
+	if (cell == '0' || cell == 'N' || cell == 'S' || cell == 'E' || cell == 'W')
+		return (1);
+	return (0);
 }
 
 /**
@@ -52,22 +56,30 @@ static void	draw_angle_new(t_img *img, double angle, int tile_size)
 {
 	double	current_x;
 	double	current_y;
+	double	step_x;
+	double	step_y;
 	int		minimap_x;
 	int		minimap_y;
 	int		i;
 
 	if (!img || !img->player)
 		return ;
+	step_x = cos(angle);
+	step_y = sin(angle);
+	current_x = img->player->origin_x;
+	current_y = img->player->origin_y;
 	i = 0;
 	while (i < 1000)
 	{
-		current_x = img->player->origin_x + cos(angle) * i;
-		current_y = img->player->origin_y + sin(angle) * i;
+		current_x += step_x;
+		current_y += step_y;
 		if (!check_colision(img, current_x, current_y))
 			break ;
 		minimap_x = MINIMAP_OFFSET + (current_x * tile_size) / TILE_SIZE;
 		minimap_y = MINIMAP_OFFSET + (current_y * tile_size) / TILE_SIZE;
-		my_put_pixel(img, minimap_x, minimap_y, 0xFFFFFFFF);
+		if (minimap_x >= MINIMAP_OFFSET && minimap_x < MINIMAP_OFFSET + MINIMAP_SIZE
+			&& minimap_y >= MINIMAP_OFFSET && minimap_y < MINIMAP_OFFSET + MINIMAP_SIZE)
+			my_put_pixel(img, minimap_x, minimap_y, 0xFFFFFFFF);
 		i++;
 	}
 }
@@ -167,8 +179,8 @@ void	draw_minimap(t_map *map, t_img *img)
 	y = 0;
 	while (y < map->height)
 	{
-		x = -1;
-		while (++x < map->width)
+		x = 0;
+		while (x < map->width)
 		{
 			if (map->map[y] && map->map[y][x])
 			{
@@ -177,7 +189,9 @@ void	draw_minimap(t_map *map, t_img *img)
 				else
 					draw_map(img, x, y, 0x000000, tile_size);
 			}
+			x++;
 		}
+		y++;
 	}
 	calc_and_draw_angle(img, tile_size);
 	player_minimap_x = MINIMAP_OFFSET + (img->player->origin_x * tile_size)
