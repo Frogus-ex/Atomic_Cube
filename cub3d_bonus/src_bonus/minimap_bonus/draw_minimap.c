@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_minimap.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/30 11:19:28 by aautret           #+#    #+#             */
-/*   Updated: 2026/01/30 12:02:00 by aautret          ###   ########.fr       */
+/*   Updated: 2026/01/30 13:42:56 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,11 +78,11 @@ void	draw_minimap(t_map *map, t_img *img)
 	int	player_minimap_x;
 	int	player_minimap_y;
 
-	y = 0;
-	while (y < map->height)
+	y = -1;
+	while (++y < map->height)
 	{
-		x = 0;
-		while (x < map->width)
+		x = -1;
+		while (++x < map->width)
 		{
 			if (map->map[y] && map->map[y][x])
 			{
@@ -91,13 +91,10 @@ void	draw_minimap(t_map *map, t_img *img)
 				else
 					draw_map(img, x, y, 0x000000);
 			}
-			x++;
 		}
-		y++;
 	}
 	player_minimap_x = (img->player->origin_x * TILE_SIZE_MINIMAP) / TILE_SIZE;
 	player_minimap_y = (img->player->origin_y * TILE_SIZE_MINIMAP) / TILE_SIZE;
 	draw_player_circle(img, player_minimap_x, player_minimap_y,
 		TILE_SIZE_MINIMAP / 4);
-	// calc_and_draw_angle(img);
 }

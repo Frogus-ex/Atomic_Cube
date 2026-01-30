@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 13:25:04 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/29 17:06:59 by aautret          ###   ########.fr       */
+/*   Updated: 2026/01/30 15:15:42 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ int	init_mlx(t_game *game, t_map *map, t_img *img)
 		return (ft_error(game, "mlx_get_data_addr failed"), 0);
 	mlx_hook(game->win, 2, 1L << 0, key_press, game);
 	mlx_hook(game->win, 3, 1L << 1, key_released, game);
+	mlx_mouse_move(game->mlx, game->win, game->player->mouse_x,
+		game->player->mouse_y);
 	mlx_hook(game->win, 17, 0, cross_close, game);
 	mlx_loop_hook(game->mlx, player_input, game);
 	return (1);

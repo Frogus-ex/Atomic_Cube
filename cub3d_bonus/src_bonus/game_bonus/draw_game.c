@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 16:56:26 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/30 11:38:59 by aautret          ###   ########.fr       */
+/*   Updated: 2026/01/30 15:09:01 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ static void	calc_and_draw_angle(t_img *img)
 	double	angle;
 	int		i;
 
+	if (!img || !img->player)
+		return ;
 	i = 0;
 	angle_step = FOV / SCREEN_WIDTH;
 	while (i < SCREEN_WIDTH)

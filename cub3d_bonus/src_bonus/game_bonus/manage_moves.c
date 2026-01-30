@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   manage_moves.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 11:38:02 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/30 11:38:59 by aautret          ###   ########.fr       */
+/*   Updated: 2026/01/30 17:56:18 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ static double	calc_dx(t_img *img, int keycode)
 
 	dx = 0.0;
 	speed = 2.5;
+	if (!img || !img->player)
+		return (dx);
 	if (keycode == W)
 		dx = cos(img->player->direction_vue) * speed;
 	else if (keycode == S)
@@ -69,6 +71,8 @@ static double	calc_dy(t_img *img, int keycode)
 
 	dy = 0.0;
 	speed = 2.5;
+	if (!img || !img->player)
+		return (dy);
 	if (keycode == W)
 		dy = sin(img->player->direction_vue) * speed;
 	else if (keycode == S)
@@ -82,6 +86,8 @@ static double	calc_dy(t_img *img, int keycode)
 
 static void	simple_mooves(t_game *game, t_img *img)
 {
+	if (!game || !game->player || !img)
+		return ;
 	if (game->player->w_pressed)
 		moving_pix_by_pix(img, calc_dx(img, W), calc_dy(img, W));
 	if (game->player->s_pressed)
@@ -104,31 +110,27 @@ static void	simple_mooves(t_game *game, t_img *img)
  * @param param Pointeur vers t_img casté en void*
  * @return int Toujours 0.
  */
-int	player_input(t_game *game)
-{
-	int		need_redraw;
-	t_img	*img;
 
-	if (!game || !game->img || !game->player)
+int	game_loop(t_game *game)
+{
+	int		current_x;
+	int		delta_x;
+	float	rotation_speed;
+
+	if (!game || !game->player || !game->img)
 		return (0);
-	img = game->img;
-	need_redraw = 0;
-	simple_mooves(game, img);
-	if (game->player->right_pressed)
-	{
-		game->player->direction_vue += 0.05;
-		if (game->player->direction_vue >= 2 * M_PI)
-			game->player->direction_vue -= 2 * M_PI;
-		need_redraw = 1;
-	}
+	current_x = 0;
+	mlx_mouse_get_pos(game->mlx, game->win, &current_x, &game->player->mouse_y);
+	delta_x = current_x - game->player->mouse_x;
+	game->player->mouse_x = current_x;
+	rotation_speed = 0.005f;
+	if (delta_x != 0)
+		game->player->direction_vue += delta_x * rotation_speed;
 	if (game->player->left_pressed)
-	{
 		game->player->direction_vue -= 0.05;
-		if (game->player->direction_vue < 0)
-			game->player->direction_vue += 2 * M_PI;
-		need_redraw = 1;
-	}
-	// if (need_redraw)
-		render_frame(img);
+	if (game->player->right_pressed)
+		game->player->direction_vue += 0.05;
+	simple_mooves(game, game->img);
+	render_frame(game->img);
 	return (0);
 }

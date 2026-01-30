@@ -41,6 +41,19 @@ typedef struct s_texture
 	double				wall_x;
 }						t_texture;
 
+typedef struct s_ray_params
+{
+	double				ray_hit_x;
+	double				ray_hit_y;
+	double				step_x;
+	double				step_y;
+	int					map_x;
+	int					map_y;
+	int					found_wall;
+	double				distance;
+	int					is_horizontal;
+}						t_ray_params;
+
 typedef struct s_img
 {
 	void				*img;
@@ -68,20 +81,8 @@ typedef struct s_img
 	t_map				*map;
 	t_player			*player;
 	t_texture			*texture;
+	t_ray_params		*ray_params;
 }						t_img;
-
-typedef struct s_ray_params
-{
-	double				ray_hit_x;
-	double				ray_hit_y;
-	double				step_x;
-	double				step_y;
-	int					map_x;
-	int					map_y;
-	int					found_wall;
-	double				distance;
-	int					is_horizontal;
-}						t_ray_params;
 
 /************************************************************************
  *									GAME								*
@@ -101,6 +102,8 @@ int						find_biggest(t_img *img);
 int						key_press(int keycode, t_game *game);
 int						key_released(int keycode, t_game *game);
 int						collision_checker(t_img *img);
+int						mouse_released(int button, t_game *game);
+int						mouse_pressed(int button, t_game *game);
 
 // manage_moves.c
 int						player_input(t_game *game);
@@ -115,6 +118,7 @@ void					setup_horizontal_ray(t_img *img, double ray_angle,
 void					setup_vertical_ray(t_img *img, double ray_angle,
 							t_ray_params *params);
 double					cast_ray(t_img *img, t_ray_params *params);
+int						game_loop(t_game *game);
 
 // raycaster.c
 void					set_wall_dir(t_texture *texture, double ray_angle,
