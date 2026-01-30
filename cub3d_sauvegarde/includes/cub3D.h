@@ -6,7 +6,7 @@
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 13:13:10 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/29 12:00:52 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/01/30 10:53:05 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,7 @@ int				parse_identifiers_line(t_game *game, char *line);
 int				parse_map_line(t_game *game, char *line);
 
 // parsing_param.c
-void			check_arg_param(int ac, char **av);
+int				check_arg_param(char **av);
 int				check_cub_file(t_game *game, char *av);
 
 // parsing.c
