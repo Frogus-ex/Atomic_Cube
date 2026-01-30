@@ -6,10 +6,9 @@
 /*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/30 11:23:38 by aautret           #+#    #+#             */
-/*   Updated: 2026/01/30 11:52:18 by aautret          ###   ########.fr       */
+/*   Updated: 2026/01/30 17:39:50 by aautret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #ifndef MINIMAP_H
 # define MINIMAP_H
@@ -31,5 +30,6 @@ typedef struct s_minimap {
 
  // draw_minimap.c
 void	draw_minimap(t_map *map, t_img *img);
+int		check_colision(t_img *img, double px, double py);
 
 #endif

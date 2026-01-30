@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   manage_moves.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 11:38:02 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/30 17:56:18 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/01/30 18:00:40 by aautret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ static double	calc_dx(t_img *img, int keycode)
 	speed = 2.5;
 	if (!img || !img->player)
 		return (dx);
+	speed = 7.5;
 	if (keycode == W)
 		dx = cos(img->player->direction_vue) * speed;
 	else if (keycode == S)
@@ -73,6 +74,7 @@ static double	calc_dy(t_img *img, int keycode)
 	speed = 2.5;
 	if (!img || !img->player)
 		return (dy);
+	speed = 7.5;
 	if (keycode == W)
 		dy = sin(img->player->direction_vue) * speed;
 	else if (keycode == S)
