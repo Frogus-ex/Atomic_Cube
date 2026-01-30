@@ -6,7 +6,7 @@
 /*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 10:58:21 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/30 11:20:52 by aautret          ###   ########.fr       */
+/*   Updated: 2026/01/30 17:36:39 by aautret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@
 
 # define ADJACENT 100
 # define IMG_PXL 50
-# define SCREEN_WIDTH 1200 //initialisation claire
-# define SCREEN_HEIGHT 800 //initialisation claire
+# define SCREEN_WIDTH 1600 //initialisation claire
+# define SCREEN_HEIGHT 1000 //initialisation claire
 # define TILE_SIZE 50
 # define TILE_SIZE_MINIMAP 10
 # define FOV 1.0471975512 // champs de vision/angle de vie = 60 degres
