@@ -87,6 +87,8 @@ typedef struct s_ray_params
  *									GAME								*
  ***********************************************************************/
 // draw_game.c
+void					draw_wall(t_game *game, int x, double wall_size,
+							double angle);
 void					put_cub3d_to_wnd(t_img *img);
 
 // game_utils.c
@@ -94,22 +96,15 @@ void					my_put_pixel(t_img *img, int x, int y, int color);
 int						cross_close(t_game *game);
 int						find_biggest(t_img *img);
 
-// init_vison.c
-void					get_distance(t_img *img, double xm, double ym,
-							double angle);
-
-// key_handle.c
-int						player_input(t_game *game);
-void					player_moves(t_img *img, int new_y, int new_x);
-
-// key_handle_utils.c
+// manage_moves_utils.c
 int						key_press(int keycode, t_game *game);
 int						key_released(int keycode, t_game *game);
+int						collision_checker(t_img *img);
 
-// draw_cub3d.c
-void					draw_wall(t_game *game, int x, double wall_size,
-							double angle);
-int						load_textures(t_game *game);
+// manage_moves.c
+int						player_input(t_game *game);
+
+// manage_textures.c
 void					draw_wall_text(t_img *img, int x, int y, double angle);
 
 // raycaster_utils.c

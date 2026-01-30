@@ -6,11 +6,21 @@
 /*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 13:18:39 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/29 17:50:42 by aautret          ###   ########.fr       */
+/*   Updated: 2026/01/30 10:29:02 by aautret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
+
+static int	parsing_check_all(t_game *game, char **av, t_map *map)
+{
+	if (parsing(game, av[1]))
+		return (free_all(game), 1);
+	read_from_map(game, map, av[1]);
+	if (flood_fill(map))
+		return (free_all(game), 1);
+	return (0);
+}
 
 int	main(int ac, char **av)
 {
@@ -40,11 +50,8 @@ int	main(int ac, char **av)
 	player_init(&player, game);
 	if (!player)
 		return (free_all(game), 1);
-	if (parsing(game, av[1]))
-		return (free_all(game), 1);
-	read_from_map(game, map, av[1]);
-	if (flood_fill(map))
-		return (free_all(game), 1);
+	if (!parsing_check_all(game, av, map))
+		return (1);
 	img->game = game;
 	img->map = map;
 	img->player = player;

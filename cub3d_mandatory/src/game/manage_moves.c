@@ -3,28 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   manage_moves.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 11:38:02 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/29 18:19:20 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/01/30 10:10:36 by aautret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
-
-int	collision_checker(t_img *img)
-{
-	if (img->map->map[(int)floor((img->ny + 10)
-				/ TILE_SIZE)][(int)floor((img->nx + 10) / TILE_SIZE)] != '1'
-		&& img->map->map[(int)floor((img->ny - 10)
-			/ TILE_SIZE)][(int)floor((img->nx - 10) / TILE_SIZE)] != '1'
-		&& img->map->map[(int)floor((img->ny + 10)
-			/ TILE_SIZE)][(int)floor((img->nx - 10) / TILE_SIZE)] != '1'
-		&& img->map->map[(int)floor((img->ny - 10)
-			/ TILE_SIZE)][(int)floor((img->nx + 10) / TILE_SIZE)] != '1')
-		return (1);
-	return (0);
-}
 
 /**
  * @brief Déplace le joueur pixel par pixel en testant la collision.

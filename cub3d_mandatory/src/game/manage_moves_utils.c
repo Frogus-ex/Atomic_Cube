@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   key_handle_utils.c                                 :+:      :+:    :+:   */
+/*   manage_moves_utils.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 11:54:06 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/28 13:35:46 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/01/30 10:10:41 by aautret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,19 @@ int	key_released(int keycode, t_game *game)
 		game->player->left_pressed = 0;
 	if (keycode == RIGHT)
 		game->player->right_pressed = 0;
+	return (0);
+}
+
+int	collision_checker(t_img *img)
+{
+	if (img->map->map[(int)floor((img->ny + 10)
+				/ TILE_SIZE)][(int)floor((img->nx + 10) / TILE_SIZE)] != '1'
+		&& img->map->map[(int)floor((img->ny - 10)
+			/ TILE_SIZE)][(int)floor((img->nx - 10) / TILE_SIZE)] != '1'
+		&& img->map->map[(int)floor((img->ny + 10)
+			/ TILE_SIZE)][(int)floor((img->nx - 10) / TILE_SIZE)] != '1'
+		&& img->map->map[(int)floor((img->ny - 10)
+			/ TILE_SIZE)][(int)floor((img->nx + 10) / TILE_SIZE)] != '1')
+		return (1);
 	return (0);
 }
