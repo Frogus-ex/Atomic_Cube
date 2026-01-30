@@ -6,11 +6,23 @@
 /*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/30 11:19:28 by aautret           #+#    #+#             */
-/*   Updated: 2026/01/30 17:38:21 by aautret          ###   ########.fr       */
+/*   Updated: 2026/01/30 17:57:51 by aautret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes_bonus/cub3D.h"
+
+static int	calculate_tile_size(t_map *map)
+{
+	int	tile_width;
+	int	tile_height;
+
+	tile_width = MINIMAP_SIZE / map->width;
+	tile_height = MINIMAP_SIZE / map->height;
+	if (tile_width < tile_height)
+		return (tile_width);
+	return (tile_height);
+}
 
 int	check_colision(t_img *img, double px, double py)
 {
@@ -34,8 +46,9 @@ int	check_colision(t_img *img, double px, double py)
  * @brief Trace un rayon sur la mini-map pour un angle absolu.
  * @param img image cible
  * @param angle angle du rayon en radians
+ * @param tile_size taille de tuile calculée
  */
-static void	draw_angle_new(t_img *img, double angle)
+static void	draw_angle_new(t_img *img, double angle, int tile_size)
 {
 	double	current_x;
 	double	current_y;
@@ -52,8 +65,8 @@ static void	draw_angle_new(t_img *img, double angle)
 		current_y = img->player->origin_y + sin(angle) * i;
 		if (!check_colision(img, current_x, current_y))
 			break ;
-		minimap_x = (current_x * TILE_SIZE_MINIMAP) / TILE_SIZE;
-		minimap_y = (current_y * TILE_SIZE_MINIMAP) / TILE_SIZE;
+		minimap_x = MINIMAP_OFFSET + (current_x * tile_size) / TILE_SIZE;
+		minimap_y = MINIMAP_OFFSET + (current_y * tile_size) / TILE_SIZE;
 		my_put_pixel(img, minimap_x, minimap_y, 0xFFFFFFFF);
 		i++;
 	}
@@ -64,8 +77,9 @@ static void	draw_angle_new(t_img *img, double angle)
  *
  * Calcule et affiche le faisceau de rayons autour de la direction vue.
  * @param img image cible
+ * @param tile_size taille de tuile calculée
  */
-static void	calc_and_draw_angle(t_img *img)
+static void	calc_and_draw_angle(t_img *img, int tile_size)
 {
 	double	angle_step;
 	double	angle;
@@ -76,7 +90,7 @@ static void	calc_and_draw_angle(t_img *img)
 	while (i < 60)
 	{
 		angle = img->player->direction_vue - (M_PI / 8) + (i * angle_step);
-		draw_angle_new(img, angle);
+		draw_angle_new(img, angle, tile_size);
 		i++;
 	}
 }
@@ -110,25 +124,26 @@ static void	draw_player_circle(t_img *img, int cx, int cy, int radius)
 }
 
 /**
- * @brief Remplit une tuile (carre de TILE_SIZE) avec une couleur.
+ * @brief Remplit une tuile (carre de tile_size) avec une couleur.
  * @param img image cible
  * @param x colonne de tuile
  * @param y ligne de tuile
  * @param color couleur ARGB
+ * @param tile_size taille de tuile calculée
  */
-static void	draw_map(t_img *img, int x, int y, int color)
+static void	draw_map(t_img *img, int x, int y, int color, int tile_size)
 {
 	int	px;
 	int	py;
 
 	py = 0;
-	while (py < TILE_SIZE_MINIMAP)
+	while (py < tile_size)
 	{
 		px = 0;
-		while (px < TILE_SIZE_MINIMAP)
+		while (px < tile_size)
 		{
-			my_put_pixel(img, x * TILE_SIZE_MINIMAP + px, y * TILE_SIZE_MINIMAP
-				+ py, color);
+			my_put_pixel(img, MINIMAP_OFFSET + x * tile_size + px,
+				MINIMAP_OFFSET + y * tile_size + py, color);
 			px++;
 		}
 		py++;
@@ -146,7 +161,9 @@ void	draw_minimap(t_map *map, t_img *img)
 	int	x;
 	int	player_minimap_x;
 	int	player_minimap_y;
+	int	tile_size;
 
+	tile_size = calculate_tile_size(map);
 	y = 0;
 	while (y < map->height)
 	{
@@ -156,17 +173,18 @@ void	draw_minimap(t_map *map, t_img *img)
 			if (map->map[y] && map->map[y][x])
 			{
 				if (map->map[y][x] == '1')
-					draw_map(img, x, y, 0xFF0000);
+					draw_map(img, x, y, 0xFF0000, tile_size);
 				else
-					draw_map(img, x, y, 0x000000);
+					draw_map(img, x, y, 0x000000, tile_size);
 			}
 			x++;
 		}
 		y++;
 	}
-	calc_and_draw_angle(img);
-	player_minimap_x = (img->player->origin_x * TILE_SIZE_MINIMAP) / TILE_SIZE;
-	player_minimap_y = (img->player->origin_y * TILE_SIZE_MINIMAP) / TILE_SIZE;
-	draw_player_circle(img, player_minimap_x, player_minimap_y,
-		TILE_SIZE_MINIMAP / 4);
+	calc_and_draw_angle(img, tile_size);
+	player_minimap_x = MINIMAP_OFFSET + (img->player->origin_x * tile_size)
+		/ TILE_SIZE;
+	player_minimap_y = MINIMAP_OFFSET + (img->player->origin_y * tile_size)
+		/ TILE_SIZE;
+	draw_player_circle(img, player_minimap_x, player_minimap_y, tile_size / 4);
 }
