@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   config_bonus.h                                     :+:      :+:    :+:   */
+/*   config.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 10:58:21 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/29 13:44:26 by aautret          ###   ########.fr       */
+/*   Updated: 2026/01/30 11:20:52 by aautret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CONFIG_H_BONUS
-# define CONFIG_H_BONUS
+#ifndef CONFIG_H
+# define CONFIG_H
 
 # define ESC 65307
 # define UP 65362
@@ -28,6 +28,7 @@
 # define SCREEN_WIDTH 1200 //initialisation claire
 # define SCREEN_HEIGHT 800 //initialisation claire
 # define TILE_SIZE 50
+# define TILE_SIZE_MINIMAP 10
 # define FOV 1.0471975512 // champs de vision/angle de vie = 60 degres
 # define WND_NAME "AtomiCube"
 

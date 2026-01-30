@@ -6,11 +6,11 @@
 /*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 12:47:24 by aautret           #+#    #+#             */
-/*   Updated: 2026/01/28 12:57:34 by aautret          ###   ########.fr       */
+/*   Updated: 2026/01/30 11:11:12 by aautret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3D.h"
+#include "../includes_bonus/cub3D.h"
 
 /**
  * @brief Place un pixel couleur aux coordonnees donnees.

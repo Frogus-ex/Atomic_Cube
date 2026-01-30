@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   manage_moves_bonus.c                               :+:      :+:    :+:   */
+/*   manage_moves.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 11:38:02 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/29 15:51:48 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/01/30 11:38:59 by aautret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3D.h"
+#include "../includes_bonus/cub3D.h"
 
 /**
  * @brief Déplace le joueur pixel par pixel en testant la collision.
@@ -27,25 +27,21 @@
  */
 static void	moving_pix_by_pix(t_img *img, double dx, double dy)
 {
-	double	nx;
-	double	ny;
-	int		tx;
-	int		ty;
-
 	if (!img || !img->player || !img->map)
 		return ;
-	nx = (double)img->player->origin_x + dx;
-	ny = (double)img->player->origin_y + dy;
-	tx = (int)floor(nx / TILE_SIZE);
-	ty = (int)floor(ny / TILE_SIZE);
-	if (tx < 0 || ty < 0 || tx >= img->map->width || ty >= img->map->height)
+	img->nx = (double)img->player->origin_x + dx;
+	img->ny = (double)img->player->origin_y + dy;
+	img->tx = (int)floor(img->nx / TILE_SIZE);
+	img->ty = (int)floor(img->ny / TILE_SIZE);
+	if (img->tx < 0 || img->ty < 0 || img->tx >= img->map->width
+		|| img->ty >= img->map->height)
 		return ;
-	if (img->map->map[ty][tx] != '1')
+	if (img->map->map[img->ty][img->tx] != '1' && collision_checker(img))
 	{
-		img->player->origin_x = (int)round(nx);
-		img->player->origin_y = (int)round(ny);
+		img->player->origin_x = (int)round(img->nx);
+		img->player->origin_y = (int)round(img->ny);
 	}
-	put_cub3d_to_wnd(img);
+	render_frame(img);
 }
 
 static double	calc_dx(t_img *img, int keycode)
@@ -84,6 +80,18 @@ static double	calc_dy(t_img *img, int keycode)
 	return (dy);
 }
 
+static void	simple_mooves(t_game *game, t_img *img)
+{
+	if (game->player->w_pressed)
+		moving_pix_by_pix(img, calc_dx(img, W), calc_dy(img, W));
+	if (game->player->s_pressed)
+		moving_pix_by_pix(img, calc_dx(img, S), calc_dy(img, S));
+	if (game->player->a_pressed)
+		moving_pix_by_pix(img, calc_dx(img, A), calc_dy(img, A));
+	if (game->player->d_pressed)
+		moving_pix_by_pix(img, calc_dx(img, D), calc_dy(img, D));
+}
+
 /**
  * @brief Gère les entrées clavier et déclenche les actions correspondantes
  *
@@ -105,14 +113,7 @@ int	player_input(t_game *game)
 		return (0);
 	img = game->img;
 	need_redraw = 0;
-	if (game->player->w_pressed)
-		moving_pix_by_pix(img, calc_dx(img, W), calc_dy(img, W));
-	if (game->player->s_pressed)
-		moving_pix_by_pix(img, calc_dx(img, S), calc_dy(img, S));
-	if (game->player->a_pressed)
-		moving_pix_by_pix(img, calc_dx(img, A), calc_dy(img, A));
-	if (game->player->d_pressed)
-		moving_pix_by_pix(img, calc_dx(img, D), calc_dy(img, D));
+	simple_mooves(game, img);
 	if (game->player->right_pressed)
 	{
 		game->player->direction_vue += 0.05;
@@ -127,7 +128,7 @@ int	player_input(t_game *game)
 			game->player->direction_vue += 2 * M_PI;
 		need_redraw = 1;
 	}
-	if (need_redraw)
-		put_cub3d_to_wnd(img);
+	// if (need_redraw)
+		render_frame(img);
 	return (0);
 }

@@ -6,7 +6,7 @@
 #    By: aautret <aautret@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/06 11:20:20 by aautret           #+#    #+#              #
-#    Updated: 2026/01/29 17:11:38 by aautret          ###   ########.fr        #
+#    Updated: 2026/01/30 11:26:45 by aautret          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -88,6 +88,7 @@ SRCS_MAND := \
 SRCS_BONUS := \
 	$(SRC_DIR_BONUS)/main.c \
 	$(SRC_DIR_BONUS)/clean_bonus/cleaner.c \
+	$(SRC_DIR_BONUS)/clean_bonus/cleaner_utils.c \
 	$(SRC_DIR_BONUS)/game_bonus/draw_game.c \
 	$(SRC_DIR_BONUS)/game_bonus/game_utils.c \
 	$(SRC_DIR_BONUS)/game_bonus/manage_moves.c \
@@ -95,10 +96,14 @@ SRCS_BONUS := \
 	$(SRC_DIR_BONUS)/game_bonus/manage_textures.c \
 	$(SRC_DIR_BONUS)/game_bonus/raycaster.c \
 	$(SRC_DIR_BONUS)/game_bonus/raycast_utils.c \
+	$(SRC_DIR_BONUS)/initialisation_bonus/init_struct_cub3d.c \
+	$(SRC_DIR_BONUS)/initialisation_bonus/init_struct_game.c \
 	$(SRC_DIR_BONUS)/initialisation_bonus/init_textures.c \
 	$(SRC_DIR_BONUS)/initialisation_bonus/init.c \
+	$(SRC_DIR_BONUS)/minimap_bonus/draw_minimap.c \
 	$(SRC_DIR_BONUS)/parsing_bonus/floodfill.c \
 	$(SRC_DIR_BONUS)/parsing_bonus/map_copy.c \
+	$(SRC_DIR_BONUS)/parsing_bonus/map_copy_utils.c \
 	$(SRC_DIR_BONUS)/parsing_bonus/parsing_identifiers.c \
 	$(SRC_DIR_BONUS)/parsing_bonus/parsing_map.c \
 	$(SRC_DIR_BONUS)/parsing_bonus/parsing_param.c \

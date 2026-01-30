@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing_identifiers_bonus.c                        :+:      :+:    :+:   */
+/*   parsing_identifiers.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 09:37:30 by frogus            #+#    #+#             */
-/*   Updated: 2026/01/29 16:20:02 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/01/30 11:12:59 by aautret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3D.h"
+#include "../includes_bonus/cub3D.h"
 
 static void	grab_no_text(t_game *game, char *line, int i)
 {
@@ -18,7 +18,7 @@ static void	grab_no_text(t_game *game, char *line, int i)
 
 	y = 0;
 	if (game->nbr_text[0] != 0)
-		return ;
+		return (ft_error(NULL, "too many north textures"));
 	while (line && line[i] == 32)
 		i++;
 	game->no_text = malloc(sizeof(char) * (ft_strlen(line) - i) + 1);
@@ -34,7 +34,7 @@ static void	grab_so_text(t_game *game, char *line, int i)
 
 	y = 0;
 	if (game->nbr_text[1] != 0)
-		return ;
+		return (ft_error(NULL, "too many south textures"));
 	while (line && line[i] == 32)
 		i++;
 	game->so_text = malloc(sizeof(char) * (ft_strlen(line) - i) + 1);
@@ -72,9 +72,6 @@ int	check_id(t_game *game, char *line)
 int	parse_identifiers_line(t_game *game, char *line)
 {
 	if (!check_id(game, line))
-	{
-		free(line);
-		return (ft_error(NULL, "wrong identifier"), 0);
-	}
+		return (0);
 	return (1);
 }

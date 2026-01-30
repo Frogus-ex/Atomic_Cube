@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cleaner_bonus.c                                    :+:      :+:    :+:   */
+/*   cleaner.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 14:08:43 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/29 13:46:19 by aautret          ###   ########.fr       */
+/*   Updated: 2026/01/30 11:10:15 by aautret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3D.h"
+#include "../../includes_bonus/cub3D.h"
 
 void	free_map_array(t_map *map)
 {
@@ -48,10 +48,10 @@ static void	free_struct(t_game *game)
 		free(game->nbr_text);
 	if (game->player)
 		free(game->player);
-	if (game->c_text_rgb)
-		free(game->c_text_rgb);
-	if (game->f_text_rgb)
-		free(game->f_text_rgb);
+	if (game->c_rgb)
+		free(game->c_rgb);
+	if (game->f_rgb)
+		free(game->f_rgb);
 }
 
 void	free_all(t_game *game)
@@ -62,17 +62,7 @@ void	free_all(t_game *game)
 	if (game->map)
 		free_map(game->map);
 	if (game->textures)
-	{
-		if (game->textures->tex_no_img && game->mlx)
-			mlx_destroy_image(game->mlx, game->textures->tex_no_img);
-		if (game->textures->tex_so_img && game->mlx)
-			mlx_destroy_image(game->mlx, game->textures->tex_so_img);
-		if (game->textures->tex_ea_img && game->mlx)
-			mlx_destroy_image(game->mlx, game->textures->tex_ea_img);
-		if (game->textures->tex_we_img && game->mlx)
-			mlx_destroy_image(game->mlx, game->textures->tex_we_img);
-		free(game->textures);
-	}
+		free_texture_in_game(game);
 	if (game->img)
 	{
 		if (game->img->img && game->mlx)

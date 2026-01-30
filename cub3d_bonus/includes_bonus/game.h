@@ -10,10 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GAME_H_BONUS
-# define GAME_H_BONUS
+#ifndef GAME_H
+# define GAME_H
 
-# include "cub3D_bonus.h"
+# include "cub3D.h"
 
 typedef struct s_game	t_game;
 typedef struct s_map	t_map;
@@ -60,6 +60,10 @@ typedef struct s_img
 	double				wall_end;
 	double				ray_dir_x;
 	double				ray_dir_y;
+	double				nx;
+	double				ny;
+	int					tx;
+	int					ty;
 	t_game				*game;
 	t_map				*map;
 	t_player			*player;
@@ -83,29 +87,25 @@ typedef struct s_ray_params
  *									GAME								*
  ***********************************************************************/
 // draw_game.c
+void					draw_wall(t_game *game, int x, double wall_size,
+							double angle);
 void					put_cub3d_to_wnd(t_img *img);
+void					render_frame(t_img *img);
 
 // game_utils.c
 void					my_put_pixel(t_img *img, int x, int y, int color);
 int						cross_close(t_game *game);
 int						find_biggest(t_img *img);
 
-// init_vison.c
-void					get_distance(t_img *img, double xm, double ym,
-							double angle);
-
-// key_handle.c
-int						player_input(t_game *game);
-void					player_moves(t_img *img, int new_y, int new_x);
-
-// key_handle_utils.c
+// manage_moves_utils.c
 int						key_press(int keycode, t_game *game);
 int						key_released(int keycode, t_game *game);
+int						collision_checker(t_img *img);
 
-// draw_cub3d.c
-void					draw_wall(t_img *img, int x, double wall_size,
-							double angle);
-int						load_textures(t_game *game);
+// manage_moves.c
+int						player_input(t_game *game);
+
+// manage_textures.c
 void					draw_wall_text(t_img *img, int x, int y, double angle);
 
 // raycaster_utils.c

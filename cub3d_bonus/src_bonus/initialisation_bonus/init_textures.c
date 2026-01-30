@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_textures_bonus.c                              :+:      :+:    :+:   */
+/*   init_textures.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 11:44:23 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/29 16:23:57 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/01/30 11:11:42 by aautret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3D.h"
+#include "../../includes_bonus/cub3D.h"
 
 /**
  * @brief Récupère et stocke le chemin de la texture Ouest (WE)
@@ -104,40 +104,18 @@ void	grab_c_text(t_game *game, char *line, int i)
 	game->nbr_text[5]++;
 }
 
-int	load_textures(t_game *game)
+int	load_single_texture(t_game *game, char *path, void **img,
+		char **data)
 {
-	int	width;
-	int	height;
+	int	w;
+	int	h;
 
-	game->textures->tex_no_img = mlx_xpm_file_to_image(game->mlx, game->no_text,
-			&width, &height);
-	if (!game->textures->tex_no_img)
-		return (ft_error(game, "Failed to load North texture"), 1);
-	game->textures->tex_no_data = mlx_get_data_addr(game->textures->tex_no_img,
-			&game->textures->tex_bpp, &game->textures->tex_line_len,
-			&game->textures->tex_endian);
-	game->textures->tex_so_img = mlx_xpm_file_to_image(game->mlx, game->so_text,
-			&width, &height);
-	if (!game->textures->tex_so_img)
-		return (ft_error(game, "Failed to load South texture"), 1);
-	game->textures->tex_so_data = mlx_get_data_addr(game->textures->tex_so_img,
-			&game->textures->tex_bpp, &game->textures->tex_line_len,
-			&game->textures->tex_endian);
-	game->textures->tex_ea_img = mlx_xpm_file_to_image(game->mlx, game->ea_text,
-			&width, &height);
-	if (!game->textures->tex_ea_img)
-		return (ft_error(game, "Failed to load East texture"), 1);
-	game->textures->tex_ea_data = mlx_get_data_addr(game->textures->tex_ea_img,
-			&game->textures->tex_bpp, &game->textures->tex_line_len,
-			&game->textures->tex_endian);
-	game->textures->tex_we_img = mlx_xpm_file_to_image(game->mlx, game->we_text,
-			&width, &height);
-	if (!game->textures->tex_we_img)
-		return (ft_error(game, "Failed to load West texture"), 1);
-	game->textures->tex_we_data = mlx_get_data_addr(game->textures->tex_we_img,
-			&game->textures->tex_bpp, &game->textures->tex_line_len,
-			&game->textures->tex_endian);
-	game->textures->tex_width = width;
-	game->textures->tex_height = height;
+	*img = mlx_xpm_file_to_image(game->mlx, path, &w, &h);
+	if (!(*img))
+		return (ft_error(game, "Failed to load texture"), 1);
+	*data = mlx_get_data_addr(*img, &game->textures->tex_bpp,
+			&game->textures->tex_line_len, &game->textures->tex_endian);
+	game->textures->tex_width = w;
+	game->textures->tex_height = h;
 	return (0);
 }

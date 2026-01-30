@@ -6,11 +6,11 @@
 /*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 11:44:23 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/29 11:52:27 by aautret          ###   ########.fr       */
+/*   Updated: 2026/01/30 11:35:45 by aautret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3D.h"
+#include "../includes_bonus/cub3D.h"
 
 static char	*get_texture_data(t_img *img, double angle)
 {

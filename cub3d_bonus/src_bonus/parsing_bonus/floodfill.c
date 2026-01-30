@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   floodfill_bonus.c                                  :+:      :+:    :+:   */
+/*   floodfill.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 10:48:26 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/29 16:43:09 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/01/30 11:12:40 by aautret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3D.h"
+#include "../../includes_bonus/cub3D.h"
 
 // alloue l espace memoire pour tmp_map
 
@@ -125,7 +125,7 @@ void	fill(t_map *map, int x, int y)
 // 	printf("===========================\n\n");
 // }
 
-int	flood_fill(t_game *game, t_map *map)
+int	flood_fill(t_map *map)
 {
 	map->total_size = 0;
 	fill(map, map->player_x, map->player_y);

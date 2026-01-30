@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 14:56:24 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/21 17:56:01 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/01/30 11:13:09 by aautret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3D.h"
+#include "../includes_bonus/cub3D.h"
 
 static int	count_text(t_game *game)
 {
@@ -84,38 +84,34 @@ static int	detector_and_store_line(t_game *game, char *line,
 	if (*state == PARSES_IDENTIFIERS)
 	{
 		if (detect == -1)
-			return (ft_error(game, "error: invalid line before map start"), 1);
+			return (ft_error(NULL, "error: invalid line before map start"), 1);
 		if (detect == 1)
 		{
 			*state = PARSE_MAP;
 			return (parse_map_line(game, line));
 		}
-		if (parse_identifiers_line(game, line) == 0)
+		if (!parse_identifiers_line(game, line))
 			return (1);
 		return (0);
 	}
 	else if (*state == PARSE_MAP)
-	{
 		return (parse_map_line(game, line));
-	}
 	game->nbr_line++;
 	return (0);
 }
 
 int	parsing(t_game *game, char *av)
 {
-	char			*stash;
-	char			*line;
 	int				status;
 	t_parse_state	state;
 
-	stash = NULL;
+	char *(stash) = NULL;
 	status = 0;
 	state = PARSES_IDENTIFIERS;
 	game->fd = open(av, O_RDONLY);
 	if (game->fd < 0)
 		return (ft_error(NULL, "file doesnt exist"), 1);
-	line = get_next_line(game->fd, &stash);
+	char *(line) = get_next_line(game->fd, &stash);
 	if (!line)
 		return (free(stash), close(game->fd), 1);
 	while (line && status == 0)
@@ -127,6 +123,8 @@ int	parsing(t_game *game, char *av)
 	}
 	game->nbr_line++;
 	if (!count_text(game))
-		return (ft_error(game, "wrong number of textures"), 1);
+		return (ft_error(NULL, "wrong number of textures"), 1);
+	if (game->flag_players == 0)
+		return (printf("error: invalid number of players in map\n"), 1);
 	return (free(line), free(stash), close(game->fd), status);
 }

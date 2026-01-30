@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_minimap.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 16:56:26 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/27 18:30:39 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/01/30 11:40:06 by aautret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,7 @@ static void	draw_angle_new(t_img *img, double angle, int collumn)
 		current_y = img->player->origin_y + step_y * i;
 		if (!check_colision(img, current_x, current_y))
 		{
-			get_wall_hit(img->texture, current_x, current_y);
 			get_distance(img, current_x, current_y, angle);
-			draw_wall(img, collumn, img->wall_size, angle);
 			break ;
 		}
 		my_put_pixel(img, current_x, current_y, 0xFFFF00);
