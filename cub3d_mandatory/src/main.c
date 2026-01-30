@@ -6,7 +6,7 @@
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 13:18:39 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/30 10:38:28 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/01/30 10:42:11 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,26 +28,28 @@ t_game	*init_all(void)
 	t_map		*map;
 	t_img		*img;
 	t_texture	*texture;
+	t_player	*player;
 
-	game = (t_game *)malloc(sizeof(t_game));
+	game_init(&game);
 	if (!game)
 		return (NULL);
-	ft_bzero(game, sizeof(t_game));
-	map = (t_map *)malloc(sizeof(t_map));
+	map_init(&map);
 	if (!map)
-		return (free(game), NULL);
-	ft_bzero(map, sizeof(t_map));
+		return (free_all(game), NULL);
 	game->map = map;
-	texture = (t_texture *)malloc(sizeof(t_texture));
+	text_init(&texture);
 	if (!texture)
 		return (free_all(game), NULL);
-	ft_bzero(texture, sizeof(t_texture));
 	game->textures = texture;
 	img = (t_img *)malloc(sizeof(t_img));
 	if (!img)
 		return (free_all(game), NULL);
 	ft_bzero(img, sizeof(t_img));
+	img->texture = game->textures;
 	game->img = img;
+	player_init(&player, game);
+	if (!player)
+		return (free_all(game), NULL);
 	return (game);
 }
 
@@ -60,7 +62,7 @@ int	main(int ac, char **av)
 	game = init_all();
 	if (!game)
 		return (ft_error(NULL, "Failed to initialize game"), 1);
-	if (!parsing_check_all(game, av, game->map))
+	if (parsing_check_all(game, av, game->map))
 		return (free_all(game), 1);
 	game->img->game = game;
 	game->img->map = game->map;
