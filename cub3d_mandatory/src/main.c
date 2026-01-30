@@ -6,7 +6,7 @@
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 13:18:39 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/30 10:42:11 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/01/30 10:46:25 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,28 @@ static int	parsing_check_all(t_game *game, char **av, t_map *map)
 	return (0);
 }
 
+static int	init_img_and_player(t_game *game, t_texture *texture)
+{
+	t_img		*img;
+	t_player	*player;
+
+	img = (t_img *)malloc(sizeof(t_img));
+	if (!img)
+		return (0);
+	ft_bzero(img, sizeof(t_img));
+	img->texture = texture;
+	game->img = img;
+	player_init(&player, game);
+	if (!player)
+		return (0);
+	return (1);
+}
+
 t_game	*init_all(void)
 {
 	t_game		*game;
 	t_map		*map;
-	t_img		*img;
 	t_texture	*texture;
-	t_player	*player;
 
 	game_init(&game);
 	if (!game)
@@ -41,14 +56,7 @@ t_game	*init_all(void)
 	if (!texture)
 		return (free_all(game), NULL);
 	game->textures = texture;
-	img = (t_img *)malloc(sizeof(t_img));
-	if (!img)
-		return (free_all(game), NULL);
-	ft_bzero(img, sizeof(t_img));
-	img->texture = game->textures;
-	game->img = img;
-	player_init(&player, game);
-	if (!player)
+	if (!init_img_and_player(game, texture))
 		return (free_all(game), NULL);
 	return (game);
 }
