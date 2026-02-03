@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_minimap.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/30 11:19:28 by aautret           #+#    #+#             */
-/*   Updated: 2026/01/30 18:23:38 by aautret          ###   ########.fr       */
+/*   Updated: 2026/02/03 11:44:14 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,9 @@ static void	draw_angle_new(t_img *img, double angle, int tile_size)
 			break ;
 		minimap_x = MINIMAP_OFFSET + (current_x * tile_size) / TILE_SIZE;
 		minimap_y = MINIMAP_OFFSET + (current_y * tile_size) / TILE_SIZE;
-		if (minimap_x >= MINIMAP_OFFSET && minimap_x < MINIMAP_OFFSET + MINIMAP_SIZE
-			&& minimap_y >= MINIMAP_OFFSET && minimap_y < MINIMAP_OFFSET + MINIMAP_SIZE)
+		if (minimap_x >= MINIMAP_OFFSET && minimap_x < MINIMAP_OFFSET
+			+ MINIMAP_SIZE && minimap_y >= MINIMAP_OFFSET
+			&& minimap_y < MINIMAP_OFFSET + MINIMAP_SIZE)
 			my_put_pixel(img, minimap_x, minimap_y, 0xFFFFFFFF);
 		i++;
 	}
@@ -186,6 +187,8 @@ void	draw_minimap(t_map *map, t_img *img)
 			{
 				if (map->map[y][x] == '1')
 					draw_map(img, x, y, 0xFF0000, tile_size);
+				else if (map->map[y][x] == 'D')
+					draw_map(img, x, y, 0x654321, tile_size);
 				else
 					draw_map(img, x, y, 0x000000, tile_size);
 			}

@@ -6,7 +6,7 @@
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 11:20:20 by aautret           #+#    #+#             */
-/*   Updated: 2026/01/29 15:40:16 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/02/03 11:16:30 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ int	parse_map_line(t_game *game, char *line)
 	while (line[i])
 	{
 		if (!ft_strchr("10NSEW \n", line[i]))
-			return (printf("error: invalid caracter detected \n"), 1);
+			return (ft_error(NULL, "invalid caracter detected"), 1);
 		if (ft_strchr("NSEW", line[i]) && game->flag_players == 1)
-			return (printf("error: invalid number of players in map\n"), 1);
+			return (ft_error(NULL, "invalid number of player in map"), 1);
 		else if (ft_strchr("NSEW", line[i]) && game->flag_players == 0)
 		{
 			game->flag_players = 1;
