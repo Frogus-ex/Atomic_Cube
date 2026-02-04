@@ -6,7 +6,7 @@
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 13:13:10 by tlorette          #+#    #+#             */
-/*   Updated: 2026/02/03 10:54:02 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/02/04 16:27:08 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ typedef struct s_player
 	int			d_pressed;
 	int			left_pressed;
 	int			right_pressed;
+	int			space_pressed;
+	int			space_was_pressed;
 	int			mouse_x;
 	int			mouse_y;
 	double		direction_vue;
@@ -63,6 +65,8 @@ typedef struct s_map
 	int			width;
 	int			height;
 	int			total_size;
+	int			door_pos_x;
+	int			door_pos_y;
 	t_player	*player;
 }				t_map;
 
@@ -76,12 +80,15 @@ typedef struct s_game
 	char		*ea_text;
 	char		*f_text;
 	char		*c_text;
+	char		*door_text;
 	int			*c_rgb;
 	int			*f_rgb;
 	int			*nbr_text;
 	int			nbr_line;
 	int			fd;
 	int			flag_players;
+	int			door_open;
+	char		*av;
 	t_player	*player;
 	t_minimap	*minimap;
 	t_img		*img;
@@ -139,11 +146,11 @@ int				init_mlx(t_game *game, t_map *map, t_img *img);
 // floodfill.c
 void			free_tmp_map(t_map *map);
 int				alloc_tmp_map(t_map *map);
-void			tmp_map_copy(t_map *map, char *line);
 void			fill(t_map *map, int x, int y);
 int				flood_fill(t_map *map);
 
 // map_copy.c
+void			map_copy(t_map *map, char *line);
 int				get_greater_width(char *av);
 int				get_map_height(char *av);
 

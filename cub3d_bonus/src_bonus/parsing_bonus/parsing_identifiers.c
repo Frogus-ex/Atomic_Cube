@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_identifiers.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 09:37:30 by frogus            #+#    #+#             */
-/*   Updated: 2026/01/30 11:12:59 by aautret          ###   ########.fr       */
+/*   Updated: 2026/02/04 16:59:25 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,11 @@ static void	grab_no_text(t_game *game, char *line, int i)
 	while (line && line[i] == 32)
 		i++;
 	game->no_text = malloc(sizeof(char) * (ft_strlen(line) - i) + 1);
-	while (line[i] && line[i] != '\n')
+	while (line[i] && line[i] != '\n' && line[i] != '\r')
 		game->no_text[y++] = line[i++];
+	while (y > 0 && (game->no_text[y - 1] == 32 || game->no_text[y
+			- 1] == '\t'))
+		y--;
 	game->no_text[y] = '\0';
 	game->nbr_text[0]++;
 }
@@ -38,8 +41,11 @@ static void	grab_so_text(t_game *game, char *line, int i)
 	while (line && line[i] == 32)
 		i++;
 	game->so_text = malloc(sizeof(char) * (ft_strlen(line) - i) + 1);
-	while (line[i] && line[i] != '\n')
+	while (line[i] && line[i] != '\n' && line[i] != '\r')
 		game->so_text[y++] = line[i++];
+	while (y > 0 && (game->so_text[y - 1] == 32 || game->so_text[y
+			- 1] == '\t'))
+		y--;
 	game->so_text[y] = '\0';
 	game->nbr_text[1]++;
 }

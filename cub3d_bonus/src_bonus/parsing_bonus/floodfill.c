@@ -6,7 +6,7 @@
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 10:48:26 by tlorette          #+#    #+#             */
-/*   Updated: 2026/02/03 11:29:44 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/02/04 16:33:00 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,24 +53,6 @@ int	alloc_tmp_map(t_map *map)
 	}
 	map->tmp_map[map->height] = NULL;
 	return (1);
-}
-
-void	tmp_map_copy(t_map *map, char *line)
-{
-	int	len;
-
-	len = 0;
-	while (line[len])
-		len++;
-	map->x = 0;
-	while (map->x < map->width)
-	{
-		if (map->x < len && line[map->x] != ' ')
-			map->tmp_map[map->y][map->x] = line[map->x];
-		else
-			map->tmp_map[map->y][map->x] = '\0';
-		map->x++;
-	}
 }
 
 void	fill(t_map *map, int x, int y)

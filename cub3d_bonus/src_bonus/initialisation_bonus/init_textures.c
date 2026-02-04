@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_textures.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 11:44:23 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/30 11:11:42 by aautret          ###   ########.fr       */
+/*   Updated: 2026/02/04 17:04:50 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,11 @@ void	grab_we_text(t_game *game, char *line, int i)
 	while (line && line[i] == 32)
 		i++;
 	game->we_text = malloc((ft_strlen(line) - i) + 1);
-	while (line[i] && line[i] != '\n')
+	while (line[i] && line[i] != '\n' && line[i] != '\r')
 		game->we_text[y++] = line[i++];
+	while (y > 0 && (game->we_text[y - 1] == 32
+			|| game->we_text[y - 1] == '\t'))
+		y--;
 	game->we_text[y] = '\0';
 	game->nbr_text[2]++;
 }
@@ -52,8 +55,11 @@ void	grab_ea_text(t_game *game, char *line, int i)
 	while (line && line[i] == 32)
 		i++;
 	game->ea_text = malloc(sizeof(char) * (ft_strlen(line) - i) + 1);
-	while (line[i] && line[i] != '\n')
+	while (line[i] && line[i] != '\n' && line[i] != '\r')
 		game->ea_text[y++] = line[i++];
+	while (y > 0 && (game->ea_text[y - 1] == 32 || game->ea_text[y
+			- 1] == '\t'))
+		y--;
 	game->ea_text[y] = '\0';
 	game->nbr_text[3]++;
 }
@@ -75,8 +81,10 @@ void	grab_f_text(t_game *game, char *line, int i)
 	while (line && line[i] == 32)
 		i++;
 	game->f_text = malloc(sizeof(char) * (ft_strlen(line) - i) + 1);
-	while (line[i] && line[i] != '\n')
+	while (line[i] && line[i] != '\n' && line[i] != '\r')
 		game->f_text[y++] = line[i++];
+	while (y > 0 && (game->f_text[y - 1] == 32 || game->f_text[y - 1] == '\t'))
+		y--;
 	game->f_text[y] = '\0';
 	game->nbr_text[4]++;
 }
@@ -98,14 +106,15 @@ void	grab_c_text(t_game *game, char *line, int i)
 	while (line && line[i] == 32)
 		i++;
 	game->c_text = malloc(sizeof(char) * (ft_strlen(line) - i) + 1);
-	while (line[i] && line[i] != '\n')
+	while (line[i] && line[i] != '\n' && line[i] != '\r')
 		game->c_text[y++] = line[i++];
+	while (y > 0 && (game->c_text[y - 1] == 32 || game->c_text[y - 1] == '\t'))
+		y--;
 	game->c_text[y] = '\0';
 	game->nbr_text[5]++;
 }
 
-int	load_single_texture(t_game *game, char *path, void **img,
-		char **data)
+int	load_single_texture(t_game *game, char *path, void **img, char **data)
 {
 	int	w;
 	int	h;

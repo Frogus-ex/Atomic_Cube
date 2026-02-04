@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_struct_cub3d.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 16:52:39 by aautret           #+#    #+#             */
-/*   Updated: 2026/01/30 12:02:00 by aautret          ###   ########.fr       */
+/*   Updated: 2026/02/04 16:59:51 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ void	map_init(t_map **map)
 	*map = ft_calloc(1, sizeof(t_map));
 	if (!*map)
 		return (ft_error(NULL, "map init failed"));
+	(*map)->door_pos_x = -1;
+	(*map)->door_pos_y = -1;
 }
 
 void	minimap_init(t_minimap **minimap)

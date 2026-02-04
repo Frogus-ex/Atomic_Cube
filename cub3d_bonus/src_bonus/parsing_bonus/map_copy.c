@@ -6,7 +6,7 @@
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 16:38:28 by tlorette          #+#    #+#             */
-/*   Updated: 2026/02/03 11:30:35 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/02/04 15:59:18 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	store_map_char(t_map *map, char *line)
 	}
 }
 
-static void	map_copy(t_map *map, char *line)
+void	map_copy(t_map *map, char *line)
 {
 	int	line_len;
 

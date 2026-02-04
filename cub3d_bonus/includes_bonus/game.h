@@ -26,10 +26,12 @@ typedef struct s_texture
 	void				*tex_so_img;
 	void				*tex_ea_img;
 	void				*tex_we_img;
+	void				*tex_door_img;
 	char				*tex_no_data;
 	char				*tex_so_data;
 	char				*tex_ea_data;
 	char				*tex_we_data;
+	char				*tex_door_data;
 	int					tex_width;
 	int					tex_height;
 	int					tex_bpp;
@@ -50,6 +52,7 @@ typedef struct s_ray_params
 	int					map_x;
 	int					map_y;
 	int					found_wall;
+	int					is_door;
 	double				distance;
 	int					is_horizontal;
 }						t_ray_params;
@@ -128,5 +131,9 @@ void					get_wall_hit_dda(t_img *img, t_ray_params *params,
 void					get_distance_dda(t_img *img, t_ray_params *params,
 							double ray_angle);
 void					cast_ray_dda(t_img *img, double ray_angle, int column);
+
+//doors.c
+void	open_door(t_game *game);
+
 
 #endif

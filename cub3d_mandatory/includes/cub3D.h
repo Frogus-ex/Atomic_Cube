@@ -6,7 +6,7 @@
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 13:13:10 by tlorette          #+#    #+#             */
-/*   Updated: 2026/02/03 10:53:12 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/02/03 14:11:58 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ typedef struct s_map
 	int			width;
 	int			height;
 	int			total_size;
+	int			is_door;
 	t_player	*player;
 }				t_map;
 

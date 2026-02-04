@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 00:00:00 by aautret           #+#    #+#             */
-/*   Updated: 2026/01/30 11:11:27 by aautret          ###   ########.fr       */
+/*   Updated: 2026/02/03 14:18:03 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ void	setup_vertical_ray(t_img *img, double ray_angle, t_ray_params *params)
  */
 double	cast_ray(t_img *img, t_ray_params *params)
 {
-	while (!params->found_wall)
+	while (!params->found_wall && !params->is_door)
 	{
 		params->map_x = (int)(params->ray_hit_x) / TILE_SIZE;
 		params->map_y = (int)(params->ray_hit_y) / TILE_SIZE;
@@ -113,6 +113,8 @@ double	cast_ray(t_img *img, t_ray_params *params)
 			break ;
 		if (img->map->map[(int)params->map_y][(int)params->map_x] == '1')
 			params->found_wall = 1;
+		else if (img->map->map[(int)params->map_y][(int)params->map_x] == 'D')
+			params->is_door = 1;
 		else
 		{
 			params->ray_hit_x += params->step_x;

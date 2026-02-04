@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aautret <aautret@student.42.fr>            +#+  +:+       +#+         #
+#    By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/06 11:20:20 by aautret           #+#    #+#              #
-#    Updated: 2026/01/30 11:26:45 by aautret          ###   ########.fr        #
+#    Updated: 2026/02/04 15:31:35 by tlorette         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -96,6 +96,7 @@ SRCS_BONUS := \
 	$(SRC_DIR_BONUS)/game_bonus/manage_textures.c \
 	$(SRC_DIR_BONUS)/game_bonus/raycaster.c \
 	$(SRC_DIR_BONUS)/game_bonus/raycast_utils.c \
+	$(SRC_DIR_BONUS)/game_bonus/doors.c \
 	$(SRC_DIR_BONUS)/initialisation_bonus/init_struct_cub3d.c \
 	$(SRC_DIR_BONUS)/initialisation_bonus/init_struct_game.c \
 	$(SRC_DIR_BONUS)/initialisation_bonus/init_textures.c \
@@ -109,7 +110,7 @@ SRCS_BONUS := \
 	$(SRC_DIR_BONUS)/parsing_bonus/parsing_param.c \
 	$(SRC_DIR_BONUS)/parsing_bonus/parse_rgb_text.c \
 	$(SRC_DIR_BONUS)/parsing_bonus/parsing.c \
-	$(SRC_DIR_BONUS)/utils_bonus/utils.c
+	$(SRC_DIR_BONUS)/utils_bonus/utils.c \
 
 # ==============================================================================
 # SOURCES GET_NEXT_LINE

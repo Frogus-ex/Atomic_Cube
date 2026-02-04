@@ -6,7 +6,7 @@
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 11:54:06 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/30 17:56:06 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/02/03 14:42:48 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ int	key_press(int keycode, t_game *game)
 		game->player->left_pressed = 1;
 	if (keycode == RIGHT)
 		game->player->right_pressed = 1;
+	if (keycode == SPACE)
+		game->player->space_pressed = 1;
 	return (0);
 }
 
@@ -51,6 +53,8 @@ int	key_released(int keycode, t_game *game)
 		game->player->left_pressed = 0;
 	if (keycode == RIGHT)
 		game->player->right_pressed = 0;
+	if (keycode == SPACE)
+		game->player->space_pressed = 0;
 	return (0);
 }
 
@@ -58,12 +62,20 @@ int	collision_checker(t_img *img)
 {
 	if (img->map->map[(int)floor((img->ny + 10)
 				/ TILE_SIZE)][(int)floor((img->nx + 10) / TILE_SIZE)] != '1'
+		&& img->map->map[(int)floor((img->ny + 10)
+			/ TILE_SIZE)][(int)floor((img->nx + 10) / TILE_SIZE)] != 'D'
 		&& img->map->map[(int)floor((img->ny - 10)
 			/ TILE_SIZE)][(int)floor((img->nx - 10) / TILE_SIZE)] != '1'
+		&& img->map->map[(int)floor((img->ny - 10)
+			/ TILE_SIZE)][(int)floor((img->nx - 10) / TILE_SIZE)] != 'D'
 		&& img->map->map[(int)floor((img->ny + 10)
 			/ TILE_SIZE)][(int)floor((img->nx - 10) / TILE_SIZE)] != '1'
+		&& img->map->map[(int)floor((img->ny + 10)
+			/ TILE_SIZE)][(int)floor((img->nx - 10) / TILE_SIZE)] != 'D'
 		&& img->map->map[(int)floor((img->ny - 10)
-			/ TILE_SIZE)][(int)floor((img->nx + 10) / TILE_SIZE)] != '1')
+			/ TILE_SIZE)][(int)floor((img->nx + 10) / TILE_SIZE)] != '1'
+		&& img->map->map[(int)floor((img->ny - 10)
+			/ TILE_SIZE)][(int)floor((img->nx + 10) / TILE_SIZE)] != 'D')
 		return (1);
 	return (0);
 }

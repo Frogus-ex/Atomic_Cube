@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   manage_moves.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 11:38:02 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/30 18:00:40 by aautret          ###   ########.fr       */
+/*   Updated: 2026/02/04 16:26:38 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,9 @@ static double	calc_dx(t_img *img, int keycode)
 	double	speed;
 
 	dx = 0.0;
-	speed = 2.5;
+	speed = 5;
 	if (!img || !img->player)
 		return (dx);
-	speed = 7.5;
 	if (keycode == W)
 		dx = cos(img->player->direction_vue) * speed;
 	else if (keycode == S)
@@ -70,10 +69,9 @@ static double	calc_dy(t_img *img, int keycode)
 	double	speed;
 
 	dy = 0.0;
-	speed = 2.5;
+	speed = 5;
 	if (!img || !img->player)
 		return (dy);
-	speed = 7.5;
 	if (keycode == W)
 		dy = sin(img->player->direction_vue) * speed;
 	else if (keycode == S)
@@ -97,6 +95,13 @@ static void	simple_mooves(t_game *game, t_img *img)
 		moving_pix_by_pix(img, calc_dx(img, A), calc_dy(img, A));
 	if (game->player->d_pressed)
 		moving_pix_by_pix(img, calc_dx(img, D), calc_dy(img, D));
+	if (game->player->space_pressed && !game->player->space_was_pressed)
+	{
+		open_door(game);
+		game->player->space_was_pressed = 1;
+	}
+	else if (!game->player->space_pressed)
+		game->player->space_was_pressed = 0;
 }
 
 /**

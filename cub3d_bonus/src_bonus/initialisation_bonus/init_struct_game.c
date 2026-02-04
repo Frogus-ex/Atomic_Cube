@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_struct_game.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 16:55:26 by aautret           #+#    #+#             */
-/*   Updated: 2026/01/30 11:12:00 by aautret          ###   ########.fr       */
+/*   Updated: 2026/02/03 14:14:23 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	init_ray_params(t_ray_params *params)
 	params->map_x = 0;
 	params->map_y = 0;
 	params->found_wall = 0;
+	params->is_door = 0;
 	params->distance = 0;
 	params->is_horizontal = 0;
 }
@@ -49,6 +50,8 @@ int	load_textures(t_game *game)
 		|| load_single_texture(game, game->ea_text,
 			(void **)&game->textures->tex_ea_img, &game->textures->tex_ea_data)
 		|| load_single_texture(game, game->we_text,
-			(void **)&game->textures->tex_we_img,
-			&game->textures->tex_we_data));
+			(void **)&game->textures->tex_we_img, &game->textures->tex_we_data)
+		|| load_single_texture(game, "./xpms/door.xpm",
+			(void **)&game->textures->tex_door_img,
+			&game->textures->tex_door_data));
 }
