@@ -6,7 +6,7 @@
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 13:25:04 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/30 17:54:32 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/02/03 10:54:42 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ int	init_mlx(t_game *game, t_map *map, t_img *img)
 	mlx_hook(game->win, 2, 1L << 0, key_press, game);
 	mlx_hook(game->win, 3, 1L << 1, key_released, game);
 	mlx_hook(game->win, 17, 0, cross_close, game);
+	mlx_mouse_move(game->mlx, game->win, game->player->mouse_x,
+		game->player->mouse_y);
 	mlx_loop_hook(game->mlx, game_loop, game);
-	// mlx_loop_hook(game->mlx, player_input, game);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 13:18:39 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/30 10:52:00 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/02/03 11:19:16 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ static int	parsing_check_all(t_game *game, char **av, t_map *map)
 	if (!check_arg_param(av))
 		return (1);
 	if (parsing(game, av[1]))
-		return (free_all(game), 1);
+		return (1);
 	read_from_map(game, map, av[1]);
 	if (flood_fill(map))
-		return (free_all(game), 1);
+		return (1);
 	return (0);
 }
 

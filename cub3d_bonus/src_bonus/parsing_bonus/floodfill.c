@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   floodfill.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 10:48:26 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/30 11:12:40 by aautret          ###   ########.fr       */
+/*   Updated: 2026/02/03 11:29:44 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void	fill(t_map *map, int x, int y)
 	}
 	if (map->tmp_map[y][x] != '0' && map->tmp_map[y][x] != 'N'
 		&& map->tmp_map[y][x] != 'S' && map->tmp_map[y][x] != 'E'
-		&& map->tmp_map[y][x] != 'W')
+		&& map->tmp_map[y][x] != 'W' && map->tmp_map[y][x] != 'D')
 	{
 		map->total_size = -1;
 		return ;
@@ -100,30 +100,6 @@ void	fill(t_map *map, int x, int y)
 	fill(map, x + 1, y);
 	fill(map, x - 1, y);
 }
-
-// void	print_map(t_map *map)
-// {
-// 	int	i;
-// 	int	j;
-
-// 	printf("\n=== MAP AFTER FLOOD FILL ===\n");
-// 	i = 0;
-// 	while (i < map->height)
-// 	{
-// 		j = 0;
-// 		while (j < map->width)
-// 		{
-// 			if (map->tmp_map[i][j] == '\0')
-// 				printf(" ");
-// 			else
-// 				printf("%c", map->tmp_map[i][j]);
-// 			j++;
-// 		}
-// 		printf("\n");
-// 		i++;
-// 	}
-// 	printf("===========================\n\n");
-// }
 
 int	flood_fill(t_map *map)
 {
