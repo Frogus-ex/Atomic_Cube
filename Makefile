@@ -6,7 +6,7 @@
 #    By: aautret <aautret@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/06 11:20:20 by aautret           #+#    #+#              #
-#    Updated: 2026/01/30 11:26:45 by aautret          ###   ########.fr        #
+#    Updated: 2026/02/04 17:13:40 by aautret          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -87,6 +87,7 @@ SRCS_MAND := \
 
 SRCS_BONUS := \
 	$(SRC_DIR_BONUS)/main.c \
+	$(SRC_DIR_BONUS)/animate_bonus/animate.c \
 	$(SRC_DIR_BONUS)/clean_bonus/cleaner.c \
 	$(SRC_DIR_BONUS)/clean_bonus/cleaner_utils.c \
 	$(SRC_DIR_BONUS)/game_bonus/draw_game.c \

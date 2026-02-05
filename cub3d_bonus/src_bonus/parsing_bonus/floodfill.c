@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   floodfill.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 10:48:26 by tlorette          #+#    #+#             */
-/*   Updated: 2026/02/03 11:29:44 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/02/05 13:36:48 by aautret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,8 @@ void	fill(t_map *map, int x, int y)
 	}
 	if (map->tmp_map[y][x] != '0' && map->tmp_map[y][x] != 'N'
 		&& map->tmp_map[y][x] != 'S' && map->tmp_map[y][x] != 'E'
-		&& map->tmp_map[y][x] != 'W' && map->tmp_map[y][x] != 'D')
+		&& map->tmp_map[y][x] != 'W' && map->tmp_map[y][x] != 'D'
+		&& map->tmp_map[y][x] != 'A')
 	{
 		map->total_size = -1;
 		return ;

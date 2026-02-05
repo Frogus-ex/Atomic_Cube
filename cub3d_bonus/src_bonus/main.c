@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 13:18:39 by tlorette          #+#    #+#             */
-/*   Updated: 2026/02/03 11:19:44 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/02/05 13:36:48 by aautret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ t_game	*init_all(void)
 	if (!map)
 		return (free_all(game), NULL);
 	game->map = map;
+	game->animate = NULL;
+	map->s_animate = NULL;
 	text_init(&texture);
 	if (!texture)
 		return (free_all(game), NULL);
@@ -98,6 +100,12 @@ int	main(int ac, char **av)
 		return (ft_error(game, "colors param are not in RGB format"), 0);
 	if (!init_mlx(game, game->map, game->img))
 		return (0);
+	if (game->map->s_animate && game->map->s_animate->x >= 0)
+	{
+		game->animate = game->map->s_animate;
+		if (!load_sprite(game, game->animate))
+			printf("Warning: Failed to load sprite frames\n");
+	}
 	render_frame(game->img);
 	mlx_loop(game->mlx);
 	return (free_all(game), 0);

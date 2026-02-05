@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_copy.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 16:38:28 by tlorette          #+#    #+#             */
-/*   Updated: 2026/02/03 11:30:35 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/02/05 13:36:48 by aautret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,18 @@ static void	store_map_char(t_map *map, char *line)
 	{
 		map->player_x = map->x;
 		map->player_y = map->y;
+	}
+	if (line[map->x] == 'A')
+	{
+		if (!map->s_animate)
+		{
+			animate_init(&map->s_animate);
+			if (map->s_animate)
+			{
+				map->s_animate->x = map->x;
+				map->s_animate->y = map->y;
+			}
+		}
 	}
 }
 

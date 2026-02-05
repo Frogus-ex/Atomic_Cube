@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 13:13:10 by tlorette          #+#    #+#             */
-/*   Updated: 2026/02/03 10:54:02 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/02/04 17:13:39 by aautret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,19 @@ typedef struct s_player
 
 }				t_player;
 
+typedef struct s_animate
+{
+	double		x;
+	double		y;
+	void		*frame[6];
+	int			current_frame;
+	int			frame_count;
+	int			frame_ms;
+	int			acc_ms;
+	int			frame_width;
+	int			frame_height;
+}				t_animate;
+
 typedef struct s_map
 {
 	char		**map;
@@ -63,6 +76,7 @@ typedef struct s_map
 	int			width;
 	int			height;
 	int			total_size;
+	t_animate	*s_animate;
 	t_player	*player;
 }				t_map;
 
@@ -86,6 +100,7 @@ typedef struct s_game
 	t_minimap	*minimap;
 	t_img		*img;
 	t_map		*map;
+	t_animate	*animate;
 	t_texture	*textures;
 }				t_game;
 
@@ -108,6 +123,7 @@ int				cleanup(t_game *game);
 void			player_init(t_player **player, t_game *game);
 void			map_init(t_map **map);
 void			minimap_init(t_minimap **minimap);
+void			animate_init(t_animate **animate);
 void			game_init(t_game **game);
 
 // intit_struct_game.c
@@ -168,6 +184,13 @@ int				parsing(t_game *game, char *av);
 
 // cleaner.c
 void			free_map_array(t_map *map);
+
+/************************************************************************
+ *								ANIMATE									*
+ ***********************************************************************/
+// animate.c
+int				load_sprite(t_game *game, t_animate *animate);
+void			update_sprite_animation(t_animate *animate, int delta_ms);
 
 /************************************************************************
  *								UTILS									*

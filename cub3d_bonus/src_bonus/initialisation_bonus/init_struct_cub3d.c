@@ -6,7 +6,7 @@
 /*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 16:52:39 by aautret           #+#    #+#             */
-/*   Updated: 2026/01/30 12:02:00 by aautret          ###   ########.fr       */
+/*   Updated: 2026/02/05 13:36:48 by aautret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,27 @@ void	minimap_init(t_minimap **minimap)
 		return (ft_error(NULL, "minimap init failed"));
 	(*minimap)->player_pos_x = 0;
 	(*minimap)->player_pos_y = 0;
+}
+
+void	animate_init(t_animate **animate)
+{
+	int	i;
+
+	*animate = ft_calloc(1, sizeof(t_animate));
+	if (!*animate)
+		return (ft_error(NULL, "animate init failed"));
+	(*animate)->frame_ms = 120;
+	(*animate)->frame_count = 6;
+	(*animate)->current_frame = 0;
+	(*animate)->acc_ms = 0;
+	(*animate)->x = -1;
+	(*animate)->y = -1;
+	i = 0;
+	while (i < 6)
+	{
+		(*animate)->frame[i] = NULL;
+		i++;
+	}
 }
 
 void	game_init(t_game **game)
