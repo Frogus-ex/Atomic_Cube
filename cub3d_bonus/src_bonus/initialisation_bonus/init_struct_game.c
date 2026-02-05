@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_struct_game.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
+/*   By: frogus <frogus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 16:55:26 by aautret           #+#    #+#             */
-/*   Updated: 2026/02/03 14:14:23 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/02/05 10:45:37 by frogus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,15 +43,17 @@ void	init_ray_params(t_ray_params *params)
 
 int	load_textures(t_game *game)
 {
-	return (load_single_texture(game, game->no_text,
-			(void **)&game->textures->tex_no_img, &game->textures->tex_no_data)
-		|| load_single_texture(game, game->so_text,
-			(void **)&game->textures->tex_so_img, &game->textures->tex_so_data)
-		|| load_single_texture(game, game->ea_text,
-			(void **)&game->textures->tex_ea_img, &game->textures->tex_ea_data)
-		|| load_single_texture(game, game->we_text,
-			(void **)&game->textures->tex_we_img, &game->textures->tex_we_data)
-		|| load_single_texture(game, "./xpms/door.xpm",
-			(void **)&game->textures->tex_door_img,
-			&game->textures->tex_door_data));
+	if (load_single_texture(game, game->no_text,
+			(void **)&game->textures->tex_no_img, &game->textures->tex_no_data))
+		return (1);
+	if (load_single_texture(game, game->so_text,
+			(void **)&game->textures->tex_so_img, &game->textures->tex_so_data))
+		return (1);
+	if (load_single_texture(game, game->ea_text,
+			(void **)&game->textures->tex_ea_img, &game->textures->tex_ea_data))
+		return (1);
+	if (load_single_texture(game, game->we_text,
+			(void **)&game->textures->tex_we_img, &game->textures->tex_we_data))
+		return (1);
+	return (0);
 }

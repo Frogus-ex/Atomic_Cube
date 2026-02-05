@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
+/*   By: frogus <frogus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 13:25:04 by tlorette          #+#    #+#             */
-/*   Updated: 2026/02/03 10:54:42 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/02/05 10:46:21 by frogus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ int	init_mlx(t_game *game, t_map *map, t_img *img)
 	game->mlx = mlx_init();
 	if (!game->mlx)
 		return (ft_error(game, "mlx_init failed"), 0);
-	load_textures(game);
+	if (load_textures(game))
+		return (0);
 	img->width = SCREEN_WIDTH;
 	img->height = SCREEN_HEIGHT;
 	game->win = mlx_new_window(game->mlx, img->width, img->height, WND_NAME);

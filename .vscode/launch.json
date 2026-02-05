@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": false,
-      "cwd": "/home/tlorette/Documents/Work/GiTom_42/cub3D",
-      "program": "/home/tlorette/Documents/Work/GiTom_42/cub3D/build/Debug/outDebug",
+      "cwd": "/home/frogus/work/atomicube",
+      "program": "/home/frogus/work/atomicube/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

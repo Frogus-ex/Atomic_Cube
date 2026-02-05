@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cleaner.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
+/*   By: frogus <frogus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 14:08:43 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/30 11:10:15 by aautret          ###   ########.fr       */
+/*   Updated: 2026/02/05 12:16:25 by frogus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ void	free_all(t_game *game)
 			mlx_destroy_image(game->mlx, game->img->img);
 		free(game->img);
 	}
+	if (game->minimap)
+		free(game->minimap);
 	if (game->win && game->mlx)
 		mlx_destroy_window(game->mlx, game->win);
 	if (game->mlx)
