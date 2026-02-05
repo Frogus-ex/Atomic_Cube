@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
+/*   By: autret <autret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 00:00:00 by aautret           #+#    #+#             */
-/*   Updated: 2026/01/30 11:11:27 by aautret          ###   ########.fr       */
+/*   Updated: 2026/02/05 16:48:58 by autret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,10 @@ void	setup_horizontal_ray(t_img *img, double ray_angle, t_ray_params *params)
 	tan_val = tan(ray_angle);
 	if (fabs(tan_val) < 0.0001)
 		tan_val = 0.0001;
-	params->ray_hit_x = img->player->origin_x + \
-		(params->ray_hit_y - img->player->origin_y) / tan_val;
+	params->ray_hit_x = img->player->origin_x
+		+ (params->ray_hit_y - img->player->origin_y) / tan_val;
 	params->step_x = TILE_SIZE / tan_val;
-	if ((cos(ray_angle) < 0 && params->step_x > 0) \
+	if ((cos(ray_angle) < 0 && params->step_x > 0)
 		|| (cos(ray_angle) > 0 && params->step_x < 0))
 		params->step_x = -params->step_x;
 }
@@ -80,10 +80,10 @@ void	setup_vertical_ray(t_img *img, double ray_angle, t_ray_params *params)
 		params->step_x = -TILE_SIZE;
 	}
 	tan_val = tan(ray_angle);
-	params->ray_hit_y = img->player->origin_y + \
-		(params->ray_hit_x - img->player->origin_x) * tan_val;
+	params->ray_hit_y = img->player->origin_y
+		+ (params->ray_hit_x - img->player->origin_x) * tan_val;
 	params->step_y = TILE_SIZE * tan_val;
-	if ((sin(ray_angle) < 0 && params->step_y > 0) \
+	if ((sin(ray_angle) < 0 && params->step_y > 0)
 		|| (sin(ray_angle) > 0 && params->step_y < 0))
 		params->step_y = -params->step_y;
 }
@@ -108,7 +108,7 @@ double	cast_ray(t_img *img, t_ray_params *params)
 	{
 		params->map_x = (int)(params->ray_hit_x) / TILE_SIZE;
 		params->map_y = (int)(params->ray_hit_y) / TILE_SIZE;
-		if (params->map_x < 0 || params->map_x >= img->map->width \
+		if (params->map_x < 0 || params->map_x >= img->map->width
 			|| params->map_y < 0 || params->map_y >= img->map->height)
 			break ;
 		if (img->map->map[(int)params->map_y][(int)params->map_x] == '1')
@@ -119,6 +119,6 @@ double	cast_ray(t_img *img, t_ray_params *params)
 			params->ray_hit_y += params->step_y;
 		}
 	}
-	return (sqrt(pow(params->ray_hit_x - img->player->origin_x, 2) + \
-				pow(params->ray_hit_y - img->player->origin_y, 2)));
+	return (sqrt(pow(params->ray_hit_x - img->player->origin_x, 2)
+			+ pow(params->ray_hit_y - img->player->origin_y, 2)));
 }
