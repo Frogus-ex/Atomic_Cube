@@ -6,7 +6,7 @@
 /*   By: autret <autret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 13:18:39 by tlorette          #+#    #+#             */
-/*   Updated: 2026/02/05 15:19:06 by autret           ###   ########.fr       */
+/*   Updated: 2026/02/05 17:35:56 by autret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,27 @@ t_game	*init_all(void)
 	return (game);
 }
 
+static void	load_all_sprites(t_game *game)
+{
+	int	i;
+
+	if (!game->map || game->map->sprite_count <= 0)
+		return ;
+	i = 0;
+	while (i < game->map->sprite_count)
+	{
+		game->map->sprites[i]->x = game->map->sprites[i]->x * TILE_SIZE
+			+ TILE_SIZE / 2;
+		game->map->sprites[i]->y = game->map->sprites[i]->y * TILE_SIZE
+			+ TILE_SIZE / 2;
+		if (!load_sprite(game, game->map->sprites[i]))
+			printf("Warning: Failed to load sprite %d frames\n", i);
+		i++;
+	}
+	if (game->map->s_animate)
+		game->animate = game->map->s_animate;
+}
+
 int	main(int ac, char **av)
 {
 	t_game	*game;
@@ -100,20 +121,7 @@ int	main(int ac, char **av)
 		return (ft_error(game, "colors param are not in RGB format"), 0);
 	if (!init_mlx(game, game->map, game->img))
 		return (0);
-	if (game->map->sprite_count > 0)
-	{
-		int i = 0;
-		while (i < game->map->sprite_count)
-		{
-			game->map->sprites[i]->x = game->map->sprites[i]->x * TILE_SIZE + TILE_SIZE / 2;
-			game->map->sprites[i]->y = game->map->sprites[i]->y * TILE_SIZE + TILE_SIZE / 2;
-			if (!load_sprite(game, game->map->sprites[i]))
-				printf("Warning: Failed to load sprite %d frames\n", i);
-			i++;
-		}
-		if (game->map->s_animate)
-			game->animate = game->map->s_animate;
-	}
+	load_all_sprites(game);
 	render_frame(game->img);
 	mlx_loop(game->mlx);
 	return (free_all(game), 0);
