@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   manage_moves.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
+/*   By: autret <autret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 11:38:02 by tlorette          #+#    #+#             */
-/*   Updated: 2026/02/04 17:20:42 by aautret          ###   ########.fr       */
+/*   Updated: 2026/02/05 16:46:33 by autret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
  * @param dx   Déplacement en pixels sur l'axe X
  * @param dy   Déplacement en pixels sur l'axe Y
  */
-static void	moving_pix_by_pix(t_img *img, double dx, double dy)
+void	moving_pix_by_pix(t_img *img, double dx, double dy)
 {
 	if (!img || !img->player || !img->map)
 		return ;
@@ -43,7 +43,7 @@ static void	moving_pix_by_pix(t_img *img, double dx, double dy)
 	}
 }
 
-static double	calc_dx(t_img *img, int keycode)
+double	calc_dx(t_img *img, int keycode)
 {
 	double	dx;
 	double	speed;
@@ -64,7 +64,7 @@ static double	calc_dx(t_img *img, int keycode)
 	return (dx);
 }
 
-static double	calc_dy(t_img *img, int keycode)
+double	calc_dy(t_img *img, int keycode)
 {
 	double	dy;
 	double	speed;
@@ -85,63 +85,16 @@ static double	calc_dy(t_img *img, int keycode)
 	return (dy);
 }
 
-static void	simple_mooves(t_game *game, t_img *img)
+void	update_all_sprites(t_game *game, int delta_ms)
 {
-	if (!game || !game->player || !img)
+	int	i;
+
+	if (!game->map || game->map->sprite_count <= 0)
 		return ;
-	if (game->player->w_pressed)
-		moving_pix_by_pix(img, calc_dx(img, W), calc_dy(img, W));
-	if (game->player->s_pressed)
-		moving_pix_by_pix(img, calc_dx(img, S), calc_dy(img, S));
-	if (game->player->a_pressed)
-		moving_pix_by_pix(img, calc_dx(img, A), calc_dy(img, A));
-	if (game->player->d_pressed)
-		moving_pix_by_pix(img, calc_dx(img, D), calc_dy(img, D));
-}
-
-/**
- * @brief Gère les entrées clavier et déclenche les actions correspondantes
- *
- * Touches gérées :
- *  - W/S : avancer / reculer (avec dx/dy calculés depuis direction_vue)
- *  - A/D :gauche/droite
- *  - LEFT/RIGHT : rotation de la vue (modifie direction_vue et redessine)
- *  - ESC : quitte via cleanup()
- *
- * @param param Pointeur vers t_img casté en void*
- * @return int Toujours 0.
- */
-
-int	game_loop(t_game *game)
-{
-	int		current_x;
-	int		delta_x;
-	float	rotation_speed;
-	static int	last_time = 0;
-	int			current_time;
-	int			delta_ms;
-
-	if (!game || !game->player || !game->img)
-		return (0);
-	current_time = clock() * 1000 / CLOCKS_PER_SEC;
-	delta_ms = current_time - last_time;
-	if (last_time == 0)
-		delta_ms = 16;
-	last_time = current_time;
-	current_x = 0;
-	mlx_mouse_get_pos(game->mlx, game->win, &current_x, &game->player->mouse_y);
-	delta_x = current_x - game->player->mouse_x;
-	game->player->mouse_x = current_x;
-	rotation_speed = 0.005f;
-	if (delta_x != 0)
-		game->player->direction_vue += delta_x * rotation_speed;
-	if (game->player->left_pressed)
-		game->player->direction_vue -= 0.05;
-	if (game->player->right_pressed)
-		game->player->direction_vue += 0.05;
-	simple_mooves(game, game->img);
-	if (game->animate)
-		update_sprite_animation(game->animate, delta_ms);
-	render_frame(game->img);
-	return (0);
+	i = 0;
+	while (i < game->map->sprite_count)
+	{
+		update_sprite_animation(game->map->sprites[i], delta_ms);
+		i++;
+	}
 }
