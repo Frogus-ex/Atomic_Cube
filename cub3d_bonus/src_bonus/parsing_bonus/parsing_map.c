@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
+/*   By: autret <autret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 11:20:20 by aautret           #+#    #+#             */
-/*   Updated: 2026/02/04 16:05:54 by aautret          ###   ########.fr       */
+/*   Updated: 2026/02/05 15:50:15 by autret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@
  * - Si aucun '1' trouvé, retourner erreur
  *
  * - Boucler a partir de first_one
- *      - Vérifier que chaque caractère est valide (1, 0, N, S, E, W, D, A ou espace)
+ *      - Vérifier que chaque caractère est valide
+ *        (1, 0, N, S, E, W, D, A ou espace)
  *      - Si c'est un espace :
  *           - Check encadrement avant
  *           - Chercher le prochain caractère non-espace APRÈS cet espace
