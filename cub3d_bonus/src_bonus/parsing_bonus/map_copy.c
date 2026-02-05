@@ -3,36 +3,41 @@
 /*                                                        :::      ::::::::   */
 /*   map_copy.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
+/*   By: autret <autret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 16:38:28 by tlorette          #+#    #+#             */
-/*   Updated: 2026/02/05 13:36:48 by aautret          ###   ########.fr       */
+/*   Updated: 2026/02/05 16:03:19 by autret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes_bonus/cub3D.h"
 
+static void	add_sprite_to_map(t_map *map)
+{
+	t_animate	**new_sprites;
+
+	new_sprites = copy_sprites_array(map);
+	if (!new_sprites)
+		return ;
+	animate_init(&new_sprites[map->sprite_count]);
+	if (new_sprites[map->sprite_count])
+	{
+		new_sprites[map->sprite_count]->x = map->x;
+		new_sprites[map->sprite_count]->y = map->y;
+	}
+	free(map->sprites);
+	map->sprites = new_sprites;
+	map->sprite_count++;
+	if (!map->s_animate)
+		map->s_animate = new_sprites[0];
+}
+
 static void	store_map_char(t_map *map, char *line)
 {
 	map->map[map->y][map->x] = line[map->x];
-	if (line[map->x] == 'S' || line[map->x] == 'E' || line[map->x] == 'W'
-		|| line[map->x] == 'N')
-	{
-		map->player_x = map->x;
-		map->player_y = map->y;
-	}
+	store_player_position(map, line[map->x]);
 	if (line[map->x] == 'A')
-	{
-		if (!map->s_animate)
-		{
-			animate_init(&map->s_animate);
-			if (map->s_animate)
-			{
-				map->s_animate->x = map->x;
-				map->s_animate->y = map->y;
-			}
-		}
-	}
+		add_sprite_to_map(map);
 }
 
 static void	map_copy(t_map *map, char *line)

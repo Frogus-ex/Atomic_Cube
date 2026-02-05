@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_copy_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
+/*   By: autret <autret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 16:15:08 by aautret           #+#    #+#             */
-/*   Updated: 2026/01/30 11:12:45 by aautret          ###   ########.fr       */
+/*   Updated: 2026/02/05 16:15:23 by autret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,4 +71,30 @@ int	get_map_height(char *av)
 		line = get_next_line(fd, &stash);
 	}
 	return (height);
+}
+
+void	store_player_position(t_map *map, char c)
+{
+	if (c == 'S' || c == 'E' || c == 'W' || c == 'N')
+	{
+		map->player_x = map->x;
+		map->player_y = map->y;
+	}
+}
+
+t_animate	**copy_sprites_array(t_map *map)
+{
+	t_animate	**new_sprites;
+	int			i;
+
+	new_sprites = ft_calloc(map->sprite_count + 2, sizeof(t_animate *));
+	if (!new_sprites)
+		return (NULL);
+	i = 0;
+	while (i < map->sprite_count)
+	{
+		new_sprites[i] = map->sprites[i];
+		i++;
+	}
+	return (new_sprites);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
+/*   By: autret <autret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/30 11:23:38 by aautret           #+#    #+#             */
-/*   Updated: 2026/01/30 17:39:50 by aautret          ###   ########.fr       */
+/*   Updated: 2026/02/05 15:58:33 by autret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,25 @@ typedef struct s_game	t_game;
 typedef struct s_map	t_map;
 typedef struct s_player	t_player;
 
-typedef struct s_minimap {
+typedef struct s_minimap
+{
 	int	player_pos_x;
 	int	player_pos_y;
-} t_minimap;
+}			t_minimap;
 
 /************************************************************************
  *								MINIMAP									*
  ***********************************************************************/
 
- // draw_minimap.c
+// draw_minimap.c
 void	draw_minimap(t_map *map, t_img *img);
 int		check_colision(t_img *img, double px, double py);
+
+// draw_minimap_utils.c
+int		calculate_tile_size(t_map *map);
+int		check_colision(t_img *img, double px, double py);
+void	draw_ray_pixel(t_img *img, double cx, double cy, int tile_size);
+void	draw_player_circle(t_img *img, int cx, int cy, int radius);
+void	draw_tile(t_img *img, int pos[2], int color, int tile_size);
 
 #endif

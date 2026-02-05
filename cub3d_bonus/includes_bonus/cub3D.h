@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
+/*   By: autret <autret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 13:13:10 by tlorette          #+#    #+#             */
-/*   Updated: 2026/02/04 17:13:39 by aautret          ###   ########.fr       */
+/*   Updated: 2026/02/05 16:15:02 by autret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,38 +32,46 @@ typedef enum e_parse_state
 {
 	PARSES_IDENTIFIERS,
 	PARSE_MAP
-}				t_parse_state;
+}			t_parse_state;
 
 typedef struct s_player
 {
-	int			origin_y;
-	int			origin_x;
-	int			view_distance;
-	int			w_pressed;
-	int			s_pressed;
-	int			a_pressed;
-	int			d_pressed;
-	int			left_pressed;
-	int			right_pressed;
-	int			mouse_x;
-	int			mouse_y;
-	double		direction_vue;
-	double		view_angle;
+	int		origin_y;
+	int		origin_x;
+	int		view_distance;
+	int		w_pressed;
+	int		s_pressed;
+	int		a_pressed;
+	int		d_pressed;
+	int		left_pressed;
+	int		right_pressed;
+	int		mouse_x;
+	int		mouse_y;
+	double	direction_vue;
+	double	view_angle;
 
-}				t_player;
+}			t_player;
 
 typedef struct s_animate
 {
-	double		x;
-	double		y;
-	void		*frame[6];
-	int			current_frame;
-	int			frame_count;
-	int			frame_ms;
-	int			acc_ms;
-	int			frame_width;
-	int			frame_height;
-}				t_animate;
+	double	x;
+	double	y;
+	void	*frame[6];
+	int		current_frame;
+	int		frame_count;
+	int		frame_ms;
+	int		acc_ms;
+	int		frame_width;
+	int		frame_height;
+}			t_animate;
+
+typedef struct s_sprite_proj
+{
+	double	distance;
+	int		screen_x;
+	int		sprite_height;
+	int		sprite_width;
+}			t_sprite_proj;
 
 typedef struct s_map
 {
@@ -76,9 +84,11 @@ typedef struct s_map
 	int			width;
 	int			height;
 	int			total_size;
+	t_animate	**sprites;
+	int			sprite_count;
 	t_animate	*s_animate;
 	t_player	*player;
-}				t_map;
+}			t_map;
 
 typedef struct s_game
 {
@@ -109,6 +119,7 @@ typedef struct s_game
  ***********************************************************************/
 // cleaner_utils.c
 void			free_texture_in_game(t_game *game);
+void			free_all_sprites(t_game *game, t_map *map);
 
 // cleaner.c
 void			free_map_array(t_map *map);
@@ -137,8 +148,8 @@ void			grab_we_text(t_game *game, char *line, int i);
 void			grab_ea_text(t_game *game, char *line, int i);
 void			grab_f_text(t_game *game, char *line, int i);
 void			grab_c_text(t_game *game, char *line, int i);
-int				load_single_texture(t_game *game, char *path, void **img,
-					char **data);
+int				load_single_texture(t_game *game, char *path,
+					void **img, char **data);
 
 // init.c
 void			game_init(t_game **game);
@@ -159,9 +170,11 @@ void			tmp_map_copy(t_map *map, char *line);
 void			fill(t_map *map, int x, int y);
 int				flood_fill(t_map *map);
 
-// map_copy.c
+// map_copy_utils.c
 int				get_greater_width(char *av);
 int				get_map_height(char *av);
+void			store_player_position(t_map *map, char c);
+t_animate		**copy_sprites_array(t_map *map);
 
 // map_copy.c
 void			read_from_map(t_game *game, t_map *map, char *av);
@@ -192,10 +205,14 @@ void			free_map_array(t_map *map);
 int				load_sprite(t_game *game, t_animate *animate);
 void			update_sprite_animation(t_animate *animate, int delta_ms);
 
+// draw_sprite.c
+void			draw_sprite_3d(t_game *game, t_img *img, t_animate *animate);
+
 /************************************************************************
  *								UTILS									*
  ***********************************************************************/
 // utils.c
 void			ft_error(t_game *game, char *s);
 int				ft_gnlen(char *gnl);
+
 #endif
