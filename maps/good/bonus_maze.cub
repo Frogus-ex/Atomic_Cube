@@ -4,7 +4,7 @@ WE textures/west.xpm
 EA textures/east.xpm
 
 F 58,	42,    31
-C 29,21,16
+C 0, 0, 0
 
 111111111111111111111
 1010000010001D1000001
