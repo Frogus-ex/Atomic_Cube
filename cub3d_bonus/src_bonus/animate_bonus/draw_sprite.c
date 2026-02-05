@@ -6,7 +6,7 @@
 /*   By: autret <autret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 14:00:00 by aautret           #+#    #+#             */
-/*   Updated: 2026/02/05 16:34:16 by autret           ###   ########.fr       */
+/*   Updated: 2026/02/05 17:28:55 by autret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ static void	draw_sprite_line(t_img *img, t_animate *animate,
 		coords[0] = pos[0];
 		coords[1] = pos[1];
 		coords[2] = sprite_x;
-		coords[3] = pos[1];
+		coords[3] = pos[1] + pos[0];
 		draw_sprite_pixel(img, animate, sprite, coords);
 		sprite_x++;
 	}
