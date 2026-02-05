@@ -6,7 +6,7 @@
 /*   By: frogus <frogus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 11:38:02 by tlorette          #+#    #+#             */
-/*   Updated: 2026/02/05 11:00:28 by frogus           ###   ########.fr       */
+/*   Updated: 2026/02/05 12:28:55 by frogus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,10 @@
 /**
  * @brief Déplace le joueur pixel par pixel en testant la collision.
  *
- * Calcule la case cible à partir de la position candidate (origin_x + dx,
- * origin_y + dy). Si la case cible est hors-map ou est un mur ('1'), le
- * déplacement est annulé. Sinon met à jour origin_x/origin_y (en int)
- * puis redessine la mini-map.
+ * Applique les déplacements séparément en X puis en Y pour permettre
+ * le glissement le long des murs (sliding collision).
  *
- * @param img  Pointeur vers la structure image
-	/ état (doit contenir map et player).
+ * @param img  Pointeur vers la structure image (doit contenir map et player).
  * @param dx   Déplacement en pixels sur l'axe X
  * @param dy   Déplacement en pixels sur l'axe Y
  */
@@ -30,16 +27,24 @@ static void	moving_pix_by_pix(t_img *img, double dx, double dy)
 	if (!img || !img->player || !img->map)
 		return ;
 	img->nx = (double)img->player->origin_x + dx;
+	img->ny = (double)img->player->origin_y;
+	img->tx = (int)floor(img->nx / TILE_SIZE);
+	img->ty = (int)floor(img->ny / TILE_SIZE);
+	if (img->tx >= 0 && img->ty >= 0 && img->tx < img->map->width
+		&& img->ty < img->map->height)
+	{
+		if (img->map->map[img->ty][img->tx] != '1' && collision_checker(img))
+			img->player->origin_x = (int)round(img->nx);
+	}
+	img->nx = (double)img->player->origin_x;
 	img->ny = (double)img->player->origin_y + dy;
 	img->tx = (int)floor(img->nx / TILE_SIZE);
 	img->ty = (int)floor(img->ny / TILE_SIZE);
-	if (img->tx < 0 || img->ty < 0 || img->tx >= img->map->width
-		|| img->ty >= img->map->height)
-		return ;
-	if (img->map->map[img->ty][img->tx] != '1' && collision_checker(img))
+	if (img->tx >= 0 && img->ty >= 0 && img->tx < img->map->width
+		&& img->ty < img->map->height)
 	{
-		img->player->origin_x = (int)round(img->nx);
-		img->player->origin_y = (int)round(img->ny);
+		if (img->map->map[img->ty][img->tx] != '1' && collision_checker(img))
+			img->player->origin_y = (int)round(img->ny);
 	}
 }
 
