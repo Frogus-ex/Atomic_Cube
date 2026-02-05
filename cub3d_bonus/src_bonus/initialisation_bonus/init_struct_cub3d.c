@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_struct_cub3d.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
+/*   By: autret <autret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 16:52:39 by aautret           #+#    #+#             */
-/*   Updated: 2026/02/05 13:36:48 by aautret          ###   ########.fr       */
+/*   Updated: 2026/02/05 15:19:06 by autret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ void	map_init(t_map **map)
 	*map = ft_calloc(1, sizeof(t_map));
 	if (!*map)
 		return (ft_error(NULL, "map init failed"));
+	(*map)->sprites = NULL;
+	(*map)->sprite_count = 0;
 }
 
 void	minimap_init(t_minimap **minimap)
@@ -43,7 +45,7 @@ void	animate_init(t_animate **animate)
 	*animate = ft_calloc(1, sizeof(t_animate));
 	if (!*animate)
 		return (ft_error(NULL, "animate init failed"));
-	(*animate)->frame_ms = 120;
+	(*animate)->frame_ms = 140;
 	(*animate)->frame_count = 6;
 	(*animate)->current_frame = 0;
 	(*animate)->acc_ms = 0;
