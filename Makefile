@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aautret <aautret@student.42.fr>            +#+  +:+       +#+         #
+#    By: autret <autret@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/06 11:20:20 by aautret           #+#    #+#              #
-#    Updated: 2026/02/04 17:13:40 by aautret          ###   ########.fr        #
+#    Updated: 2026/02/05 16:58:20 by autret           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -88,9 +88,12 @@ SRCS_MAND := \
 SRCS_BONUS := \
 	$(SRC_DIR_BONUS)/main.c \
 	$(SRC_DIR_BONUS)/animate_bonus/animate.c \
+	$(SRC_DIR_BONUS)/animate_bonus/draw_sprite.c \
+	$(SRC_DIR_BONUS)/animate_bonus/draw_sprite_utils.c \
 	$(SRC_DIR_BONUS)/clean_bonus/cleaner.c \
 	$(SRC_DIR_BONUS)/clean_bonus/cleaner_utils.c \
 	$(SRC_DIR_BONUS)/game_bonus/draw_game.c \
+	$(SRC_DIR_BONUS)/game_bonus/game_loop.c \
 	$(SRC_DIR_BONUS)/game_bonus/game_utils.c \
 	$(SRC_DIR_BONUS)/game_bonus/manage_moves.c \
 	$(SRC_DIR_BONUS)/game_bonus/manage_moves_utils.c \
@@ -102,6 +105,8 @@ SRCS_BONUS := \
 	$(SRC_DIR_BONUS)/initialisation_bonus/init_textures.c \
 	$(SRC_DIR_BONUS)/initialisation_bonus/init.c \
 	$(SRC_DIR_BONUS)/minimap_bonus/draw_minimap.c \
+	$(SRC_DIR_BONUS)/minimap_bonus/draw_minimap_helper.c \
+	$(SRC_DIR_BONUS)/minimap_bonus/draw_minimap_utils.c \
 	$(SRC_DIR_BONUS)/parsing_bonus/floodfill.c \
 	$(SRC_DIR_BONUS)/parsing_bonus/map_copy.c \
 	$(SRC_DIR_BONUS)/parsing_bonus/map_copy_utils.c \

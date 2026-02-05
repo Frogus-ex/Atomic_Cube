@@ -6,7 +6,7 @@
 /*   By: autret <autret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 13:13:10 by tlorette          #+#    #+#             */
-/*   Updated: 2026/02/05 16:15:02 by autret           ###   ########.fr       */
+/*   Updated: 2026/02/05 16:44:47 by autret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,14 @@ typedef struct s_sprite_proj
 	int		sprite_width;
 }			t_sprite_proj;
 
+typedef struct s_mlx_data
+{
+	char	*data;
+	int		bpp;
+	int		size_line;
+	int		endian;
+}			t_mlx_data;
+
 typedef struct s_map
 {
 	char		**map;
@@ -120,9 +128,10 @@ typedef struct s_game
 // cleaner_utils.c
 void			free_texture_in_game(t_game *game);
 void			free_all_sprites(t_game *game, t_map *map);
+void			free_map_array(t_map *map);
+void			free_struct(t_game *game);
 
 // cleaner.c
-void			free_map_array(t_map *map);
 void			free_all(t_game *game);
 void			free_map(t_map *map);
 int				cleanup(t_game *game);
@@ -207,6 +216,10 @@ void			update_sprite_animation(t_animate *animate, int delta_ms);
 
 // draw_sprite.c
 void			draw_sprite_3d(t_game *game, t_img *img, t_animate *animate);
+
+// draw_sprite_utils.c
+int				is_transparent(int rgb);
+int				get_sprite_pixel(void *img, int pos[2], t_animate *animate);
 
 /************************************************************************
  *								UTILS									*
