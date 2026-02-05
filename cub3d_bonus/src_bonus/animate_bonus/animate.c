@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   animate.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
+/*   By: autret <autret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 16:38:02 by aautret           #+#    #+#             */
-/*   Updated: 2026/02/05 13:36:48 by aautret          ###   ########.fr       */
+/*   Updated: 2026/02/05 16:28:07 by autret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,22 @@
 
 int	load_sprite(t_game *game, t_animate *animate)
 {
-	int	i;
 	int	width;
 	int	height;
 
-	i = 0;
+	int (i) = 0;
 	animate->frame[0] = mlx_xpm_file_to_image(game->mlx,
-			"cub3d_bonus/animate_bonus/patronus_00.xpm", &width, &height);
+			"cub3d_bonus/anim/go_00.xpm", &width, &height);
 	animate->frame[1] = mlx_xpm_file_to_image(game->mlx,
-			"cub3d_bonus/animate_bonus/patronus_01.xpm", &width, &height);
+			"cub3d_bonus/anim/go_01.xpm", &width, &height);
 	animate->frame[2] = mlx_xpm_file_to_image(game->mlx,
-			"cub3d_bonus/animate_bonus/patronus_02.xpm", &width, &height);
+			"cub3d_bonus/anim/go_02.xpm", &width, &height);
 	animate->frame[3] = mlx_xpm_file_to_image(game->mlx,
-			"cub3d_bonus/animate_bonus/patronus_03.xpm", &width, &height);
+			"cub3d_bonus/anim/go_03.xpm", &width, &height);
 	animate->frame[4] = mlx_xpm_file_to_image(game->mlx,
-			"cub3d_bonus/animate_bonus/patronus_04.xpm", &width, &height);
+			"cub3d_bonus/anim/go_04.xpm", &width, &height);
 	animate->frame[5] = mlx_xpm_file_to_image(game->mlx,
-			"cub3d_bonus/animate_bonus/patronus_05.xpm", &width, &height);
+			"cub3d_bonus/anim/go_05.xpm", &width, &height);
 	while (i < animate->frame_count)
 	{
 		if (!animate->frame[i])
