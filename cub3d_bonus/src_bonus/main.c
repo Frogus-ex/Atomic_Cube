@@ -6,7 +6,7 @@
 /*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 13:18:39 by tlorette          #+#    #+#             */
-/*   Updated: 2026/02/06 13:15:14 by aautret          ###   ########.fr       */
+/*   Updated: 2026/02/06 14:18:17 by aautret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,10 +114,10 @@ int	main(int ac, char **av)
 		/ 2;
 	game->img->player->origin_y = game->map->player_y * TILE_SIZE + TILE_SIZE
 		/ 2;
-	game->minimap->player_pos_x = game->map->player_x * TILE_SIZE_MINIMAP
-		+ TILE_SIZE_MINIMAP / 2;
-	game->minimap->player_pos_y = game->map->player_y * TILE_SIZE_MINIMAP
-		+ TILE_SIZE_MINIMAP / 2;
+	game->minimap->player_pos_x = game->map->player_x * MINIMAP_WIDTH
+		+ MINIMAP_WIDTH / 2;
+	game->minimap->player_pos_y = game->map->player_y * MINIMAP_HEIGHT
+		+ MINIMAP_HEIGHT / 2;
 	if (!check_colors_param(game))
 		return (ft_error(game, "colors param are not in RGB format"), 0);
 	if (!init_mlx(game, game->map, game->img))
