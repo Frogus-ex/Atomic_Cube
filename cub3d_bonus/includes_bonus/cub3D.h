@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 13:13:10 by tlorette          #+#    #+#             */
-/*   Updated: 2026/02/06 13:27:50 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/02/06 13:30:04 by aautret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # include <libft.h>
 # include <math.h>
 # include <stdio.h>
+# include <float.h>
 # include <time.h>
 # include <unistd.h>
 

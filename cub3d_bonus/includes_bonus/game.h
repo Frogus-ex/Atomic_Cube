@@ -68,6 +68,8 @@ typedef struct s_img
 	int					bits_per_pixel;
 	int					endian;
 	int					line_length;
+	double				z_buffer[SCREEN_WIDTH];
+	double				corrected_wall_distance;
 	double				distance_x;
 	double				distance_y;
 	double				wall_distance;
