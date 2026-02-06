@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 14:56:24 by tlorette          #+#    #+#             */
-/*   Updated: 2026/01/30 11:13:09 by aautret          ###   ########.fr       */
+/*   Updated: 2026/02/06 12:51:11 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,10 +81,13 @@ static int	detector_and_store_line(t_game *game, char *line,
 	int	detect;
 
 	detect = detector_start_map(line);
+	if (detect == 1 && (!game->no_text || !game->so_text || !game->ea_text
+			|| !game->we_text || !game->f_text || !game->c_text))
+		return (ft_error(NULL, "map is not in the right position"), 1);
 	if (*state == PARSES_IDENTIFIERS)
 	{
 		if (detect == -1)
-			return (ft_error(NULL, "error: invalid line before map start"), 1);
+			return (ft_error(NULL, "invalid line before map start"), 1);
 		if (detect == 1)
 		{
 			*state = PARSE_MAP;
@@ -113,7 +116,7 @@ int	parsing(t_game *game, char *av)
 		return (ft_error(NULL, "file doesnt exist"), 1);
 	char *(line) = get_next_line(game->fd, &stash);
 	if (!line)
-		return (free(stash), close(game->fd), 1);
+		return (ft_error(NULL, "empty file"), free(stash), close(game->fd), 1);
 	while (line && status == 0)
 	{
 		if (detector_and_store_line(game, line, &state) == 1)

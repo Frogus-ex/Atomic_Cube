@@ -6,7 +6,7 @@
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/30 11:19:28 by aautret           #+#    #+#             */
-/*   Updated: 2026/02/03 11:44:14 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/02/06 11:18:13 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,7 +188,7 @@ void	draw_minimap(t_map *map, t_img *img)
 				if (map->map[y][x] == '1')
 					draw_map(img, x, y, 0xFF0000, tile_size);
 				else if (map->map[y][x] == 'D')
-					draw_map(img, x, y, 0x654321, tile_size);
+					draw_map(img, x, y, 0xFFFF00, tile_size);
 				else
 					draw_map(img, x, y, 0x000000, tile_size);
 			}
