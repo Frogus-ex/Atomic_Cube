@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_minimap.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
+/*   By: autret <autret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/30 11:19:28 by aautret           #+#    #+#             */
-/*   Updated: 2026/02/06 14:20:20 by aautret          ###   ########.fr       */
+/*   Updated: 2026/02/06 19:01:16 by autret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,25 +67,25 @@ static void	calc_and_draw_angle(t_img *img, int tile_size)
 
 /**
  * @brief Dessine la partie de la map autour du joueur dans la minimap
- * 
+ *
  * - Calcul combien de cases on peut afficher
- * 
+ *
  * - Centrer la fenetre sur le joueur
- * 
- * @param map 
- * @param img 
- * @param tile_size 
+ *
+ * @param map
+ * @param img
+ * @param tile_size
  */
 static void	draw_map_tiles(t_map *map, t_img *img, int tile_size)
 {
-	int	pos[2]; //position dans la minimap
-	int	map_pos[2]; //position dans la VRAIE map
-	int	visible[2]; //nombre de cases visible
-	int start[2]; //case de depart
+	int	pos[2];
+	int	map_pos[2];
+	int	visible[2];
+	int	start[2];
 	int	color;
-	
-	visible[0] = MINIMAP_WIDTH / tile_size; //visible en x
-	visible[1] = MINIMAP_HEIGHT / tile_size; //visible en y
+
+	visible[0] = MINIMAP_WIDTH / tile_size;
+	visible[1] = MINIMAP_HEIGHT / tile_size;
 	start[0] = (int)(img->player->origin_x / TILE_SIZE) - (visible[0] / 2);
 	start[1] = (int)(img->player->origin_y / TILE_SIZE) - (visible[1] / 2);
 	pos[1] = 0;
@@ -94,16 +94,21 @@ static void	draw_map_tiles(t_map *map, t_img *img, int tile_size)
 		pos[0] = 0;
 		while (pos[0] < visible[0])
 		{
-			//convert pos minimap into map
 			map_pos[0] = start[0] + pos[0];
 			map_pos[1] = start[1] + pos[1];
-			//verifier si on est dans la map
-			if (map_pos[1] >= 0)
+			if (map_pos[1] >= 0 && map_pos[1] < map->height
+				&& map_pos[0] >= 0 && map_pos[0] < map->width
+				&& map->map[map_pos[1]] && map->map[map_pos[1]][map_pos[0]])
+			{
+				color = get_tile_color(map->map[map_pos[1]][map_pos[0]]);
+				draw_tile(img, pos, color, tile_size);
+			}
+			else
+				draw_tile(img, pos, 0x000000, tile_size);
 			pos[0]++;
 		}
 		pos[1]++;
 	}
-
 }
 
 /**
@@ -114,57 +119,13 @@ static void	draw_map_tiles(t_map *map, t_img *img, int tile_size)
 void	draw_minimap(t_map *map, t_img *img)
 {
 	int	tile_size;
+	int	center_x;
+	int	center_y;
 
 	tile_size = calculate_tile_size(map);
 	draw_map_tiles(map, img, tile_size);
 	calc_and_draw_angle(img, tile_size);
+	center_x = MINIMAP_OFFSET + MINIMAP_WIDTH / 2;
+	center_y = MINIMAP_OFFSET + MINIMAP_HEIGHT / 2;
+	draw_player_circle(img, center_x, center_y, 3);
 }
-
-
-
-// static void	draw_map_tiles(t_map *map, t_img *img, int tile_size)
-// {
-//     int	pos[2];           // Position dans la MINIMAP (0 à visible_tiles)
-//     int	map_pos[2];       // Position dans la VRAIE MAP
-//     int	visible[2];       // Nombre de cases visibles
-//     int	start[2];         // Case de départ (coin haut-gauche de la fenêtre)
-//     int	color;
-
-//     // 1. Calculer combien de cases on peut afficher
-//     visible[0] = MAX_MINIMAP_WIDTH / tile_size;   // Cases visibles en X
-//     visible[1] = MAX_MINIMAP_HEIGHT / tile_size;  // Cases visibles en Y
-
-//     // 2. Centrer la fenêtre sur le joueur
-//     start[0] = (int)(img->player->origin_x / TILE_SIZE) - (visible[0] / 2);
-//     start[1] = (int)(img->player->origin_y / TILE_SIZE) - (visible[1] / 2);
-
-//     // 3. Parcourir la fenêtre visible (pas toute la map)
-//     pos[1] = 0;
-//     while (pos[1] < visible[1])
-//     {
-//         pos[0] = 0;
-//         while (pos[0] < visible[1])
-//         {
-//             // 4. Convertir la position minimap → position map
-//             map_pos[0] = start[0] + pos[0];
-//             map_pos[1] = start[1] + pos[1];
-
-//             // 5. Vérifier si on est dans la carte
-//             if (map_pos[1] >= 0 && map_pos[1] < map->height &&
-//                 map_pos[0] >= 0 && map_pos[0] < map->width &&
-//                 map->map[map_pos[1]] && map->map[map_pos[1]][map_pos[0]])
-//             {
-//                 // Case valide : afficher la vraie couleur
-//                 color = get_tile_color(map->map[map_pos[1]][map_pos[0]]);
-//                 draw_tile(img, pos, color, tile_size);
-//             }
-//             else
-//             {
-//                 // Hors de la carte : afficher du gris foncé
-//                 draw_tile(img, pos, 0x333333, tile_size);
-//             }
-//             pos[0]++;
-//         }
-//         pos[1]++;
-//     }
-// }

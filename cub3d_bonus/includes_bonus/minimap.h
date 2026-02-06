@@ -6,7 +6,7 @@
 /*   By: autret <autret@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/30 11:23:38 by aautret           #+#    #+#             */
-/*   Updated: 2026/02/05 17:03:16 by autret           ###   ########.fr       */
+/*   Updated: 2026/02/06 18:55:47 by autret           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ void			draw_minimap(t_map *map, t_img *img);
 
 // draw_minimap_helper.c
 int				get_tile_color(char cell);
-t_minimap_pos	calc_minimap_pos(double x, double y, int tile_size);
+t_minimap_pos	calc_minimap_pos(t_img *img, double x, double y,
+					int tile_size);
 int				is_in_minimap(t_minimap_pos pos);
 void			draw_ray_pixel(t_img *img, double cx, double cy, int tile_size);
 
