@@ -6,7 +6,7 @@
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 13:13:10 by tlorette          #+#    #+#             */
-/*   Updated: 2026/02/06 14:13:13 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/02/06 17:47:26 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ void			init_ray_params(t_ray_params *params);
 int				load_textures(t_game *game);
 
 // init_textures.c
-int				grab_we_text(t_game *game, char *line, int i);
+void			grab_we_text(t_game *game, char *line, int i);
 void			grab_ea_text(t_game *game, char *line, int i);
 void			grab_f_text(t_game *game, char *line, int i);
 void			grab_c_text(t_game *game, char *line, int i);

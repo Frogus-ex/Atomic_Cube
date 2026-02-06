@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 13:25:04 by tlorette          #+#    #+#             */
-/*   Updated: 2026/02/06 13:44:01 by aautret          ###   ########.fr       */
+/*   Updated: 2026/02/06 17:54:13 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ static int	create_window_and_image(t_game *game, t_img *img)
 			&img->line_length, &img->endian);
 	if (!img->addr)
 		return (ft_error(game, "mlx_get_data_addr failed"), 0);
+	return (1);
 }
 
 /**

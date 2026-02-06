@@ -6,7 +6,7 @@
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 11:44:23 by tlorette          #+#    #+#             */
-/*   Updated: 2026/02/06 14:19:08 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/02/06 17:47:19 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ void	grab_we_text(t_game *game, char *line, int i)
 		game->we_text[y++] = line[i++];
 	game->we_text[y] = '\0';
 	game->nbr_text[2]++;
-	return (0);
 }
 
 /**
