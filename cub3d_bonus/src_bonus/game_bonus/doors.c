@@ -6,7 +6,7 @@
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 13:44:58 by tlorette          #+#    #+#             */
-/*   Updated: 2026/02/06 13:26:09 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/02/06 17:27:37 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,6 @@ static void	find_nearest_door(t_game *game, int x, int y, int distance)
 {
 	if (x < 0 || x >= game->map->width || y < 0 || y >= game->map->height)
 		return ;
-	if (game->map->tmp_map[y][x] == '1' || game->map->tmp_map[y][x] == 'V')
-		return ;
 	if (game->map->map[y][x] == 'D')
 	{
 		if (game->map->door_pos_x == -1 || distance < game->map->door_distance)
@@ -75,6 +73,8 @@ static void	find_nearest_door(t_game *game, int x, int y, int distance)
 		}
 		return ;
 	}
+	if (game->map->tmp_map[y][x] == '1' || game->map->tmp_map[y][x] == 'V')
+		return ;
 	game->map->tmp_map[y][x] = 'V';
 	find_nearest_door(game, x + 1, y, distance + 1);
 	find_nearest_door(game, x - 1, y, distance + 1);
