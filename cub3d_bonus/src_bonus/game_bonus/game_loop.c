@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   game_loop.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: autret <autret@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 16:39:38 by autret            #+#    #+#             */
-/*   Updated: 2026/02/05 16:41:33 by autret           ###   ########.fr       */
+/*   Updated: 2026/02/06 11:35:01 by aautret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes_bonus/cub3D.h"
 
-static void	simple_mooves(t_game *game, t_img *img)
+void	simple_mooves(t_game *game, t_img *img)
 {
 	if (!game || !game->player || !img)
 		return ;
@@ -24,6 +24,13 @@ static void	simple_mooves(t_game *game, t_img *img)
 		moving_pix_by_pix(img, calc_dx(img, A), calc_dy(img, A));
 	if (game->player->d_pressed)
 		moving_pix_by_pix(img, calc_dx(img, D), calc_dy(img, D));
+	if (game->player->space_pressed && !game->player->space_was_pressed)
+	{
+		open_door(game);
+		game->player->space_was_pressed = 1;
+	}
+	else if (!game->player->space_pressed)
+		game->player->space_was_pressed = 0;
 }
 
 static void	handle_rotation(t_game *game)
@@ -33,8 +40,7 @@ static void	handle_rotation(t_game *game)
 	float	rotation_speed;
 
 	current_x = 0;
-	mlx_mouse_get_pos(game->mlx, game->win, &current_x,
-		&game->player->mouse_y);
+	mlx_mouse_get_pos(game->mlx, game->win, &current_x, &game->player->mouse_y);
 	delta_x = current_x - game->player->mouse_x;
 	game->player->mouse_x = current_x;
 	rotation_speed = 0.005f;

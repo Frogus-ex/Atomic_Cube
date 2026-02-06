@@ -6,7 +6,7 @@
 /*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 11:38:02 by tlorette          #+#    #+#             */
-/*   Updated: 2026/02/06 11:25:06 by aautret          ###   ########.fr       */
+/*   Updated: 2026/02/06 11:40:48 by aautret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,21 +100,6 @@ void	update_all_sprites(t_game *game, int delta_ms)
 		update_sprite_animation(game->map->sprites[i], delta_ms);
 		i++;
 	}
-	if (game->player->w_pressed)
-		moving_pix_by_pix(game->img, calc_dx(game->img, W), calc_dy(game->img, W));
-	if (game->player->s_pressed)
-		moving_pix_by_pix(game->img, calc_dx(game->img, S), calc_dy(game->img, S));
-	if (game->player->a_pressed)
-		moving_pix_by_pix(game->img, calc_dx(game->img, A), calc_dy(game->img, A));
-	if (game->player->d_pressed)
-		moving_pix_by_pix(game->img, calc_dx(game->img, D), calc_dy(game->img, D));
-	if (game->player->space_pressed && !game->player->space_was_pressed)
-	{
-		open_door(game);
-		game->player->space_was_pressed = 1;
-	}
-	else if (!game->player->space_pressed)
-		game->player->space_was_pressed = 0;
 }
 
 /**
@@ -130,7 +115,7 @@ void	update_all_sprites(t_game *game, int delta_ms)
  * @return int Toujours 0.
  */
 
-int	game_loop(t_game *game)
+int	handle_player_input(t_game *game)
 {
 	int		current_x;
 	int		delta_x;

@@ -97,6 +97,7 @@ void					put_cub3d_to_wnd(t_img *img);
 void					render_frame(t_img *img);
 
 // game_loop.c
+void					simple_mooves(t_game *game, t_img *img);
 int						game_loop(t_game *game);
 
 // game_utils.c
@@ -123,9 +124,8 @@ double					norme_angle(double ray_angle);
 void					setup_horizontal_ray(t_img *img, double ray_angle,
 							t_ray_params *params);
 void					setup_vertical_ray(t_img *img, double ray_angle,
-							t_ray_params *params);
+						t_ray_params *params);
 double					cast_ray(t_img *img, t_ray_params *params);
-int						game_loop(t_game *game);
 
 // raycaster.c
 void					set_wall_dir(t_texture *texture, double ray_angle,
@@ -136,8 +136,7 @@ void					get_distance_dda(t_img *img, t_ray_params *params,
 							double ray_angle);
 void					cast_ray_dda(t_img *img, double ray_angle, int column);
 
-//doors.c
-void	open_door(t_game *game);
-
+// doors.c
+void					open_door(t_game *game);
 
 #endif
