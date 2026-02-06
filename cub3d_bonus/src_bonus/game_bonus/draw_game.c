@@ -6,7 +6,7 @@
 /*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 16:56:26 by tlorette          #+#    #+#             */
-/*   Updated: 2026/02/06 11:19:04 by aautret          ###   ########.fr       */
+/*   Updated: 2026/02/06 13:16:56 by aautret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,11 @@ static void	calc_and_draw_angle(t_img *img)
  */
 void	put_cub3d_to_wnd(t_img *img)
 {
+	int	i;
+
+	i = -1;
+	while (++i < SCREEN_WIDTH)
+		img->z_buffer[i] = DBL_MAX;
 	calc_and_draw_angle(img);
 }
 

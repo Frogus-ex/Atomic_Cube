@@ -6,7 +6,7 @@
 /*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 13:13:10 by tlorette          #+#    #+#             */
-/*   Updated: 2026/02/06 11:16:02 by aautret          ###   ########.fr       */
+/*   Updated: 2026/02/06 13:13:19 by aautret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # include <libft.h>
 # include <math.h>
 # include <stdio.h>
+# include <float.h>
 # include <time.h>
 # include <unistd.h>
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycaster.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 11:51:15 by aautret           #+#    #+#             */
-/*   Updated: 2026/02/03 11:32:54 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/02/06 13:22:34 by aautret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ void	get_distance_dda(t_img *img, t_ray_params *params, double ray_angle)
 	if (corrected_distance <= 0.1)
 		corrected_distance = 0.1;
 	img->wall_size = (SCREEN_HEIGHT / corrected_distance) * TILE_SIZE;
+	img->corrected_wall_distance = corrected_distance;
 }
 
 void	cast_ray_dda(t_img *img, double ray_angle, int column)
@@ -74,5 +75,6 @@ void	cast_ray_dda(t_img *img, double ray_angle, int column)
 		get_wall_hit_dda(img, &vert, ray_angle);
 		get_distance_dda(img, &vert, ray_angle);
 	}
+	img->z_buffer[column] = img->corrected_wall_distance;
 	draw_wall(img->game, column, img->wall_size, ray_angle);
 }
