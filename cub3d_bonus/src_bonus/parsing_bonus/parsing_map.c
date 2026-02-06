@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: autret <autret@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 11:20:20 by aautret           #+#    #+#             */
-/*   Updated: 2026/02/05 15:50:15 by autret           ###   ########.fr       */
+/*   Updated: 2026/02/06 13:28:54 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	parse_map_line(t_game *game, char *line)
 		if (!ft_strchr("10NSEWDA \n", line[i]))
 			return (printf("error: invalid caracter detected \n"), 1);
 		if (ft_strchr("NSEW", line[i]) && game->flag_players == 1)
-			return (printf("error: invalid number of players in map\n"), 1);
+			return (printf("Error\n invalid number of players in map\n"), 1);
 		else if (ft_strchr("NSEW", line[i]) && game->flag_players == 0)
 		{
 			game->flag_players = 1;

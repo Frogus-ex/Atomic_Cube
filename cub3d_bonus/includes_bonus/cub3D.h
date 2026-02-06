@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 13:13:10 by tlorette          #+#    #+#             */
-/*   Updated: 2026/02/06 11:16:02 by aautret          ###   ########.fr       */
+/*   Updated: 2026/02/06 13:27:50 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,7 @@ typedef struct s_map
 	t_animate	*s_animate;
 	int			door_pos_x;
 	int			door_pos_y;
+	int			door_distance;
 	t_player	*player;
 }			t_map;
 
@@ -113,6 +114,8 @@ typedef struct s_game
 	char		*f_text;
 	char		*c_text;
 	char		*door_text;
+	int			player_tile_x;
+	int			player_tile_y;
 	int			*c_rgb;
 	int			*f_rgb;
 	int			*nbr_text;

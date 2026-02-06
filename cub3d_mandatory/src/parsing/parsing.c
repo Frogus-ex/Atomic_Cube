@@ -6,7 +6,7 @@
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 14:56:24 by tlorette          #+#    #+#             */
-/*   Updated: 2026/02/03 11:18:05 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/02/06 11:51:17 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ int	parsing(t_game *game, char *av)
 		return (ft_error(NULL, "file doesnt exist"), 1);
 	char *(line) = get_next_line(game->fd, &stash);
 	if (!line)
-		return (free(stash), close(game->fd), 1);
+		return (ft_error(NULL, "empty file"), free(stash), close(game->fd), 1);
 	while (line && status == 0)
 	{
 		if (detector_and_store_line(game, line, &state) == 1)
