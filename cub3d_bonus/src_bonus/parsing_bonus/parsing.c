@@ -6,7 +6,7 @@
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 14:56:24 by tlorette          #+#    #+#             */
-/*   Updated: 2026/02/06 12:51:11 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/02/06 13:54:41 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,15 +81,15 @@ static int	detector_and_store_line(t_game *game, char *line,
 	int	detect;
 
 	detect = detector_start_map(line);
-	if (detect == 1 && (!game->no_text || !game->so_text || !game->ea_text
-			|| !game->we_text || !game->f_text || !game->c_text))
-		return (ft_error(NULL, "map is not in the right position"), 1);
 	if (*state == PARSES_IDENTIFIERS)
 	{
 		if (detect == -1)
 			return (ft_error(NULL, "invalid line before map start"), 1);
 		if (detect == 1)
 		{
+			if (!count_text(game))
+				return (ft_error(NULL,
+						"wrong number of textures before map start"), 1);
 			*state = PARSE_MAP;
 			return (parse_map_line(game, line));
 		}
@@ -128,6 +128,6 @@ int	parsing(t_game *game, char *av)
 	if (!count_text(game))
 		return (ft_error(NULL, "wrong number of textures"), 1);
 	if (game->flag_players == 0)
-		return (printf("error: invalid number of players in map\n"), 1);
+		return (ft_error(NULL, "invalid number of players in map"), 1);
 	return (free(line), free(stash), close(game->fd), status);
 }

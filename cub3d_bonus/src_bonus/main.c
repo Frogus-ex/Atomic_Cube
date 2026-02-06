@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 13:18:39 by tlorette          #+#    #+#             */
-/*   Updated: 2026/02/06 13:15:14 by aautret          ###   ########.fr       */
+/*   Updated: 2026/02/06 14:08:37 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ static void	load_all_sprites(t_game *game)
 		game->map->sprites[i]->y = game->map->sprites[i]->y * TILE_SIZE
 			+ TILE_SIZE / 2;
 		if (!load_sprite(game, game->map->sprites[i]))
-			printf("Warning: Failed to load sprite %d frames\n", i);
+			ft_error(NULL, "failed to load animated sprite");
 		i++;
 	}
 	if (game->map->s_animate)

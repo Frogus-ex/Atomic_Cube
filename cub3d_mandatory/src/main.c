@@ -6,7 +6,7 @@
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 13:18:39 by tlorette          #+#    #+#             */
-/*   Updated: 2026/02/03 11:19:16 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/02/06 14:18:17 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static int	parsing_check_all(t_game *game, char **av, t_map *map)
 {
 	if (!check_arg_param(av))
 		return (1);
-	if (parsing(game, av[1]))
+	if (parsing(game, av[1]) == 1)
 		return (1);
 	read_from_map(game, map, av[1]);
 	if (flood_fill(map))
@@ -72,7 +72,7 @@ int	main(int ac, char **av)
 	game = init_all();
 	if (!game)
 		return (ft_error(NULL, "Failed to initialize game"), 1);
-	if (parsing_check_all(game, av, game->map))
+	if (parsing_check_all(game, av, game->map) == 1)
 		return (free_all(game), 1);
 	game->img->game = game;
 	game->img->map = game->map;

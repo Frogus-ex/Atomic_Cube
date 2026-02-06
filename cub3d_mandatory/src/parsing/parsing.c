@@ -6,7 +6,7 @@
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 14:56:24 by tlorette          #+#    #+#             */
-/*   Updated: 2026/02/06 11:51:17 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/02/06 13:54:55 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,6 @@ int	parsing(t_game *game, char *av)
 	if (!count_text(game))
 		return (ft_error(NULL, "wrong number of textures"), 1);
 	if (game->flag_players == 0)
-		return (printf("error: invalid number of players in map\n"), 1);
+		return (ft_error(NULL, "invalid number of players in map"), 1);
 	return (free(line), free(stash), close(game->fd), status);
 }
