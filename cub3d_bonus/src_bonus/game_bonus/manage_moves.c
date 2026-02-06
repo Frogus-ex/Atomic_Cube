@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   manage_moves.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: frogus <frogus@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 11:38:02 by tlorette          #+#    #+#             */
-/*   Updated: 2026/02/05 12:28:55 by frogus           ###   ########.fr       */
+/*   Updated: 2026/02/06 11:20:17 by aautret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
  * @param dx   Déplacement en pixels sur l'axe X
  * @param dy   Déplacement en pixels sur l'axe Y
  */
-static void	moving_pix_by_pix(t_img *img, double dx, double dy)
+void	moving_pix_by_pix(t_img *img, double dx, double dy)
 {
 	if (!img || !img->player || !img->map)
 		return ;
@@ -48,7 +48,7 @@ static void	moving_pix_by_pix(t_img *img, double dx, double dy)
 	}
 }
 
-static double	calc_dx(t_img *img, int keycode)
+double	calc_dx(t_img *img, int keycode)
 {
 	double	dx;
 	double	speed;
@@ -68,7 +68,7 @@ static double	calc_dx(t_img *img, int keycode)
 	return (dx);
 }
 
-static double	calc_dy(t_img *img, int keycode)
+double	calc_dy(t_img *img, int keycode)
 {
 	double	dy;
 	double	speed;
@@ -88,10 +88,18 @@ static double	calc_dy(t_img *img, int keycode)
 	return (dy);
 }
 
-static void	simple_mooves(t_game *game, t_img *img)
+void	update_all_sprites(t_game *game, int delta_ms)
 {
-	if (!game || !game->player || !img)
+	int	i;
+
+	if (!game->map || game->map->sprite_count <= 0)
 		return ;
+	i = 0;
+	while (i < game->map->sprite_count)
+	{
+		update_sprite_animation(game->map->sprites[i], delta_ms);
+		i++;
+	}
 	if (game->player->w_pressed)
 		moving_pix_by_pix(img, calc_dx(img, W), calc_dy(img, W));
 	if (game->player->s_pressed)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_struct_cub3d.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 16:52:39 by aautret           #+#    #+#             */
-/*   Updated: 2026/02/04 16:59:51 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/02/06 11:21:06 by aautret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ void	map_init(t_map **map)
 		return (ft_error(NULL, "map init failed"));
 	(*map)->door_pos_x = -1;
 	(*map)->door_pos_y = -1;
+	(*map)->sprites = NULL;
+	(*map)->sprite_count = 0;
 }
 
 void	minimap_init(t_minimap **minimap)
@@ -36,6 +38,27 @@ void	minimap_init(t_minimap **minimap)
 		return (ft_error(NULL, "minimap init failed"));
 	(*minimap)->player_pos_x = 0;
 	(*minimap)->player_pos_y = 0;
+}
+
+void	animate_init(t_animate **animate)
+{
+	int	i;
+
+	*animate = ft_calloc(1, sizeof(t_animate));
+	if (!*animate)
+		return (ft_error(NULL, "animate init failed"));
+	(*animate)->frame_ms = 140;
+	(*animate)->frame_count = 6;
+	(*animate)->current_frame = 0;
+	(*animate)->acc_ms = 0;
+	(*animate)->x = -1;
+	(*animate)->y = -1;
+	i = 0;
+	while (i < 6)
+	{
+		(*animate)->frame[i] = NULL;
+		i++;
+	}
 }
 
 void	game_init(t_game **game)

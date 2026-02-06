@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 16:56:26 by tlorette          #+#    #+#             */
-/*   Updated: 2026/02/04 11:19:13 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/02/06 11:19:04 by aautret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,14 +77,25 @@ void	put_cub3d_to_wnd(t_img *img)
 /**
  * @brief Dessine le rendu 3D + la minimap puis affiche tout.
  *
- * Cette fonction orchestre le rendu complet : d'abord le raycasting 3D,
- * puis la minimap par-dessus, et enfin affiche l'image finale.
+ * Rendu complet : raycasting 3D + puis les sprites animés + 
+ * la minimap par-dessus + affiche l'image finale.
  *
  * @param img Structure contenant l'image et les données du jeu
  */
 void	render_frame(t_img *img)
 {
+	int	i;
+
 	put_cub3d_to_wnd(img);
+	if (img->map && img->map->sprite_count > 0)
+	{
+		i = 0;
+		while (i < img->map->sprite_count)
+		{
+			draw_sprite_3d(img->game, img, img->map->sprites[i]);
+			i++;
+		}
+	}
 	draw_minimap(img->map, img);
 	mlx_put_image_to_window(img->game->mlx, img->game->win, img->img, 0, 0);
 }

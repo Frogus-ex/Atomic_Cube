@@ -3,7 +3,7 @@ SO ./xpms/texture_so.xpm
 WE ./xpms/texture_we.xpm
 EA ./xpms/texture_ea.xpm
 F 25,8,23
-C 7, 80, 51
+C 0, 0, 0
 
 1111111
 1000001

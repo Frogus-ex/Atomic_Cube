@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+         #
+#    By: aautret <aautret@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/06 11:20:20 by aautret           #+#    #+#              #
-#    Updated: 2026/02/04 15:31:35 by tlorette         ###   ########.fr        #
+#    Updated: 2026/02/06 11:14:00 by aautret          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -87,9 +87,13 @@ SRCS_MAND := \
 
 SRCS_BONUS := \
 	$(SRC_DIR_BONUS)/main.c \
+	$(SRC_DIR_BONUS)/animate_bonus/animate.c \
+	$(SRC_DIR_BONUS)/animate_bonus/draw_sprite.c \
+	$(SRC_DIR_BONUS)/animate_bonus/draw_sprite_utils.c \
 	$(SRC_DIR_BONUS)/clean_bonus/cleaner.c \
 	$(SRC_DIR_BONUS)/clean_bonus/cleaner_utils.c \
 	$(SRC_DIR_BONUS)/game_bonus/draw_game.c \
+	$(SRC_DIR_BONUS)/game_bonus/game_loop.c \
 	$(SRC_DIR_BONUS)/game_bonus/game_utils.c \
 	$(SRC_DIR_BONUS)/game_bonus/manage_moves.c \
 	$(SRC_DIR_BONUS)/game_bonus/manage_moves_utils.c \
@@ -102,6 +106,8 @@ SRCS_BONUS := \
 	$(SRC_DIR_BONUS)/initialisation_bonus/init_textures.c \
 	$(SRC_DIR_BONUS)/initialisation_bonus/init.c \
 	$(SRC_DIR_BONUS)/minimap_bonus/draw_minimap.c \
+	$(SRC_DIR_BONUS)/minimap_bonus/draw_minimap_helper.c \
+	$(SRC_DIR_BONUS)/minimap_bonus/draw_minimap_utils.c \
 	$(SRC_DIR_BONUS)/parsing_bonus/floodfill.c \
 	$(SRC_DIR_BONUS)/parsing_bonus/map_copy.c \
 	$(SRC_DIR_BONUS)/parsing_bonus/map_copy_utils.c \
@@ -222,6 +228,14 @@ fclean: clean
 	@rm -f $(NAME) $(NAME_BONUS)
 	@echo "$(COLOUR_GREEN)🗑️  All binaries & minilibx deleted$(COLOUR_END)"
 
+clean_bonus:
+	@rm -rf $(OBJ_DIR_BONUS)
+	@echo "$(COLOUR_GREEN)🧹 Bonus object files deleted$(COLOUR_END)"
+
+fclean_bonus: clean_bonus
+	@rm -f $(NAME_BONUS)
+	@echo "$(COLOUR_GREEN)🗑️  $(NAME_BONUS) deleted$(COLOUR_END)"
+
 re: fclean all
 
 re_bonus: fclean bonus
@@ -230,4 +244,4 @@ re_bonus: fclean bonus
 # PHONY
 # ==============================================================================
 
-.PHONY: all bonus clean fclean re re_bonus
+.PHONY: all bonus clean fclean clean_bonus fclean_bonus re re_bonus

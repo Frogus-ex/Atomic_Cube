@@ -96,6 +96,9 @@ void					draw_wall(t_game *game, int x, double wall_size,
 void					put_cub3d_to_wnd(t_img *img);
 void					render_frame(t_img *img);
 
+// game_loop.c
+int						game_loop(t_game *game);
+
 // game_utils.c
 void					my_put_pixel(t_img *img, int x, int y, int color);
 int						cross_close(t_game *game);
@@ -105,11 +108,12 @@ int						find_biggest(t_img *img);
 int						key_press(int keycode, t_game *game);
 int						key_released(int keycode, t_game *game);
 int						collision_checker(t_img *img);
-int						mouse_released(int button, t_game *game);
-int						mouse_pressed(int button, t_game *game);
 
 // manage_moves.c
-int						player_input(t_game *game);
+void					moving_pix_by_pix(t_img *img, double dx, double dy);
+double					calc_dx(t_img *img, int keycode);
+double					calc_dy(t_img *img, int keycode);
+void					update_all_sprites(t_game *game, int delta_ms);
 
 // manage_textures.c
 void					draw_wall_text(t_img *img, int x, int y, double angle);
