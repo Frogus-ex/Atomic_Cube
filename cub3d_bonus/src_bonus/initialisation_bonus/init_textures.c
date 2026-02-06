@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_textures.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 11:44:23 by tlorette          #+#    #+#             */
-/*   Updated: 2026/02/04 17:04:50 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/02/06 13:44:14 by aautret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	grab_ea_text(t_game *game, char *line, int i)
 	while (line[i] && line[i] != '\n' && line[i] != '\r')
 		game->ea_text[y++] = line[i++];
 	while (y > 0 && (game->ea_text[y - 1] == 32 || game->ea_text[y
-			- 1] == '\t'))
+				- 1] == '\t'))
 		y--;
 	game->ea_text[y] = '\0';
 	game->nbr_text[3]++;
