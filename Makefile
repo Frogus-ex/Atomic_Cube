@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: autret <autret@student.42.fr>              +#+  +:+       +#+         #
+#    By: aautret <aautret@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/06 11:20:20 by aautret           #+#    #+#              #
-#    Updated: 2026/02/05 16:58:20 by autret           ###   ########.fr        #
+#    Updated: 2026/02/06 11:09:18 by aautret          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -227,6 +227,14 @@ fclean: clean
 	@rm -f $(NAME) $(NAME_BONUS)
 	@echo "$(COLOUR_GREEN)🗑️  All binaries & minilibx deleted$(COLOUR_END)"
 
+clean_bonus:
+	@rm -rf $(OBJ_DIR_BONUS)
+	@echo "$(COLOUR_GREEN)🧹 Bonus object files deleted$(COLOUR_END)"
+
+fclean_bonus: clean_bonus
+	@rm -f $(NAME_BONUS)
+	@echo "$(COLOUR_GREEN)🗑️  $(NAME_BONUS) deleted$(COLOUR_END)"
+
 re: fclean all
 
 re_bonus: fclean bonus
@@ -235,4 +243,4 @@ re_bonus: fclean bonus
 # PHONY
 # ==============================================================================
 
-.PHONY: all bonus clean fclean re re_bonus
+.PHONY: all bonus clean fclean clean_bonus fclean_bonus re re_bonus
