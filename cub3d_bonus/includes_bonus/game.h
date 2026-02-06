@@ -126,7 +126,7 @@ double					norme_angle(double ray_angle);
 void					setup_horizontal_ray(t_img *img, double ray_angle,
 							t_ray_params *params);
 void					setup_vertical_ray(t_img *img, double ray_angle,
-						t_ray_params *params);
+							t_ray_params *params);
 double					cast_ray(t_img *img, t_ray_params *params);
 
 // raycaster.c
