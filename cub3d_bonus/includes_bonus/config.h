@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   config.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
+/*   By: frogus <frogus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 10:58:21 by tlorette          #+#    #+#             */
-/*   Updated: 2026/02/04 13:15:46 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/02/09 11:00:03 by frogus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@
 # define MINIMAP_SIZE 200
 # define MINIMAP_OFFSET 10
 # define FOV 1.0471975512 // champs de vision/angle de vie = 60 degres
+# define MAX_DOOR_DISTANCE 3
 # define WND_NAME "AtomiCube"
 
 #endif

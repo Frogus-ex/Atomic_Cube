@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   doors.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
+/*   By: frogus <frogus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 13:44:58 by tlorette          #+#    #+#             */
-/*   Updated: 2026/02/06 17:27:37 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/02/09 11:07:08 by frogus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ static void	find_nearest_door(t_game *game, int x, int y, int distance)
 	find_nearest_door(game, x, y - 1, distance + 1);
 }
 
-static void	reset_open_door_varaible(t_game *game)
+static void	reset_open_door_variable(t_game *game)
 {
 	game->player_tile_x = (int)floor((double)game->img->player->origin_x
 			/ TILE_SIZE);
@@ -91,24 +91,30 @@ static void	reset_open_door_varaible(t_game *game)
 	game->map->door_pos_x = -1;
 	game->map->door_pos_y = -1;
 	game->map->door_distance = INT_MAX;
+	re_read_from_map(game, game->map, game->av);
+	find_nearest_door(game, game->player_tile_x, game->player_tile_y, 0);
+	reset_tmp_map(game);
 }
 
 void	open_door(t_game *game)
 {
-	reset_open_door_varaible(game);
-	re_read_from_map(game, game->map, game->av);
-	find_nearest_door(game, game->player_tile_x, game->player_tile_y, 0);
-	reset_tmp_map(game);
+	reset_open_door_variable(game);
 	if (game->map->door_pos_x == -1 || game->map->door_pos_y == -1)
 		return ;
+	if (game->map->door_distance > MAX_DOOR_DISTANCE)
+		return ;
+	int (dx) = game->player_tile_x - game->map->door_pos_x;
+	int (dy) = game->player_tile_y - game->map->door_pos_y;
+	if (dx < 0)
+		dx = -dx;
+	if (dy < 0)
+		dy = -dy;
 	if (game->door_open == 0)
 	{
 		game->map->map[game->map->door_pos_y][game->map->door_pos_x] = '0';
 		game->door_open = 1;
 	}
-	else if (game->door_open == 1
-		&& game->map->map[game->map->door_pos_y][game->map->door_pos_x]
-		!= game->map->map[game->player_tile_y][game->player_tile_x])
+	else if (game->door_open == 1 && (dx > 1 || dy > 1))
 	{
 		game->map->map[game->map->door_pos_y][game->map->door_pos_x] = 'D';
 		game->door_open = 0;
