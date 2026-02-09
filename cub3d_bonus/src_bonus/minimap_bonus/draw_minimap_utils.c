@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_minimap_utils.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: autret <autret@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/05 15:38:14 by autret            #+#    #+#             */
-/*   Updated: 2026/02/05 17:09:02 by autret           ###   ########.fr       */
+/*   Updated: 2026/02/06 14:04:38 by aautret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,18 @@ int	calculate_tile_size(t_map *map)
 {
 	int	tile_width;
 	int	tile_height;
+	int	tile_size;
 
-	tile_width = MINIMAP_SIZE / map->width;
-	tile_height = MINIMAP_SIZE / map->height;
+	tile_width = MINIMAP_WIDTH / map->width;
+	tile_height = MINIMAP_HEIGHT / map->height;
 	if (tile_width < tile_height)
-		return (tile_width);
+		tile_size = tile_width;
+	else
+		tile_size = tile_height;
+	if (tile_size < MINIMAP_TILE_SIZE)
+		tile_size = MINIMAP_TILE_SIZE;
+	if (tile_size > 20)
+		tile_size = 20;
 	return (tile_height);
 }
 

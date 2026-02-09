@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   config.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 10:58:21 by tlorette          #+#    #+#             */
-/*   Updated: 2026/02/04 13:15:46 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/02/06 14:01:01 by aautret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,11 @@
 # define SCREEN_WIDTH 1600 //initialisation claire
 # define SCREEN_HEIGHT 1000 //initialisation claire
 # define TILE_SIZE 50
-# define TILE_SIZE_MINIMAP 10
-# define MINIMAP_SIZE 200
+// # define TILE_SIZE_MINIMAP 10
+// # define MINIMAP_SIZE 200
+# define MINIMAP_TILE_SIZE 5
+# define MINIMAP_HEIGHT 250
+# define MINIMAP_WIDTH 250
 # define MINIMAP_OFFSET 10
 # define FOV 1.0471975512 // champs de vision/angle de vie = 60 degres
 # define WND_NAME "AtomiCube"
