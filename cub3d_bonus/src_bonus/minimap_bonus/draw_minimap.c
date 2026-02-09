@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_minimap.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: autret <autret@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/30 11:19:28 by aautret           #+#    #+#             */
-/*   Updated: 2026/02/06 19:01:16 by autret           ###   ########.fr       */
+/*   Updated: 2026/02/09 15:12:02 by aautret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,15 @@ static void	calc_and_draw_angle(t_img *img, int tile_size)
 	}
 }
 
+static void	init_minimap_window(t_img *img, int tile_size, int visible[2],
+		int start[2])
+{
+	visible[0] = MINIMAP_WIDTH / tile_size;
+	visible[1] = MINIMAP_HEIGHT / tile_size;
+	start[0] = (int)(img->player->origin_x / TILE_SIZE) - (visible[0] / 2);
+	start[1] = (int)(img->player->origin_y / TILE_SIZE) - (visible[1] / 2);
+}
+
 /**
  * @brief Dessine la partie de la map autour du joueur dans la minimap
  *
@@ -76,18 +85,14 @@ static void	calc_and_draw_angle(t_img *img, int tile_size)
  * @param img
  * @param tile_size
  */
-static void	draw_map_tiles(t_map *map, t_img *img, int tile_size)
+static void	draw_map_tiles(t_img *img, int tile_size)
 {
 	int	pos[2];
 	int	map_pos[2];
 	int	visible[2];
 	int	start[2];
-	int	color;
 
-	visible[0] = MINIMAP_WIDTH / tile_size;
-	visible[1] = MINIMAP_HEIGHT / tile_size;
-	start[0] = (int)(img->player->origin_x / TILE_SIZE) - (visible[0] / 2);
-	start[1] = (int)(img->player->origin_y / TILE_SIZE) - (visible[1] / 2);
+	init_minimap_window(img, tile_size, visible, start);
 	pos[1] = 0;
 	while (pos[1] < visible[1])
 	{
@@ -96,15 +101,7 @@ static void	draw_map_tiles(t_map *map, t_img *img, int tile_size)
 		{
 			map_pos[0] = start[0] + pos[0];
 			map_pos[1] = start[1] + pos[1];
-			if (map_pos[1] >= 0 && map_pos[1] < map->height
-				&& map_pos[0] >= 0 && map_pos[0] < map->width
-				&& map->map[map_pos[1]] && map->map[map_pos[1]][map_pos[0]])
-			{
-				color = get_tile_color(map->map[map_pos[1]][map_pos[0]]);
-				draw_tile(img, pos, color, tile_size);
-			}
-			else
-				draw_tile(img, pos, 0x000000, tile_size);
+			draw_one_tile(img, tile_size, map_pos, pos);
 			pos[0]++;
 		}
 		pos[1]++;
@@ -123,7 +120,7 @@ void	draw_minimap(t_map *map, t_img *img)
 	int	center_y;
 
 	tile_size = calculate_tile_size(map);
-	draw_map_tiles(map, img, tile_size);
+	draw_map_tiles(img, tile_size);
 	calc_and_draw_angle(img, tile_size);
 	center_x = MINIMAP_OFFSET + MINIMAP_WIDTH / 2;
 	center_y = MINIMAP_OFFSET + MINIMAP_HEIGHT / 2;
