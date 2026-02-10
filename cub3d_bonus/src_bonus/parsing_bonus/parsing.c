@@ -6,7 +6,7 @@
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 14:56:24 by tlorette          #+#    #+#             */
-/*   Updated: 2026/02/10 13:13:16 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/02/10 14:06:15 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,8 +93,7 @@ static int	detector_and_store_line(t_game *game, char *line,
 			*state = PARSE_MAP;
 			return (parse_map_line(game, line));
 		}
-		if (!parse_identifiers_line(game, line))
-			return (1);
+		parse_identifiers_line(game, line);
 		return (0);
 	}
 	else if (*state == PARSE_MAP)
