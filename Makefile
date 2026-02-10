@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aautret <aautret@student.42.fr>            +#+  +:+       +#+         #
+#    By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/06 11:20:20 by aautret           #+#    #+#              #
-#    Updated: 2026/02/06 11:14:00 by aautret          ###   ########.fr        #
+#    Updated: 2026/02/10 12:58:21 by tlorette         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,6 +68,7 @@ SRCS_MAND := \
 	$(SRC_DIR_MAND)/game/raycaster.c \
 	$(SRC_DIR_MAND)/game/raycast_utils.c \
 	$(SRC_DIR_MAND)/initialisation/init_struct_cub3d.c \
+	$(SRC_DIR_MAND)/initialisation/check_textures.c \
 	$(SRC_DIR_MAND)/initialisation/init_struct_game.c \
 	$(SRC_DIR_MAND)/initialisation/init_textures.c \
 	$(SRC_DIR_MAND)/initialisation/init.c \
@@ -104,6 +105,7 @@ SRCS_BONUS := \
 	$(SRC_DIR_BONUS)/initialisation_bonus/init_struct_cub3d.c \
 	$(SRC_DIR_BONUS)/initialisation_bonus/init_struct_game.c \
 	$(SRC_DIR_BONUS)/initialisation_bonus/init_textures.c \
+	$(SRC_DIR_BONUS)/initialisation_bonus/check_textures.c \
 	$(SRC_DIR_BONUS)/initialisation_bonus/init.c \
 	$(SRC_DIR_BONUS)/minimap_bonus/draw_minimap.c \
 	$(SRC_DIR_BONUS)/minimap_bonus/draw_minimap_helper.c \

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 13:25:04 by tlorette          #+#    #+#             */
-/*   Updated: 2026/02/09 12:52:07 by aautret          ###   ########.fr       */
+/*   Updated: 2026/02/10 13:16:37 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int	init_mlx_base(t_game *game, t_img *img)
 	if (!game->mlx)
 		return (ft_error(game, "mlx_init failed"), 0);
 	if (load_textures(game))
-		return (0);
+		return (ft_error(NULL, "texture failed to load"), 0);
 	img->width = SCREEN_WIDTH;
 	img->height = SCREEN_HEIGHT;
 	return (1);

@@ -6,7 +6,7 @@
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 09:37:30 by frogus            #+#    #+#             */
-/*   Updated: 2026/02/10 11:04:28 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/02/10 11:44:04 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,5 @@ int	check_id(t_game *game, char *line)
 
 int	parse_identifiers_line(t_game *game, char *line)
 {
-	if (!check_id(game, line))
-		return (0);
-	return (1);
+	return (check_id(game, line));
 }

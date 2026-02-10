@@ -6,7 +6,7 @@
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 13:13:10 by tlorette          #+#    #+#             */
-/*   Updated: 2026/02/10 11:09:04 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/02/10 12:48:25 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,6 +162,10 @@ void			text_init(t_texture **text);
 void			img_init(t_img **img, t_game *game);
 void			init_ray_params(t_ray_params *params);
 int				load_textures(t_game *game);
+
+// check_texture.c
+int				check_texture_file(char *path);
+int				validate_all_textures(t_game *game);
 
 // init_textures.c
 int				grab_we_text(t_game *game, char *line, int i);
