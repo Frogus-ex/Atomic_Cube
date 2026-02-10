@@ -6,7 +6,7 @@
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 11:44:23 by tlorette          #+#    #+#             */
-/*   Updated: 2026/02/10 11:05:44 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/02/10 11:44:53 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ int	grab_c_text(t_game *game, char *line, int i)
 
 	y = 0;
 	if (game->nbr_text[5] != 0)
-		return (ft_error(NULL, "too many ceilling textures"), 1);
+		return (ft_error(NULL, "too many ceilling textures"), 0);
 	while (line && line[i] == 32)
 		i++;
 	game->c_text = malloc(sizeof(char) * (ft_strlen(line) - i) + 1);
@@ -105,7 +105,7 @@ int	grab_c_text(t_game *game, char *line, int i)
 		game->c_text[y++] = line[i++];
 	game->c_text[y] = '\0';
 	game->nbr_text[5]++;
-	return (0);
+	return (1);
 }
 
 int	load_single_texture(t_game *game, char *path, void **img, char **data)
@@ -115,7 +115,7 @@ int	load_single_texture(t_game *game, char *path, void **img, char **data)
 
 	*img = mlx_xpm_file_to_image(game->mlx, path, &w, &h);
 	if (!(*img))
-		return (ft_error(game, "Failed to load texture"), 1);
+		return (ft_error(NULL, "Failed to load texture"), 1);
 	*data = mlx_get_data_addr(*img, &game->textures->tex_bpp,
 			&game->textures->tex_line_len, &game->textures->tex_endian);
 	game->textures->tex_width = w;

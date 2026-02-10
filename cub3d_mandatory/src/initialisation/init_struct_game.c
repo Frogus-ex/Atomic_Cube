@@ -6,7 +6,7 @@
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 16:55:26 by aautret           #+#    #+#             */
-/*   Updated: 2026/02/10 10:43:30 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/02/10 11:53:00 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ void	init_ray_params(t_ray_params *params)
 
 int	load_textures(t_game *game)
 {
+	if (!validate_all_textures(game))
+		return (1);
 	return (load_single_texture(game, game->no_text,
 			(void **)&game->textures->tex_no_img, &game->textures->tex_no_data)
 		|| load_single_texture(game, game->so_text,
