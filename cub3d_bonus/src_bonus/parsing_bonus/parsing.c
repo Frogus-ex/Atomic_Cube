@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 14:56:24 by tlorette          #+#    #+#             */
-/*   Updated: 2026/02/06 13:54:41 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/02/10 13:33:46 by aautret          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ static int	detector_and_store_line(t_game *game, char *line,
 	if (*state == PARSES_IDENTIFIERS)
 	{
 		if (detect == -1)
-			return (ft_error(NULL, "invalid line before map start"), 1);
+			return (ft_error(NULL, "Invalid line before map start"), 1);
 		if (detect == 1)
 		{
 			if (!count_text(game))
