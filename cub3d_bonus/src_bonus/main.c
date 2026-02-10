@@ -6,7 +6,7 @@
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 13:18:39 by tlorette          #+#    #+#             */
-/*   Updated: 2026/02/10 13:29:44 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/02/10 14:37:13 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int	parsing_check_all(t_game *game, char **av, t_map *map)
 	return (0);
 }
 
-static int	init_img_and_player(t_game *game, t_texture *texture)
+int	init_img_and_player(t_game *game, t_texture *texture)
 {
 	t_img		*img;
 	t_player	*player;
@@ -51,30 +51,6 @@ static int	init_img_and_player(t_game *game, t_texture *texture)
 	return (1);
 }
 
-t_game	*init_all(void)
-{
-	t_game		*game;
-	t_map		*map;
-	t_texture	*texture;
-
-	game_init(&game);
-	if (!game)
-		return (NULL);
-	map_init(&map);
-	if (!map)
-		return (free_all(game), NULL);
-	game->map = map;
-	game->animate = NULL;
-	map->s_animate = NULL;
-	text_init(&texture);
-	if (!texture)
-		return (free_all(game), NULL);
-	game->textures = texture;
-	if (!init_img_and_player(game, texture))
-		return (free_all(game), NULL);
-	return (game);
-}
-
 static void	load_all_sprites(t_game *game)
 {
 	int	i;
@@ -96,17 +72,8 @@ static void	load_all_sprites(t_game *game)
 		game->animate = game->map->s_animate;
 }
 
-int	main(int ac, char **av)
+static void	setup_game(t_game *game)
 {
-	t_game	*game;
-
-	if (ac != 2)
-		return (ft_error(NULL, "wrong number of args"), 1);
-	game = init_all();
-	if (!game)
-		return (ft_error(NULL, "Failed to initialize game"), 1);
-	if (parsing_check_all(game, av, game->map))
-		return (free_all(game), 1);
 	game->img->game = game;
 	game->img->map = game->map;
 	game->img->player = game->player;
@@ -118,6 +85,20 @@ int	main(int ac, char **av)
 		+ MINIMAP_WIDTH / 2;
 	game->minimap->player_pos_y = game->map->player_y * MINIMAP_HEIGHT
 		+ MINIMAP_HEIGHT / 2;
+}
+
+int	main(int ac, char **av)
+{
+	t_game	*game;
+
+	if (ac != 2)
+		return (ft_error(NULL, "wrong number of args"), 1);
+	game = init_all();
+	if (!game)
+		return (ft_error(NULL, "Failed to initialize game"), 1);
+	if (parsing_check_all(game, av, game->map))
+		return (free_all(game), 1);
+	setup_game(game);
 	if (!check_colors_param(game))
 		return (ft_error(game, "colors param are not in RGB format"), 0);
 	if (!init_mlx(game, game->map, game->img))

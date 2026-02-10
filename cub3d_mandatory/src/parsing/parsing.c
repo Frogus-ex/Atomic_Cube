@@ -6,7 +6,7 @@
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 14:56:24 by tlorette          #+#    #+#             */
-/*   Updated: 2026/02/10 11:34:11 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/02/10 14:11:51 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,9 @@ static int	detector_and_store_line(t_game *game, char *line,
 			return (ft_error(NULL, "error: invalid line before map start"), 1);
 		if (detect == 1)
 		{
+			if (!count_text(game))
+				return (ft_error(NULL,
+						"wrong number of textures before map start"), 1);
 			*state = PARSE_MAP;
 			return (parse_map_line(game, line));
 		}

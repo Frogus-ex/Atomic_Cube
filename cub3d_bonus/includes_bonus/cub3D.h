@@ -6,7 +6,7 @@
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 13:13:10 by tlorette          #+#    #+#             */
-/*   Updated: 2026/02/10 12:48:25 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/02/10 14:37:36 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,6 +176,7 @@ int				load_single_texture(t_game *game, char *path, void **img,
 					char **data);
 
 // init.c
+t_game			*init_all(void);
 void			game_init(t_game **game);
 void			map_init(t_map **map);
 void			img_init(t_img **img, t_game *game);
@@ -242,5 +243,6 @@ int				get_sprite_pixel(void *img, int pos[2], t_animate *animate);
 // utils.c
 void			ft_error(t_game *game, char *s);
 int				ft_gnlen(char *gnl);
+int				init_img_and_player(t_game *game, t_texture *texture);
 
 #endif

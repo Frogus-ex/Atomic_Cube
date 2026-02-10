@@ -6,7 +6,7 @@
 /*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 13:25:04 by tlorette          #+#    #+#             */
-/*   Updated: 2026/02/10 13:16:37 by tlorette         ###   ########.fr       */
+/*   Updated: 2026/02/10 14:34:47 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int	init_mlx_base(t_game *game, t_img *img)
 	if (!game->mlx)
 		return (ft_error(game, "mlx_init failed"), 0);
 	if (load_textures(game))
-		return (ft_error(NULL, "texture failed to load"), 0);
+		return (ft_error(game, "texture failed to load"), 0);
 	img->width = SCREEN_WIDTH;
 	img->height = SCREEN_HEIGHT;
 	return (1);
@@ -55,8 +55,8 @@ static int	create_window_and_image(t_game *game, t_img *img)
 
 /**
  * @brief Configure les hooks MLX (clavier, souris, loop)
- * 
- * @param game 
+ *
+ * @param game
  */
 static void	set_up_mlx_hook(t_game *game)
 {
@@ -70,11 +70,11 @@ static void	set_up_mlx_hook(t_game *game)
 
 /**
  * @brief  Initialise MLX, fenêtre, image et hooks
- * 
+ *
  * @param game Structure du jeu
  * @param map Structure de la map
  * @param img Strucutre de l'image
- * @return int 
+ * @return int
  */
 int	init_mlx(t_game *game, t_map *map, t_img *img)
 {
@@ -86,4 +86,28 @@ int	init_mlx(t_game *game, t_map *map, t_img *img)
 		return (0);
 	set_up_mlx_hook(game);
 	return (1);
+}
+
+t_game	*init_all(void)
+{
+	t_game		*game;
+	t_map		*map;
+	t_texture	*texture;
+
+	game_init(&game);
+	if (!game)
+		return (NULL);
+	map_init(&map);
+	if (!map)
+		return (free_all(game), NULL);
+	game->map = map;
+	game->animate = NULL;
+	map->s_animate = NULL;
+	text_init(&texture);
+	if (!texture)
+		return (free_all(game), NULL);
+	game->textures = texture;
+	if (!init_img_and_player(game, texture))
+		return (free_all(game), NULL);
+	return (game);
 }
