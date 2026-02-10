@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 13:13:10 by tlorette          #+#    #+#             */
-/*   Updated: 2026/02/06 13:30:04 by aautret          ###   ########.fr       */
+/*   Updated: 2026/02/10 11:09:04 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@
 # include "minimap.h"
 # include "mlx.h"
 # include <fcntl.h>
+# include <float.h>
 # include <libft.h>
 # include <math.h>
 # include <stdio.h>
-# include <float.h>
 # include <time.h>
 # include <unistd.h>
 
@@ -33,56 +33,56 @@ typedef enum e_parse_state
 {
 	PARSES_IDENTIFIERS,
 	PARSE_MAP
-}			t_parse_state;
+}				t_parse_state;
 
 typedef struct s_player
 {
-	int		origin_y;
-	int		origin_x;
-	int		view_distance;
-	int		w_pressed;
-	int		s_pressed;
-	int		a_pressed;
-	int		d_pressed;
-	int		left_pressed;
-	int		right_pressed;
-	int		space_pressed;
-	int		space_was_pressed;
-	int		mouse_x;
-	int		mouse_y;
-	double	direction_vue;
-	double	view_angle;
+	int			origin_y;
+	int			origin_x;
+	int			view_distance;
+	int			w_pressed;
+	int			s_pressed;
+	int			a_pressed;
+	int			d_pressed;
+	int			left_pressed;
+	int			right_pressed;
+	int			space_pressed;
+	int			space_was_pressed;
+	int			mouse_x;
+	int			mouse_y;
+	double		direction_vue;
+	double		view_angle;
 
-}			t_player;
+}				t_player;
 
 typedef struct s_animate
 {
-	double	x;
-	double	y;
-	void	*frame[6];
-	int		current_frame;
-	int		frame_count;
-	int		frame_ms;
-	int		acc_ms;
-	int		frame_width;
-	int		frame_height;
-}			t_animate;
+	double		x;
+	double		y;
+	void		*frame[6];
+	int			current_frame;
+	int			frame_count;
+	int			frame_ms;
+	int			acc_ms;
+	int			frame_width;
+	int			frame_height;
+}				t_animate;
 
 typedef struct s_sprite_proj
 {
-	double	distance;
-	int		screen_x;
-	int		sprite_height;
-	int		sprite_width;
-}			t_sprite_proj;
+	double		distance;
+	int			screen_x;
+	int			sprite_height;
+	int			sprite_width;
+}				t_sprite_proj;
 
 typedef struct s_mlx_data
 {
-	char	*data;
-	int		bpp;
-	int		size_line;
-	int		endian;
-}			t_mlx_data;
+	char		*data;
+	int			bpp;
+	int			size_line;
+	int			endian;
+}				t_mlx_data;
 
 typedef struct s_map
 {
@@ -102,7 +102,7 @@ typedef struct s_map
 	int			door_pos_y;
 	int			door_distance;
 	t_player	*player;
-}			t_map;
+}				t_map;
 
 typedef struct s_game
 {
@@ -164,12 +164,12 @@ void			init_ray_params(t_ray_params *params);
 int				load_textures(t_game *game);
 
 // init_textures.c
-void			grab_we_text(t_game *game, char *line, int i);
-void			grab_ea_text(t_game *game, char *line, int i);
-void			grab_f_text(t_game *game, char *line, int i);
-void			grab_c_text(t_game *game, char *line, int i);
-int				load_single_texture(t_game *game, char *path,
-					void **img, char **data);
+int				grab_we_text(t_game *game, char *line, int i);
+int				grab_ea_text(t_game *game, char *line, int i);
+int				grab_f_text(t_game *game, char *line, int i);
+int				grab_c_text(t_game *game, char *line, int i);
+int				load_single_texture(t_game *game, char *path, void **img,
+					char **data);
 
 // init.c
 void			game_init(t_game **game);

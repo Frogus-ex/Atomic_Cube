@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_textures.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aautret <aautret@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tlorette <tlorette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 11:44:23 by tlorette          #+#    #+#             */
-/*   Updated: 2026/02/06 13:44:14 by aautret          ###   ########.fr       */
+/*   Updated: 2026/02/10 11:08:13 by tlorette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,23 +19,21 @@
  * @param line
  * @param i
  */
-void	grab_we_text(t_game *game, char *line, int i)
+int	grab_we_text(t_game *game, char *line, int i)
 {
 	int	y;
 
 	y = 0;
 	if (game->nbr_text[2] != 0)
-		return (ft_error(NULL, "too many west textures"));
+		return (ft_error(NULL, "too many west textures"), 0);
 	while (line && line[i] == 32)
 		i++;
 	game->we_text = malloc((ft_strlen(line) - i) + 1);
-	while (line[i] && line[i] != '\n' && line[i] != '\r')
+	while (line[i] && line[i] != '\n')
 		game->we_text[y++] = line[i++];
-	while (y > 0 && (game->we_text[y - 1] == 32
-			|| game->we_text[y - 1] == '\t'))
-		y--;
 	game->we_text[y] = '\0';
 	game->nbr_text[2]++;
+	return (1);
 }
 
 /**
@@ -45,23 +43,21 @@ void	grab_we_text(t_game *game, char *line, int i)
  * @param line
  * @param i
  */
-void	grab_ea_text(t_game *game, char *line, int i)
+int	grab_ea_text(t_game *game, char *line, int i)
 {
 	int	y;
 
 	y = 0;
 	if (game->nbr_text[3] != 0)
-		return (ft_error(NULL, "too many east textures"));
+		return (ft_error(NULL, "too many east textures"), 0);
 	while (line && line[i] == 32)
 		i++;
 	game->ea_text = malloc(sizeof(char) * (ft_strlen(line) - i) + 1);
-	while (line[i] && line[i] != '\n' && line[i] != '\r')
+	while (line[i] && line[i] != '\n')
 		game->ea_text[y++] = line[i++];
-	while (y > 0 && (game->ea_text[y - 1] == 32 || game->ea_text[y
-				- 1] == '\t'))
-		y--;
 	game->ea_text[y] = '\0';
 	game->nbr_text[3]++;
+	return (1);
 }
 
 /**
@@ -71,22 +67,21 @@ void	grab_ea_text(t_game *game, char *line, int i)
  * @param line
  * @param i
  */
-void	grab_f_text(t_game *game, char *line, int i)
+int	grab_f_text(t_game *game, char *line, int i)
 {
 	int	y;
 
 	y = 0;
 	if (game->nbr_text[4] != 0)
-		return (ft_error(NULL, "too many floor textures"));
+		return (ft_error(NULL, "too many floor textures"), 0);
 	while (line && line[i] == 32)
 		i++;
 	game->f_text = malloc(sizeof(char) * (ft_strlen(line) - i) + 1);
-	while (line[i] && line[i] != '\n' && line[i] != '\r')
+	while (line[i] && line[i] != '\n')
 		game->f_text[y++] = line[i++];
-	while (y > 0 && (game->f_text[y - 1] == 32 || game->f_text[y - 1] == '\t'))
-		y--;
 	game->f_text[y] = '\0';
 	game->nbr_text[4]++;
+	return (1);
 }
 
 /**
@@ -96,22 +91,21 @@ void	grab_f_text(t_game *game, char *line, int i)
  * @param line
  * @param i
  */
-void	grab_c_text(t_game *game, char *line, int i)
+int	grab_c_text(t_game *game, char *line, int i)
 {
 	int	y;
 
 	y = 0;
 	if (game->nbr_text[5] != 0)
-		return (ft_error(NULL, "too many ceilling textures"));
+		return (ft_error(NULL, "too many ceilling textures"), 1);
 	while (line && line[i] == 32)
 		i++;
 	game->c_text = malloc(sizeof(char) * (ft_strlen(line) - i) + 1);
-	while (line[i] && line[i] != '\n' && line[i] != '\r')
+	while (line[i] && line[i] != '\n')
 		game->c_text[y++] = line[i++];
-	while (y > 0 && (game->c_text[y - 1] == 32 || game->c_text[y - 1] == '\t'))
-		y--;
 	game->c_text[y] = '\0';
 	game->nbr_text[5]++;
+	return (0);
 }
 
 int	load_single_texture(t_game *game, char *path, void **img, char **data)
